@@ -1,0 +1,23 @@
+//
+//  OneNotePrefixHeader.pch
+//  OneNote
+//
+//  Created by Dongjia Zheng on 15/12/7.
+//  Copyright © 2015年 Dongjia Zheng. All rights reserved.
+//
+
+
+
+#ifndef OneNotePrefixHeader_pch
+#define OneNotePrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#define AppKey_Bmob @"8ba6f55903ae84dfd78a0ab49622e1b4"
+#define AppID_QQ @"1104951150"
+//#define AppID_QQ @"1105054639"
+
+#define _Macro_User @"OneNoteUser"
+
+#endif /* OneNotePrefixHeader_pch */

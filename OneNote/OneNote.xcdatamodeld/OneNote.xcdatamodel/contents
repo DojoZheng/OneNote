@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15C50" minimumToolsVersion="Xcode 7.0">
+    <entity name="MemoManagedObject" representedClassName="MemoManagedObject" syncable="YES">
+        <attribute name="advanceTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="openid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="place" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="remindMode" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="remindTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserManagedObject" inverseName="memo" inverseEntity="UserManagedObject" syncable="YES"/>
+    </entity>
+    <entity name="NoteManagedObject" representedClassName="NoteManagedObject" syncable="YES">
+        <attribute name="createTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="folder" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="openid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserManagedObject" inverseName="note" inverseEntity="UserManagedObject" syncable="YES"/>
+    </entity>
+    <entity name="UserManagedObject" representedClassName="UserManagedObject" syncable="YES">
+        <attribute name="figureUrl1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="figureUrl2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nickName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="openid" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="memo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MemoManagedObject" inverseName="user" inverseEntity="MemoManagedObject" syncable="YES"/>
+        <relationship name="note" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NoteManagedObject" inverseName="user" inverseEntity="NoteManagedObject" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="MemoManagedObject" positionX="-470" positionY="414" width="128" height="163"/>
+        <element name="NoteManagedObject" positionX="-146" positionY="443" width="128" height="133"/>
+        <element name="UserManagedObject" positionX="-317" positionY="207" width="128" height="163"/>
+    </elements>
+</model>
