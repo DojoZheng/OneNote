@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *title;
 @property (weak, nonatomic) IBOutlet UILabel *memoTime;
 @property (weak, nonatomic) IBOutlet UILabel *memoPlace;
+@property (weak, nonatomic) IBOutlet UILabel *advanceTime;
 
 @end
 
@@ -31,9 +32,10 @@
 #pragma mark - 重写set方法
 - (void)setMemo:(Memo *)memo{
     _memo = memo;
-    self.title.text = memo.memoTitle;
+    self.title.text = [NSString stringWithFormat:@"# %@ #",memo.memoTitle];
     self.memoPlace.text = memo.memoPlace;
     self.memoTime.text = memo.memoRemindTime;
+    self.advanceTime.text = memo.memoAdvanceTime;
 }
 
 +(instancetype)memoCellWithTableView:(UITableView*)tableView {

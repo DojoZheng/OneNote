@@ -83,7 +83,7 @@ static const CGFloat kMaxTitleHeight = 180;
   _backgroundView.frame = bgFrame;
 
   NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-  [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+  [formatter setDateFormat:ONDateFormat];
   [_timeLabel setText:[formatter stringFromDate:note.createdDate]];
 }
 

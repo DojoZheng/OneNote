@@ -17,7 +17,7 @@
 @property (nonatomic,copy)NSString* memoTitle;
 
 @property (nonatomic,copy)NSString* memoRemindTime;
-@property (nonatomic,copy)NSString* memoAdvanceTime;   //yyyy-MM-dd hh-mm
+@property (nonatomic,copy)NSString* memoAdvanceTime;   //yyyy-MM-dd hh:mm
 @property (nonatomic,copy)NSString* memoPlace;
 @property (nonatomic,assign)int memoRemindMode; //1:铃声 2:震动 3:铃声+震动
 

@@ -59,8 +59,8 @@ static MemoDAO *shareManager = nil;
     NSError *error = nil;
     NSArray *listData = [cxt executeFetchRequest:request error:&error];
     if ([listData count] > 0) {
-        MemoManagedObject *note = [listData lastObject];
-        [self.managedObjectContext deleteObject:note];
+        MemoManagedObject *memo = [listData lastObject];
+        [self.managedObjectContext deleteObject:memo];
         
         error = nil;
         if ([cxt hasChanges] && ![cxt save:&error]){
@@ -88,14 +88,14 @@ static MemoDAO *shareManager = nil;
     NSError *error = nil;
     NSArray *listData = [cxt executeFetchRequest:request error:&error];
     if ([listData count] > 0) {
-        MemoManagedObject *note = [listData lastObject];
-        note.title = model.memoTitle;
-        note.createTime = model.memoCreateTime;
-        note.openid = model.openID;
-        note.remindMode = [NSNumber numberWithInt:model.memoRemindMode];
-        note.place = model.memoPlace;
-        note.advanceTime = model.memoAdvanceTime;
-        note.remindTime = model.memoRemindTime;
+        MemoManagedObject *memo = [listData lastObject];
+        memo.title = model.memoTitle;
+        memo.createTime = model.memoCreateTime;
+        memo.openid = model.openID;
+        memo.remindMode = [NSNumber numberWithInt:model.memoRemindMode];
+        memo.place = model.memoPlace;
+        memo.advanceTime = model.memoAdvanceTime;
+        memo.remindTime = model.memoRemindTime;
         
         error = nil;
         if ([cxt hasChanges] && ![cxt save:&error]){

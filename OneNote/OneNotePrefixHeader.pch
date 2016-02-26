@@ -19,5 +19,6 @@
 //#define AppID_QQ @"1105054639"
 
 #define _Macro_User @"OneNoteUser"
+#define ONDateFormat @"yyyy-MM-dd hh:mm"
 
 #endif /* OneNotePrefixHeader_pch */
