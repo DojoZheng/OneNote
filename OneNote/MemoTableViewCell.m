@@ -45,6 +45,7 @@
         //        cell = [[MemoTableViewCell alloc]init];
         cell = [[[NSBundle mainBundle]loadNibNamed:@"MemoTableViewCell" owner:nil options:nil] firstObject];
         cell.backgroundColor = [UIColor colorWithRed:0.96 green:0.86 blue:0.42 alpha:1];
+        
 //        [cell.title sizeToFit];
         NSLog(@"创建了一个Cell");
     }

@@ -566,6 +566,13 @@
 			name = "笔记";
 			sourceTree = "<group>";
 		};
+		E14166F01C8047010004A414 /* InformationSystem Layer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "InformationSystem Layer";
+			sourceTree = "<group>";
+		};
 		E187FE0E1C5CF11200B02450 /* SDWebImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -658,6 +665,7 @@
 		E1C4E0491C60907800A36562 /* Memo */ = {
 			isa = PBXGroup;
 			children = (
+				E14166F01C8047010004A414 /* InformationSystem Layer */,
 				E1CD4CF41C65E7E700A684E5 /* BusinessLogic Layer */,
 				E1CD4CF31C65E7DB00A684E5 /* Persistent Layer */,
 			);

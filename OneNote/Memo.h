@@ -19,7 +19,9 @@
 @property (nonatomic,copy)NSString* memoRemindTime;
 @property (nonatomic,copy)NSString* memoAdvanceTime;   //yyyy-MM-dd hh:mm
 @property (nonatomic,copy)NSString* memoPlace;
-@property (nonatomic,assign)int memoRemindMode; //1:铃声 2:震动 3:铃声+震动
+@property (nonatomic,assign)int memoRemindMode; //0:无 1:铃声 2:震动 3:铃声+震动
+
+@property (nonatomic,strong) NSString* objectID;
 
 - (instancetype)initWithCreateTime:(NSString*)createTime
                             openid:(NSString*)openid
@@ -27,6 +29,7 @@
                         remindTime:(NSString*)remindTime
                        advanceTime:(NSString*)advanceTime
                              place:(NSString*)place
-                        remindMode:(int16_t)remindMode;
+                        remindMode:(int16_t)remindMode
+                          objectid:(NSString*)objectID;
 
 @end

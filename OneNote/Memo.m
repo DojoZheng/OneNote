@@ -17,7 +17,8 @@
                         remindTime:(NSString*)remindTime
                        advanceTime:(NSString*)advanceTime
                              place:(NSString*)place
-                        remindMode:(int16_t)remindMode {
+                        remindMode:(int16_t)remindMode
+                          objectid:(NSString*)objectID{
     if (self = [super init]) {
         self.memoCreateTime = createTime;
         self.openID = openid;
@@ -26,6 +27,7 @@
         self.memoAdvanceTime = advanceTime;
         self.memoPlace = place;
         self.memoRemindMode = remindMode;
+        self.objectID = objectID;
     }
     return self;
 }

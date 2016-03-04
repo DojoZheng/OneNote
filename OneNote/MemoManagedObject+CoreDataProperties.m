@@ -21,5 +21,6 @@
 @dynamic remindMode;
 @dynamic remindTime;
 @dynamic user;
+@dynamic bmobObjectid;
 
 @end

@@ -245,6 +245,12 @@
     _QQAccessToken = [_tencentOAuth accessToken];
     _QQOpenID = [_tencentOAuth openId];
     _QQExpirationDate = [_tencentOAuth expirationDate];
+
+    //将openid存入NSUserDefaults
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:_QQOpenID forKey:App_OpenID];
+    [defaults synchronize];
+    
     NSLog(@"登陆结果:%@ \n 登陆Token:%@ \n 登陆Open ID:%@  \nToken失效日期:%@",_QQLoginResultText.text, _QQAccessToken, _QQOpenID, _QQExpirationDate);
     [_tencentOAuth getUserInfo];
     

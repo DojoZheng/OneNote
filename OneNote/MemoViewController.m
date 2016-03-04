@@ -14,6 +14,7 @@
 #import "Memo.h"
 #import "MemoTableViewCell.h"
 #import "MemoBL.h"
+#import <BmobSDK/Bmob.h>
 
 
 
@@ -30,7 +31,7 @@
 
 
 
-@interface MemoViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
+@interface MemoViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
 
 
 @property (nonatomic,strong) UIButton* munuBtn;
@@ -39,9 +40,14 @@
 
 //日期选择器
 @property (nonatomic,retain) UIDatePicker* datePicker;
+//提醒模式选择器
+@property (nonatomic,strong) UIPickerView* remindModePicker;
+@property (nonatomic,strong) NSArray* remindModeArray;
 
 //Memo备忘录UITextField
 @property (nonatomic,retain) UIAlertController* memoAlertController;
+
+@property (nonatomic,strong) Memo* addedMemo;
 
 @end
 
@@ -168,6 +174,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
    //1.创建Cell
     MemoTableViewCell* cell = [MemoTableViewCell memoCellWithTableView:tableView];
+    UILabel* line = [[UILabel alloc]initWithFrame:CGRectMake(0, cell.frame.size.height - 1, tableView.frame.size.width, 1)];
+    line.backgroundColor = [UIColor grayColor];
+    [cell addSubview:line];
     
     //2.获取数据
     Memo* memo = self.memoArray[indexPath.row];
@@ -195,7 +204,7 @@
     
     [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         textField.placeholder = @"输入：备忘录标题";
-        textField.text = currentMemo.memoTitle;
+        textField.text = [NSString stringWithFormat:@"%@",currentMemo.memoTitle];
         textField.tag = 101;
         textField.delegate = self;
         textField.clearButtonMode = UITextFieldViewModeAlways;
@@ -205,7 +214,11 @@
     
     [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         textField.placeholder = @"输入：时间";
-        textField.text = currentMemo.memoRemindTime;
+        if (currentMemo.memoRemindTime == nil) {
+            textField.text = @"";
+        }else{
+            textField.text = currentMemo.memoRemindTime;
+        }
         textField.tag = 102;
         textField.delegate = self;
         textField.clearButtonMode = UITextFieldViewModeAlways;
@@ -213,7 +226,11 @@
     
     [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         textField.placeholder = @"输入：地点";
-        textField.text = currentMemo.memoPlace;
+        if (currentMemo.memoPlace == nil) {
+            textField.text = @"";
+        }else{
+            textField.text = currentMemo.memoPlace;
+        }
         textField.tag = 103;
         textField.delegate = self;
         textField.clearButtonMode = UITextFieldViewModeAlways;
@@ -221,19 +238,51 @@
     
     [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         textField.placeholder = @"输入：提醒时间";
-        textField.text = currentMemo.memoAdvanceTime;
+        if (currentMemo.memoAdvanceTime == nil) {
+            textField.text = @"";
+        }else{
+            textField.text = currentMemo.memoAdvanceTime;
+        }
         textField.tag = 104;
         textField.delegate = self;
         textField.clearButtonMode = UITextFieldViewModeAlways;
     }];
     
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"选择：提醒模式";
+        switch (currentMemo.memoRemindMode) {
+            case 0:
+                textField.text = @"提醒模式: 无";
+                break;
+                
+            case 1:
+                textField.text = @"提醒模式: 铃声模式";
+                break;
+                
+            case 2:
+                textField.text = @"提醒模式: 震动模式";
+                break;
+                
+            case 3:
+                textField.text = @"提醒模式: 混合模式";
+                break;
+            default:
+                break;
+        }
+        textField.tag = 105;
+        textField.delegate = self;
+        textField.clearButtonMode = UITextFieldViewModeAlways;
+    }];
+    
+    
+    
     UIAlertAction* confirmAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"Action:%@",action.title);
         NSLog(@"Action:%@",action.title);
         UITextField* memoTitle = alertController.textFields[0];
         UITextField* remindTime = alertController.textFields[1];
         UITextField* place = alertController.textFields[2];
         UITextField* advanceTime = alertController.textFields[3];
+        
 
         if ([memoTitle.text isEqualToString:@""]) {
             NSLog(@"未输入标题");
@@ -250,15 +299,16 @@
             [self presentViewController:remindInput animated:YES completion:nil];
         }else{
             MemoBL* memoBL = [[MemoBL alloc]init];
-//            Memo* tempMemo = [[Memo alloc]init];
             currentMemo.memoTitle = memoTitle.text;
             currentMemo.memoRemindTime = remindTime.text;
             currentMemo.memoPlace = place.text;
             currentMemo.memoAdvanceTime = advanceTime.text;
-#pragma mark - Modify
+            
+            //先对本地进行修改
             self.memoArray = [memoBL modify:currentMemo];
-            //            [self.memoArray addObject:tempMemo];
-//            [self.memoTableView reloadData];
+            //然后对Bmob云端进行修改
+            [self modifyToBmob:currentMemo];
+            
             [self.memoTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationAutomatic];
         }
         //        if ([time.text isEqualToString:@""]) {
@@ -301,6 +351,24 @@
 
 - (void)addMemo {
     UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"新建备忘录" message:NULL preferredStyle:UIAlertControllerStyleAlert];
+    
+    _addedMemo = [[Memo alloc]init];
+
+    /**
+     //Memo本身的信息
+     NSString* memoCreateTime;
+     NSString* openID;
+     NSString* memoTitle;
+     NSString* memoRemindTime;
+     NSString* memoAdvanceTime;   //yyyy-MM-dd hh:mm
+     NSString* memoPlace;
+     int memoRemindMode; //1:铃声 2:震动 3:铃声+震动
+     */
+
+
+    
+    
+
 
 //    UIAlertAction *createTitle = [UIAlertAction actionWithTitle:@"标题" style:UIAlertActionStyleDefault handler:nil];
 //    UIAlertAction *createDir = [UIAlertAction actionWithTitle:@"开始时间" style:UIAlertActionStyleDefault handler:nil];
@@ -336,14 +404,24 @@
         textField.clearButtonMode = UITextFieldViewModeAlways;
     }];
     
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"选择：提醒模式";
+        textField.tag = 105;
+        textField.delegate = self;
+        textField.clearButtonMode = UITextFieldViewModeAlways;
+    }];
+    
     UIAlertAction* confirmAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSLog(@"Action:%@",action.title);
         NSLog(@"Action:%@",action.title);
         UITextField* memoTitle = alertController.textFields[0];
-        UITextField* remindTime = alertController.textFields[1];
-        UITextField* place = alertController.textFields[2];
-        UITextField* advanceTime = alertController.textFields[3];
+//        UITextField* remindTime = alertController.textFields[1];
+//        UITextField* place = alertController.textFields[2];
+//        UITextField* advanceTime = alertController.textFields[3];
 ;
+        
+        
+        
         if ([memoTitle.text isEqualToString:@""]) {
             NSLog(@"未输入标题");
             UIAlertController* remindInput = [UIAlertController
@@ -359,19 +437,29 @@
             [self presentViewController:remindInput animated:YES completion:nil];
         }else{
             MemoBL* memoBL = [[MemoBL alloc]init];
-            Memo* tempMemo = [[Memo alloc]init];
-            tempMemo.memoCreateTime = [self getCurrentTime];
-            tempMemo.memoTitle = memoTitle.text;
-            tempMemo.memoRemindTime = remindTime.text;
-            tempMemo.memoPlace = place.text;
-            tempMemo.memoAdvanceTime = advanceTime.text;
-            self.memoArray = [memoBL createMemo:tempMemo];
-//            [self.memoArray addObject:tempMemo];
+            NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+            _addedMemo.openID = [defaults objectForKey:App_OpenID];
+            _addedMemo.memoCreateTime = [self getCurrentTime];
+            
+            //先将数据存入本地
+            self.memoArray = [memoBL createMemo:_addedMemo];
+//            [self.memoArray addObject:addedMemo];
+            //再将数据存入云后端Bmob
+            [self insertToBmob:_addedMemo];
+            
             NSArray* indexPaths = [self.memoTableView indexPathsForVisibleRows];
             NSIndexPath* lastIndexPath = [indexPaths lastObject];
-            NSIndexPath* nextIndexPath = [NSIndexPath indexPathForRow:lastIndexPath.row+1 inSection:lastIndexPath.section];
-            [self.memoTableView insertRowsAtIndexPaths:[NSArray arrayWithObjects:nextIndexPath,nil] withRowAnimation:UITableViewRowAnimationMiddle];
+            if (lastIndexPath == nil) {
+                lastIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+                [self.memoTableView insertRowsAtIndexPaths:[NSArray arrayWithObjects:lastIndexPath,nil] withRowAnimation:UITableViewRowAnimationMiddle];
+            }else{
+                NSIndexPath* nextIndexPath = [NSIndexPath indexPathForRow:lastIndexPath.row+1 inSection:lastIndexPath.section];
+                [self.memoTableView insertRowsAtIndexPaths:[NSArray arrayWithObjects:nextIndexPath,nil] withRowAnimation:UITableViewRowAnimationMiddle];
+            }
+            
+            
         }
+        
 //        if ([time.text isEqualToString:@""]) {
 //            NSLog(@"未输入时间");
 //
@@ -417,14 +505,37 @@
         [self.datePicker addTarget:self action:@selector(selectDate:) forControlEvents:UIControlEventValueChanged];
 //        [self.view addSubview:self.datePicker];
         textField.inputView = self.datePicker;
-        
+    }else if (_presentTextFieldTag == 105){
+        //弹出提醒模式选择器
+        self.remindModePicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height*3/4, [UIScreen mainScreen].bounds.size.width, self.view.size.height/4)];
+        self.remindModePicker.delegate = self;
+        self.remindModePicker.dataSource = self;
+        self.remindModeArray = [NSArray arrayWithObjects:@"无",@"闹铃模式",@"震动模式",@"混合模式",nil];
+        textField.inputView = self.remindModePicker;
     }
 }
 
+
 // called when 'return' key pressed. return NO to ignore.
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    
+    if (textField.tag == 101) {
+        _addedMemo.memoTitle = textField.text;
+//        textField.text = [NSString stringWithFormat:@"%@",textField.text];
+        
+    }else if(textField.tag == 103){
+        _addedMemo.memoPlace = textField.text;
+//        textField.text = [NSString stringWithFormat:@"%@",textField.text];
+    }
     return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField;{
+    if (textField.tag == 101) {
+        _addedMemo.memoTitle = textField.text;
+    }else if(textField.tag == 103){
+        _addedMemo.memoPlace = textField.text;
+    }
+
 }
 
 - (void)selectDate:(id)sender {
@@ -432,7 +543,14 @@
     [outputFormatter setDateFormat:ONDateFormat];
     NSString* str = [outputFormatter stringFromDate:self.datePicker.date];
     UITextField* presentTF = _memoAlertController.textFields[_presentTextFieldTag-101];
-    presentTF.text = str;
+    if(presentTF.tag == 102){
+        _addedMemo.memoRemindTime = str;
+        presentTF.text = [NSString stringWithFormat:@"%@",str];
+    }else if (presentTF.tag == 104){
+        _addedMemo.memoAdvanceTime = str;
+        presentTF.text = [NSString stringWithFormat:@"%@",str];
+    }
+    
 //    sender.text = str;
 }
 
@@ -453,6 +571,7 @@
  *
  *  @From: UITableViewDelegate
  */
+#pragma mark - UITableViewDelegate
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
     return UITableViewCellEditingStyleDelete;
 }
@@ -463,12 +582,17 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //先对CoreData进行操作
         if(self.memoBL == nil){
             self.memoBL = [[MemoBL alloc]init];
         }
         Memo* deleteMemo = [self.memoArray objectAtIndex:indexPath.row];
         self.memoArray = [self.memoBL remove:deleteMemo];
         [self.memoTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        //再对Bmob云端进行操作
+        [self removeFromBmob:deleteMemo];
+        
 //        [self.memoTableView reloadData];
     }
 }
@@ -495,5 +619,126 @@
     return currentDate;
 }
 
+#pragma mark - UIPickerViewDelegate
+// returns width of column and height of row for each component.
+- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component{
+    return self.view.frame.size.width/2;
+}
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{
+    return 40;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    NSString* str = [self.remindModeArray objectAtIndex:row];
+    return str;
+}
+
+- (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    NSString* str = [self.remindModeArray objectAtIndex:row];
+    NSMutableAttributedString* attributedString = [[NSMutableAttributedString alloc] initWithString:str];
+    [attributedString addAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:30],NSForegroundColorAttributeName:[UIColor blackColor]} range:NSMakeRange(0, [attributedString length])];
+    
+    return attributedString;
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    UITextField* tf = _memoAlertController.textFields[4];
+    tf.text = [NSString stringWithFormat:@"提醒模式:%@",[self.remindModeArray objectAtIndex:row]];
+    _addedMemo.memoRemindMode = (int)row;
+}
+
+#pragma mark - UIPickerViewDataSource
+// returns the number of 'columns' to display.
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
+}
+
+// returns the # of rows in each component..
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    return 4;
+}
+
+#pragma mark - Bmob云后端操作
+- (int)insertToBmob:(Memo*)model {
+    //在RemindEntity创建一条数据，如果当前没RemindEntity表，则会创建RemindEntity表
+    BmobObject  *remindEntity = [BmobObject objectWithClassName:@"RemindEntity"];
+    /**
+     *  初始化RemindEntity:
+     1.title:String
+     2.advanceTime:String
+     3.createTime:String
+     4.openid:String
+     5.place:String
+     6.remindMode:Number
+     7.remindTime:String
+     */
+    [remindEntity setObject:model.memoTitle forKey:@"title"];
+    [remindEntity setObject:model.memoAdvanceTime forKey:@"advanceTime"];
+    [remindEntity setObject:model.memoCreateTime forKey:@"createTime"];
+    [remindEntity setObject:model.openID forKey:@"openid"];
+    [remindEntity setObject:model.memoPlace forKey:@"place"];
+    [remindEntity setObject:[NSNumber numberWithInt:model.memoRemindMode] forKey:@"remindMode"];
+    [remindEntity setObject:model.memoRemindTime forKey:@"remindTime"];
+    
+    
+    
+    //异步保存到服务器
+    [remindEntity saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+        if (isSuccessful) {
+            //创建成功后会返回objectId，updatedAt，createdAt等信息
+            //创建对象成功，打印对象值
+            NSLog(@"%@",remindEntity);
+            model.objectID = remindEntity.objectId;
+            //将objectID存入CoreData
+            MemoBL* memoBL = [[MemoBL alloc]init];
+            self.memoArray = [memoBL modify:model];
+        } else if (error){
+            //发生错误后的动作
+            NSLog(@"%@",error);
+        } else {
+            NSLog(@"Unknow error");
+        }
+        
+    }];
+    return 0;
+
+}
+
+- (int)modifyToBmob:(Memo*)model{
+    BmobObject *remindEntity = [BmobObject objectWithoutDatatWithClassName:@"RemindEntity"  objectId:model.objectID];
+    [remindEntity setObject:model.memoTitle forKey:@"title"];
+    [remindEntity setObject:model.memoAdvanceTime forKey:@"advanceTime"];
+    [remindEntity setObject:model.memoCreateTime forKey:@"createTime"];
+    [remindEntity setObject:model.openID forKey:@"openid"];
+    [remindEntity setObject:model.memoPlace forKey:@"place"];
+    [remindEntity setObject:[NSNumber numberWithInt:model.memoRemindMode] forKey:@"remindMode"];
+    [remindEntity setObject:model.memoRemindTime forKey:@"remindTime"];
+    [remindEntity updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+        if (isSuccessful) {
+            NSLog(@"更新成功，以下为对象值，可以看到json里面的gender已经改变");
+            NSLog(@"%@",remindEntity);
+        } else {
+            NSLog(@"%@",error);
+        }
+    }];
+    return 0;
+}
+
+- (int)removeFromBmob:(Memo*)model{
+    BmobObject *bmobObject = [BmobObject objectWithoutDatatWithClassName:@"RemindEntity"  objectId:model.objectID];
+    [bmobObject deleteInBackgroundWithBlock:^(BOOL isSuccessful, NSError *error) {
+        if (isSuccessful) {
+            //删除成功后的动作
+            NSLog(@"%@",bmobObject);
+            NSLog(@"successful");
+        } else if (error){
+            NSLog(@"%@",error);
+        } else {
+            NSLog(@"UnKnow error");
+        }
+    }];
+    return 0;
+}
 
 @end

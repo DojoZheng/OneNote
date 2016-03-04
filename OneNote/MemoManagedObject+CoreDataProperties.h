@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *place;
 @property (nullable, nonatomic, retain) NSNumber *remindMode;
 @property (nullable, nonatomic, retain) NSString *remindTime;
+@property (nullable, nonatomic, retain) NSString *bmobObjectid;
 @property (nullable, nonatomic, retain) UserManagedObject *user;
 
 @end

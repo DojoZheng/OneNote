@@ -15,6 +15,7 @@
     MemoDAO *dao = [MemoDAO sharedManager];
     [dao create:model];
     
+    
     return [dao findAll];
 }
 

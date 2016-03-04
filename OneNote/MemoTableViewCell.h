@@ -13,5 +13,7 @@
 
 @property (nonatomic,strong) Memo *memo;
 
+
+
 +(instancetype)memoCellWithTableView:(UITableView*)tableView;
 @end

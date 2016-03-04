@@ -382,6 +382,7 @@ UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlow
 {
     [self.tableView deleteRowsAtIndexPaths:rowsIndexPath withRowAnimation:UITableViewRowAnimationFade];
 }
+
 -(void)jumpToDetailPage:(UIViewController*)nextPageController
 {
     [self.navigationController pushViewController:nextPageController animated:YES];
