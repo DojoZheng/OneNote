@@ -37,6 +37,7 @@
 @property (nonatomic,strong) UIButton* munuBtn;
 @property (nonatomic,strong) ADLivelyTableView* memoTableView;
 @property (nonatomic,assign) NSInteger presentTextFieldTag;
+@property (nonatomic,strong) NSMutableArray* BmobUnDeletedMemos;
 
 //日期选择器
 @property (nonatomic,retain) UIDatePicker* datePicker;
@@ -662,7 +663,7 @@
 #pragma mark - Bmob云后端操作
 - (int)insertToBmob:(Memo*)model {
     //在RemindEntity创建一条数据，如果当前没RemindEntity表，则会创建RemindEntity表
-    BmobObject  *remindEntity = [BmobObject objectWithClassName:@"RemindEntity"];
+    BmobObject  *remindEntity = [BmobObject objectWithClassName:_Macro_BmobMemoTable];
     /**
      *  初始化RemindEntity:
      1.title:String
@@ -706,7 +707,7 @@
 }
 
 - (int)modifyToBmob:(Memo*)model{
-    BmobObject *remindEntity = [BmobObject objectWithoutDatatWithClassName:@"RemindEntity"  objectId:model.objectID];
+    BmobObject *remindEntity = [BmobObject objectWithoutDatatWithClassName:_Macro_BmobMemoTable  objectId:model.objectID];
     [remindEntity setObject:model.memoTitle forKey:@"title"];
     [remindEntity setObject:model.memoAdvanceTime forKey:@"advanceTime"];
     [remindEntity setObject:model.memoCreateTime forKey:@"createTime"];
@@ -726,18 +727,26 @@
 }
 
 - (int)removeFromBmob:(Memo*)model{
-    BmobObject *bmobObject = [BmobObject objectWithoutDatatWithClassName:@"RemindEntity"  objectId:model.objectID];
+    BmobObject *bmobObject = [BmobObject objectWithoutDatatWithClassName:_Macro_BmobMemoTable  objectId:model.objectID];
     [bmobObject deleteInBackgroundWithBlock:^(BOOL isSuccessful, NSError *error) {
         if (isSuccessful) {
             //删除成功后的动作
             NSLog(@"%@",bmobObject);
             NSLog(@"successful");
-        } else if (error){
-            NSLog(@"%@",error);
-        } else {
-            NSLog(@"UnKnow error");
-        }
-    }];
+        } else{
+            if (error) {
+                NSLog(@"从Bmob删除报错Error:%@",error);
+            }else{
+                NSLog(@"从Bmob删除报错Error:未知错误");
+            }
+            //将未删除的Memo的objecid存放起来，当用户在点击抽屉栏的“同步刷新”时，可以重新删除
+            if(self.BmobUnDeletedMemos == nil){
+                self.BmobUnDeletedMemos = [[NSMutableArray alloc]initWithCapacity:10];
+            }
+            [self.BmobUnDeletedMemos addObject:model.objectID];
+            NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:self.BmobUnDeletedMemos forKey:_Macro_BmobUndeletedMemos];
+        }}];
     return 0;
 }
 

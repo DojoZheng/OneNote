@@ -96,8 +96,8 @@ static MemoDAO *shareManager = nil;
 }
 
 - (int) removeFromBmob:(Memo*)model{
-//    BmobObject *bmobObject = [BmobObject objectWithoutDatatWithClassName:@"RemindEntity"  objectId:@"baaf9cfa1b"];
-    BmobObject *bmobObject = [BmobObject objectWithoutDatatWithClassName:@"RemindEntity"  objectId:@"baaf9cfa1b"];
+//    BmobObject *bmobObject = [BmobObject objectWithoutDatatWithClassName:_Macro_BmobMemoTable  objectId:@"baaf9cfa1b"];
+    BmobObject *bmobObject = [BmobObject objectWithoutDatatWithClassName:_Macro_BmobMemoTable  objectId:@"baaf9cfa1b"];
     [bmobObject deleteInBackgroundWithBlock:^(BOOL isSuccessful, NSError *error) {
         if (isSuccessful) {
             //删除成功后的动作

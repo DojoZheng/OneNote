@@ -22,4 +22,10 @@
 #define _Macro_User @"OneNoteUser"
 #define ONDateFormat @"yyyy-MM-dd hh:mm"
 
+//Bmob的数据表
+#define _Macro_BmobMemoTable @"RemindEntity"
+
+//NSUserDefaults相关Key
+#define _Macro_BmobUndeletedMemos @"BmobUndeletedMemos"
+
 #endif /* OneNotePrefixHeader_pch */

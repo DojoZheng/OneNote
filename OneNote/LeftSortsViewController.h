@@ -25,5 +25,10 @@
 @property (nonatomic,strong) UITableView *tableview;
 @property (nonatomic,assign) id <DrawerQQLoginDelegate> QQLoginDelegate;
 
+//Memos数组
+@property (nonatomic,strong) NSArray* memosArray;
+@property (nonatomic,strong) NSMutableArray* unDeletedMemos;
+
+
 -(void)RefreshLeftSortsVC;
 @end
