@@ -93,6 +93,7 @@
 		E1CD4CFE1C65E8BD00A684E5 /* NoteBL.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CD4CFD1C65E8BD00A684E5 /* NoteBL.m */; };
 		E1CD4D011C65EDD800A684E5 /* MemoBL.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CD4D001C65EDD800A684E5 /* MemoBL.m */; };
 		E1F45A8E1C57216B00F81A93 /* MemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F45A8D1C57216B00F81A93 /* MemoViewController.m */; };
+		EE3B0064FBE463BA1F254B43 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F49EE88AF4661CFDA894F0BA /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -176,6 +177,8 @@
 		451980AD1C5E28CD00429DA4 /* NoteListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteListCell.m; sourceTree = "<group>"; };
 		451980B31C5E2E0400429DA4 /* NoteListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteListViewController.h; sourceTree = "<group>"; };
 		451980B41C5E2E0400429DA4 /* NoteListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteListViewController.m; sourceTree = "<group>"; };
+		537957E12F804A972DBD1D2B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		94BE4F342C67321173262B58 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E10D9C501C5A00170019613C /* Memo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Memo.h; sourceTree = "<group>"; };
 		E10D9C511C5A00170019613C /* Memo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Memo.m; sourceTree = "<group>"; };
 		E138F5591C43A5230013E451 /* BmobSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BmobSDK.framework; path = "Bmob SDK/Bmob_SDK_iOS_v1.6.5/BmobSDK.framework"; sourceTree = "<group>"; };
@@ -263,6 +266,7 @@
 		E1CD4D001C65EDD800A684E5 /* MemoBL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoBL.m; sourceTree = "<group>"; };
 		E1F45A8C1C57216B00F81A93 /* MemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoViewController.h; sourceTree = "<group>"; };
 		E1F45A8D1C57216B00F81A93 /* MemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoViewController.m; sourceTree = "<group>"; };
+		F49EE88AF4661CFDA894F0BA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,6 +294,7 @@
 				22B276A31C1529EB0059A167 /* libsqlite3.tbd in Frameworks */,
 				22B276A11C1529DE0059A167 /* AVFoundation.framework in Frameworks */,
 				22B2769F1C1529D50059A167 /* MediaPlayer.framework in Frameworks */,
+				EE3B0064FBE463BA1F254B43 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +323,8 @@
 				221060F21C040D5100B49A89 /* OneNoteTests */,
 				221060FD1C040D5100B49A89 /* OneNoteUITests */,
 				221060D71C040D5000B49A89 /* Products */,
+				AEFDC0B377B6AB5AC4481732 /* Pods */,
+				3B8741C5D8E0CF547E4BCBDD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -442,6 +449,7 @@
 		22B276961C1529700059A167 /* Frameworks & SDK */ = {
 			isa = PBXGroup;
 			children = (
+				E1E7630F1C91724B00FD0F75 /* WordPress */,
 				22B276991C1529980059A167 /* Bomb SDK */,
 				22B276981C1529910059A167 /* QQ SDK */,
 				22B276971C1529830059A167 /* System Frameworks */,
@@ -488,6 +496,14 @@
 				22B276C41C152D900059A167 /* Bmob_iOS_SDK更新历史.txt */,
 			);
 			name = "Bomb SDK";
+			sourceTree = "<group>";
+		};
+		3B8741C5D8E0CF547E4BCBDD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F49EE88AF4661CFDA894F0BA /* libPods.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		451980911C5E288700429DA4 /* NoteEdittingModule */ = {
@@ -544,6 +560,15 @@
 				4519809F1C5E28C100429DA4 /* VNConstants.m */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		AEFDC0B377B6AB5AC4481732 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				537957E12F804A972DBD1D2B /* Pods.debug.xcconfig */,
+				94BE4F342C67321173262B58 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		E138F5701C4613C10013E451 /* 其他 */ = {
@@ -744,6 +769,13 @@
 			name = "BusinessLogic Layer";
 			sourceTree = "<group>";
 		};
+		E1E7630F1C91724B00FD0F75 /* WordPress */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = WordPress;
+			sourceTree = "<group>";
+		};
 		E1F45A881C57212000F81A93 /* Memo */ = {
 			isa = PBXGroup;
 			children = (
@@ -760,9 +792,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 221061031C040D5100B49A89 /* Build configuration list for PBXNativeTarget "OneNote" */;
 			buildPhases = (
+				6444A964255900185AD44E75 /* Check Pods Manifest.lock */,
 				221060D21C040D5000B49A89 /* Sources */,
 				221060D31C040D5000B49A89 /* Frameworks */,
 				221060D41C040D5000B49A89 /* Resources */,
+				C66143F946946351C9FF67DA /* Embed Pods Frameworks */,
+				A7183C628F76A10AB4B62298 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -883,6 +918,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6444A964255900185AD44E75 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A7183C628F76A10AB4B62298 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C66143F946946351C9FF67DA /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		221060D21C040D5000B49A89 /* Sources */ = {
@@ -1081,6 +1164,7 @@
 		};
 		221061041C040D5100B49A89 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 537957E12F804A972DBD1D2B /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1112,6 +1196,7 @@
 		};
 		221061051C040D5100B49A89 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 94BE4F342C67321173262B58 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
