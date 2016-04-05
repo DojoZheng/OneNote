@@ -7,19 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00B33989231736CA1F18E2765FBB04FE /* UIColor+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 314E262C25CE6D38A45053EDCF689E00 /* UIColor+Helpers.m */; };
 		02C62D78D0312F0D26B75274738D2387 /* HRColorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = FD0C5B20DF976D0A670A04612860BBB9 /* HRColorUtil.m */; };
 		0543E7ED0D2F37EC3CF5DE8B31CF1DA8 /* WPAnimatedImageResponseSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = B2BAB64E03D7A1DAAC7CC4EF68A672D6 /* WPAnimatedImageResponseSerializer.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		05DC6884B484EC0B3FB3E1D9D0CD4F9A /* CYRTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = C4BBDAA4256AB328324A95180303BF6A /* CYRTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		08CA9A1880D3F9230EFE0D7FD3550FC8 /* WordPress-iOS-Shared-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 091E059F0A024ADAB4349682887F4D13 /* WordPress-iOS-Shared-dummy.m */; };
 		0A9FE3BCE7ADAF162C61A2382E426228 /* CYRLayoutManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 81C7CCBE3D484BBF7FBF01E8D396F463 /* CYRLayoutManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B4BCDAB75EC1B983CF5A48F6A163073 /* Merriweather-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36A7AEC766E21CDCC574225B08C4FDA2 /* Merriweather-LightItalic.ttf */; };
 		0BAB23C915655EB5E4BB1B54BE84C41D /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 20E9786D83A974CD4F49CCB8C98CEF9E /* OpenSans-LightItalic.ttf */; };
-		0E511628E01652F3E6296503C7337F5A /* WPNoResultsView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4803187E2B4AD2E134924039319969A /* WPNoResultsView.m */; };
 		0E613BA03497BC5B8AFD05B4F321123D /* WPEditorFormatbarView.h in Headers */ = {isa = PBXBuildFile; fileRef = EA724B88C464D0F9BC0A2A8AA24CF278 /* WPEditorFormatbarView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0E68C314158E168BFF836E00A49BF1A3 /* HRColorCursor.h in Headers */ = {isa = PBXBuildFile; fileRef = 155CA94B8B91BDF9916205AF2E536F3E /* HRColorCursor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0ED352081F88243A7473D8C6B6C90FB8 /* HRColorCursor.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0C27CBE9A8D97049352EDB4F204CEC /* HRColorCursor.m */; };
 		0F8217A7033D4B1169408CA2DEBFA592 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C31A9B26388001B26382C7C355DA572 /* Foundation.framework */; };
+		111E95D69D0B9CEFA3B54218AE1FE57D /* WPTableViewSectionHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = A906814A380FDE1C5CDC5BEC850D3244 /* WPTableViewSectionHeaderFooterView.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		1497831249E5C77B51A3A99672D91ED4 /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4DA42B0865242A6EE65ADF26754B54C2 /* OpenSans-Italic.ttf */; };
 		14C6413BFB0F6A9336FEE28376BC75CE /* NSObject+SafeExpectations.h in Headers */ = {isa = PBXBuildFile; fileRef = 49223E95C2CE629EE72A47359D3F8441 /* NSObject+SafeExpectations.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		159C32F6C119504854256F520ED830CF /* WPLegacyKeyboardToolbarBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FE81E66FCC5FABEBA210841425DD756 /* WPLegacyKeyboardToolbarBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -29,11 +27,13 @@
 		1CBDB47B210A0C2448C14A610BC6D4D6 /* AFSecurityPolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B8D2A917B99347EAA0118D6719CCD7F /* AFSecurityPolicy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1E310D0CE3BE27EF253B6D822B0AEE5E /* AFURLResponseSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = E7446D9E0721777B0982DE55970CEA83 /* AFURLResponseSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1E6A591B3DEE6317BB014BD71A50B689 /* DDASLLogCapture.h in Headers */ = {isa = PBXBuildFile; fileRef = E6DB5227FA05EA0353ABADBA026DB962 /* DDASLLogCapture.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1EB449FF05FBBE4AB13092249AC51C9A /* WPTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB74214C1B1961341E618E96FD46A8A /* WPTableViewCell.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		211D4EA06F5920376A069ACB55DF6006 /* AFHTTPRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = E7F5B2B28355043AF4C0199FE58C3711 /* AFHTTPRequestOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		243D948F6688DB449057CDB4325D817B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C31A9B26388001B26382C7C355DA572 /* Foundation.framework */; };
 		27FA63DB3CE510579142B3ECC0408D11 /* UIImage+Util.h in Headers */ = {isa = PBXBuildFile; fileRef = 0083B6E743084013C67638E89FE0C00E /* UIImage+Util.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		283F0426E003A01568E5791E5ED68F8F /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 44B7BD46A374010BBAACE96D589A4F3D /* OpenSans-Bold.ttf */; };
 		296D0FDEAFAA9C26B002265E63610A3D /* Merriweather-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9CC4FB157E0DEFFE05D520B34FC13563 /* Merriweather-Light.ttf */; };
+		2A341E564B365A715F82798C0AA8550A /* DDDispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D9E267DE3EF7C44BE3D7CF26E344AC /* DDDispatchQueueLogFormatter.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		2B8269A87473D9F1259E9BD98E7588D3 /* AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = F1FF5DDFA3CB55A7A07017BAC930E199 /* AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2CF66E8669A348C421E93F2F67C6A61E /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B58BEE6CC39A3A3FE00FC5E8B7AF5737 /* AFHTTPSessionManager.m */; };
 		3033C63AC334D346E9461D0942D8FB69 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = CB84872B6E35359A907538EA3859F148 /* AFURLRequestSerialization.m */; };
@@ -50,8 +50,6 @@
 		3E57952FA3041464C88BBC75779D9C26 /* CYRTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 824CC9F35A1FD1840CF8F522AB5B8970 /* CYRTextView.m */; };
 		3EE44BC7DC052576D5DA69B0F472108B /* CYRTextStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = C73D0E78EB84EEA9F55541C3FC02C765 /* CYRTextStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4008F22986B7B291A7F94F57029A08DF /* WPLegacyKeyboardToolbarDone.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DE74D7FA6C36B207A343C2828327564 /* WPLegacyKeyboardToolbarDone.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4064841A97106DD1C1EAA0D55A3A6AA0 /* WPAnimatedImageResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = FF978E17F88676F49570CDD16AD85331 /* WPAnimatedImageResponseSerializer.m */; };
-		41F221F9E8FDE456D3E9EB34B4C5EBF1 /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CF712081C17EB8A0863EAE0CE832FF2B /* DDFileLogger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		456BEEAD8F6C8D0B35D5A12E72068119 /* DDLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 379F80B3C53A013F218EADE0E7021A05 /* DDLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		472A6BFCC6207D98F787649BDF44A1BE /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FB86A7C66B5478C97EDBAF3756C20D /* AFHTTPRequestOperationManager.m */; };
 		47A66D7ED065B7C3268C7F131A1D5C0C /* NSDictionary+SafeExpectations.h in Headers */ = {isa = PBXBuildFile; fileRef = A84F8BABE86C9FD65685F7D68F2251B0 /* NSDictionary+SafeExpectations.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -66,52 +64,51 @@
 		527A4C528C769D42CF7299606D4053FD /* WPLegacyKeyboardToolbarButtonItem.h in Headers */ = {isa = PBXBuildFile; fileRef = C7FC12982F84C233F085EF5E68DFD85B /* WPLegacyKeyboardToolbarButtonItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		551086D8166BEDD6A237E5000954E217 /* CYRToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 4203C5789CE03D057ECBB05745C5614E /* CYRToken.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5539A292EFC958D90F290DBA5FF86220 /* DDDispatchQueueLogFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F302D4C5A7D55E8071114FE598E8315 /* DDDispatchQueueLogFormatter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		597C006DA8531B30E5D6FBC0D69DC73F /* WPNUXUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 5902D429B06011A1C67F146A0E988625 /* WPNUXUtility.m */; };
+		581782F83EE27D813A9D310525168F77 /* WPAnimatedImageResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = FF978E17F88676F49570CDD16AD85331 /* WPAnimatedImageResponseSerializer.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		59B30A48A3044B1FC1E099379E9E36E2 /* WordPressCom-Analytics-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 93075D738D445545D7E4D85C5C4BC220 /* WordPressCom-Analytics-iOS-dummy.m */; };
 		5CF0E043147B69E77976A2CCADFF18CA /* AFURLSessionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 93732A5C5A3A757E8B4813560D8C31AF /* AFURLSessionManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5D80704801246F0DEAFDB56C39EC8D99 /* WPImageMeta.m in Sources */ = {isa = PBXBuildFile; fileRef = A6286FED8B2B75111B085DD9E9BE3EBF /* WPImageMeta.m */; };
 		5DCBA219BC81D9190F11EE56F93BB908 /* DDTTYLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AF7526A2E63E0887795939F5ACA59FA /* DDTTYLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6077EFC05DC2551A7F5A1CFAC0B90187 /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 1818F50AFBD5E4CF37E7919335826BF7 /* DDAbstractDatabaseLogger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		62EC1FC9033ACBA112E2215088D4FD4B /* WordPressCom-Analytics-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 93075D738D445545D7E4D85C5C4BC220 /* WordPressCom-Analytics-iOS-dummy.m */; };
+		62FC8AAF2C1C5E301640FA4F52AA8051 /* NSString+XMLExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 96649478575182BDF52CD00BEFB24DEC /* NSString+XMLExtensions.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		637DE2B443B9BEC989748977847465B2 /* WPFontManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 10F2B9AEED490B0CB7D1F3D151298BFA /* WPFontManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		640E20B03CCE6552156691C5BA773536 /* WPAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = DF3BDF77785D866FA320D298AD4A0C42 /* WPAnalytics.m */; };
 		6475050C8BA464772209BD6AF03F1EB1 /* DDMultiFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 027756287096880548FCF00107E297E5 /* DDMultiFormatter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6547621CAE32F224BF3BCFECF85128CC /* WPTextFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3591089D0C70DA49C5BCF71A3F4593B6 /* WPTextFieldTableViewCell.m */; };
-		656479029A5A15463E080FD25F8903B2 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4CDC36B5E9FB0980F1A90E0774069F /* DDASLLogger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		67E741D303696F9A1E863BC42E6A9C79 /* DDASLLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 61865F80FEC521987AE18C61D8FA89DE /* DDASLLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6987107A9256E298D316068F454FC492 /* WPStyleGuide.h in Headers */ = {isa = PBXBuildFile; fileRef = 927FF252B0D27EB5E95072EA829295EF /* WPStyleGuide.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6B21C79E5BE15854CE49BC31467E478F /* WPAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = DF3BDF77785D866FA320D298AD4A0C42 /* WPAnalytics.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		6CC4B79C1FEE1E7B3F2860ADA479D381 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A26ED754332304FCD8812053A7322C80 /* AFURLSessionManager.m */; };
-		6DAEF151B35D00265D60C4AD34431DD9 /* DDContextFilterLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDFC4F09A3E5700F04A7523DFE7DD34 /* DDContextFilterLogFormatter.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		6F1BBAC334B3809D5645A20C3491202B /* NSString+XMLExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 96649478575182BDF52CD00BEFB24DEC /* NSString+XMLExtensions.m */; };
 		743D1A1808E4A3CEB7D2A1297AADB0DA /* WPEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08BC3C2BDCA19C099E9FBF4CD20812C8 /* WPEditorViewController.m */; };
 		75529B527AF8218799833E520916C021 /* HRColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22E1CB83D94F07D16A3608B8FA937DFE /* HRColorPickerView.m */; };
+		7664947689FFCAD4C36D5FCB02510E14 /* WPImageSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A81033A52DFC637ACED0FA216E3BB8FC /* WPImageSource.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		78449FCC01114171AA3CCB45C6666206 /* AFNetworkReachabilityManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 531C4339AF04BB9EF305861F20FCFD9F /* AFNetworkReachabilityManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79A892DDFA6E8356246E97B852323342 /* UIWebView+GUIFixes.h in Headers */ = {isa = PBXBuildFile; fileRef = B8B3A471611B61650E60BBA0F0BAC90D /* UIWebView+GUIFixes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79ACA8F6658D3A08F2AEB25865A9C2FD /* HRBrightnessCursor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE23D0A6B4CE99151202F0D164AFB83 /* HRBrightnessCursor.m */; };
 		7A551F7152FD33A2CF9E81197B84653F /* UIColor+Helpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 28A2A40DE9437106AC6209346DC601C4 /* UIColor+Helpers.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7D700FDC37FC4BB38CA21B640C1EB793 /* WPNoResultsView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4803187E2B4AD2E134924039319969A /* WPNoResultsView.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		7F772EA586716322AB8BBAA6ECC6935F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C31A9B26388001B26382C7C355DA572 /* Foundation.framework */; };
 		812AE48F59A2CA4805717FF4E81C2D11 /* UIWebView+GUIFixes.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3115F1FB874704CD277457FEA7D740 /* UIWebView+GUIFixes.m */; };
 		834313EF89894F6D5F2323122E4A3040 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3418CB3DECD84FC50F5E8818CE2A5D16 /* OpenSans-BoldItalic.ttf */; };
 		854BC4449D8CAD0F2799B021D1914C3B /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C3CC1B962FDF43DFFF53E31E215A19 /* UIRefreshControl+AFNetworking.m */; };
 		876C2EF5FE318346CDCB4BFE25A9D5B2 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 722A035E061EFC69F7308888BD8A7FA0 /* AFHTTPRequestOperation.m */; };
+		8926989B7DEAA703AAE27DBB9FD53A58 /* DDMultiFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A31C17BC9C13EC5C8A480424510E3C /* DDMultiFormatter.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		8980C1D9536A58880F331421B8161958 /* HRCgUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 29BC34AC836D98533BB9044AAA5E7580 /* HRCgUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8A25F72B5A84EC4A98DBA47C6F8D5257 /* WPTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DB74214C1B1961341E618E96FD46A8A /* WPTableViewCell.m */; };
 		8A7229339A03630DDD897B66A4FD630B /* WPLegacyKeyboardToolbarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 026B9B6173DCEB89618AA2C43D96CF45 /* WPLegacyKeyboardToolbarButtonItem.m */; };
 		8B098EFB76EF33CF0176C121EB4CE712 /* WPLegacyEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2467FFE625FC5D6D2D17E4E8B4FB5FC1 /* WPLegacyEditorViewController.m */; };
 		8F919D5E226C716F1E96BFD3165D4C88 /* WPTableViewSectionHeaderFooterView.h in Headers */ = {isa = PBXBuildFile; fileRef = 13D000A51F414A1927CC401E71E4065E /* WPTableViewSectionHeaderFooterView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9031E7D290E15DEEAEBB3730088B1E35 /* WPImageSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 687E3E104F0700433E0711B0F15E9A7E /* WPImageSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		903A0E1F82A29D285902CBB5A0828BE9 /* UIImage+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = DCE5EA3D0CE35A8AF69127EC5D17A1B9 /* UIImage+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		906BA39B4449184A264475B0AAA9CD7B /* DDAssertMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = A4DE4705F953FBBB7B73A6D186BD21EC /* DDAssertMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		918CFF83C2961DCC838AC83A2382B4C7 /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CF712081C17EB8A0863EAE0CE832FF2B /* DDFileLogger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		9258A7B71D4C13DBFC66C4B8BE43B79A /* DDAbstractDatabaseLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A076DFB833045DF720777CD16BAA4A0 /* DDAbstractDatabaseLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		92AEBB2B18B04F61F90DC476C34F7A63 /* WPEditorField.m in Sources */ = {isa = PBXBuildFile; fileRef = F953AB1148F42F99965F78A3E25802F5 /* WPEditorField.m */; };
 		94440DE96E5D8156938F8682A4C5891B /* ZSSBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF66F97107E5ECAD71A2B92294EF43D /* ZSSBarButtonItem.m */; };
+		94EF9B9483DB7448D2F2F97925391330 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4CDC36B5E9FB0980F1A90E0774069F /* DDASLLogger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		956C0BD7DBF594701E7ED314C8070F45 /* ZSSTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = D8A8EE63BDA6C72847FA03E7C39EA5B8 /* ZSSTextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		96F9D9C6637058319912A09E400B1E9E /* WPLegacyEditorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = A2D28CAB382D7EA78E808349B751C88F /* WPLegacyEditorViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		98C3DB185A6E5453D4EC6628C8AB69BD /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = DC59873C1EFE8C9A4BCCA2C63D6FDD22 /* DDTTYLogger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		991594101B3DF1D31092AFBFB9DD4E52 /* WPEditorFormatbarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B05F23C7650D629448B1FA4F158B23F /* WPEditorFormatbarView.m */; };
 		99E82D6DC032555656E37AF2367B20D3 /* UIButton+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 47FCB2ADAB5251843F3AADD4D6E05583 /* UIButton+AFNetworking.m */; };
 		9A04E971065AF4281E43947994A53D07 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1B6D6541E4FC5CB4BD161CA833362C /* UIWebView+AFNetworking.m */; };
 		9B47A1441B897F71505D8BE670B0940B /* UIAlertView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 15397E191BAC02EB8627474F5BCDA1F5 /* UIAlertView+AFNetworking.m */; };
-		9DFB1378A337698012F7CE5D593DC04F /* DDASLLogCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D90C4DA4061C8192A122DED0F8A9C81 /* DDASLLogCapture.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		9F4E7EB6B629D110A4093253F775F4D2 /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8628C3D19936FEE36134F2720871CB /* NSString+Util.m */; };
 		A0C127541E1FEBF9E8689242E0DF77F1 /* CYRToken.m in Sources */ = {isa = PBXBuildFile; fileRef = D82CFA806DC78BB40DC1D22918C508CC /* CYRToken.m */; };
 		A2486A68E13DA2F15436052AEDD07963 /* Merriweather-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 964382D132B71579C84D42AD9BE1D28F /* Merriweather-Bold.ttf */; };
 		A28588D1CCB5253CF80509F30A1AF1A5 /* UIActivityIndicatorView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = BB124DDB5FC08487402C1F69EEC574D3 /* UIActivityIndicatorView+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -119,41 +116,44 @@
 		A34EF7C35E4E0657AFC8B4BA0B343867 /* CocoaLumberjack-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 51E63E26A22BD48DA67D4959A8F88293 /* CocoaLumberjack-dummy.m */; };
 		A4EE8D1BEE38B87066BAA1B09A047356 /* UIWebView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = F9DB23A8A47D38E6C359D44DF8F2705D /* UIWebView+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A671B85B0951302D59663958E091A187 /* WPEditorLoggingConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = D5F240C1C716CECF2EFFCC4BA97DE01A /* WPEditorLoggingConfiguration.m */; };
+		A89B71D906477ECFDBEEBF0C5B886B90 /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF790617CCDE31B8725B80E6E3FBBA3 /* DDLog.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		A8CAA82908746CAC367ABB3F9AF8E3C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C31A9B26388001B26382C7C355DA572 /* Foundation.framework */; };
-		ACE6CF09908B9B6B669763107226CA4D /* WPDeviceIdentification.m in Sources */ = {isa = PBXBuildFile; fileRef = 71181EEFE3B6952EC773DFD6B90AD6DB /* WPDeviceIdentification.m */; };
 		AE607E682415FAA160B33C7C13A8475B /* UIActivityIndicatorView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 844EBE80823F0BF7AA52EB0B32CA0B48 /* UIActivityIndicatorView+AFNetworking.m */; };
+		AE9FABCD153C3FB12ACD62E2959F0A76 /* DDContextFilterLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EDFC4F09A3E5700F04A7523DFE7DD34 /* DDContextFilterLogFormatter.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		B12AD2EE044D6F7424F75F1506B516B2 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = AF81CC8DB73BEAD52C24613F2180DFBC /* AFSecurityPolicy.m */; };
 		B2B5DEC33B644F946C59F656AAAA8146 /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F9DDBA2C7A0F0E50135504F233BFC3F /* AFNetworkActivityIndicatorManager.m */; };
+		B541F3D73641996D841608513AF9A20B /* UIImage+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C383D6F67804FCFE297BDB3857EDB41 /* UIImage+Util.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		B5D957C59B26336CE9387DF297EF30FA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C31A9B26388001B26382C7C355DA572 /* Foundation.framework */; };
+		B751EF49B3C904A9A87944F623E56DE7 /* WPStyleGuide.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D8ED481E1BC195639196581FF43F80 /* WPStyleGuide.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		B9DAA002CF3E0E8EBE9B6E9A7778CFD4 /* AFNetworking-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E4BF3DED052899FFFD9A2EEFEDCC66F0 /* AFNetworking-dummy.m */; };
 		BA025A85A850C1E24A6C92F4C29E5531 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C168D5DBDB78691493E24B13EF6B6A8 /* SystemConfiguration.framework */; };
 		BBCA69A708A7B3DD861FB839B3A251B3 /* DDLegacyMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = EBDC1CA0C60AEF77E2E9419D3CB38305 /* DDLegacyMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BC7993B7436D4D7FADE6DD554DA52769 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C582CB6A408C0EAA369157682BE1EF9A /* AFNetworkReachabilityManager.m */; };
+		BE58D876A7930DCEF425CBBA8715974A /* WPFontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 502F695EE277F816637DDEF8F27B71C8 /* WPFontManager.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		BECCFF5BEA43F94A3DBEC3B7C32A3885 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9D10BAD67C86C53DA64C223B1AFEBE70 /* OpenSans-Semibold.ttf */; };
-		BF525D162B9ABC5DFA69FB7A8779F76E /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = DC59873C1EFE8C9A4BCCA2C63D6FDD22 /* DDTTYLogger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		C3314CCA38EA8AA472CD47039D6BC3B0 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A203058EEEAE63DFEDF93F3A71AC6FAF /* OpenSans-Regular.ttf */; };
+		C47D0FDFB63631CA1937A3CF4C9E40D5 /* WPDeviceIdentification.m in Sources */ = {isa = PBXBuildFile; fileRef = 71181EEFE3B6952EC773DFD6B90AD6DB /* WPDeviceIdentification.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		C4FCFEB39A84A7B3851652B4775C08C0 /* HRColorPickerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B0BC219F7735686DCA5DA4EEA810A2E /* HRColorPickerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C515A390D549AF8A16A76DD72388BD2C /* DDFileLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 59D459A9D6C16CF526D73680C9949E90 /* DDFileLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C58268D5A4D2A786576E0EAA5B50FB93 /* UIRefreshControl+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 05149108EEA0AAFE58E893AFB3B01368 /* UIRefreshControl+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C7ACDDE36465ACAF629FEC233B1BF172 /* UIProgressView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = BEC36F54F4088C8B302E153F618312CE /* UIProgressView+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CAA0F8074B35A2F73890310EC4521A0D /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 063FBE0819D79CE3476FDD399A5F3820 /* AFURLResponseSerialization.m */; };
 		CAACB760711894ADCB8D10BE18A14DEC /* WPEditorToolbarButton.h in Headers */ = {isa = PBXBuildFile; fileRef = EE5931A622059DC5AD1CD7F29F37DAEF /* WPEditorToolbarButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CB0216031B54E797CF7B85BF45FB62DC /* WPFontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 502F695EE277F816637DDEF8F27B71C8 /* WPFontManager.m */; };
 		CB9CC93AC034DE9735E1A95964FB4AB9 /* NSDictionary+SafeExpectations.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BD4A43F4B3C3FDFB320BCF27E140F5 /* NSDictionary+SafeExpectations.m */; };
 		CBB6BB497EC1A4C36506AD74ECDCD99F /* CocoaLumberjack.h in Headers */ = {isa = PBXBuildFile; fileRef = B373260C57FA2C6C1CECC0D04FA365A1 /* CocoaLumberjack.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CF97499A702BD5074F2A93AD4A115F7E /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8628C3D19936FEE36134F2720871CB /* NSString+Util.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		D070B784EFCA099C141EEAB69FBCC870 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = B952474EE9FFE6AE49F30FAD85BF6D4E /* UIImageView+AFNetworking.m */; };
 		D0F30309987003580ECA2D5CFADA9095 /* ZSSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1584BDE3F9F5CC4A419984B255FF72D3 /* ZSSTextView.m */; };
+		D2FD98149977E6F623A6ABF43D7982DB /* UIColor+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 314E262C25CE6D38A45053EDCF689E00 /* UIColor+Helpers.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		D3805DE746C8620DBA50E1A509D479B7 /* WPNUXUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 5902D429B06011A1C67F146A0E988625 /* WPNUXUtility.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		D40205BFA8754D9D4D841703A1A6C4D4 /* WPTextFieldTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 751B60EB23F1BC6CF3FF00F9ECFAC121 /* WPTextFieldTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D4A65C2E29ACB340587FD41196176F8A /* UIImageView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = D8D07AD66D08359D09D8301F1CAC7748 /* UIImageView+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D70BDFA09F4803DCFEAD7AF5DFE21C6A /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF790617CCDE31B8725B80E6E3FBBA3 /* DDLog.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		D7C7FB52184AB3A5FF5FF835CD657468 /* WPTableViewSectionHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = A906814A380FDE1C5CDC5BEC850D3244 /* WPTableViewSectionHeaderFooterView.m */; };
 		D86F62CA5DFEB5481E009AF3C783B179 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C31A9B26388001B26382C7C355DA572 /* Foundation.framework */; };
-		D8E692C40741AEC60E71D13285DE59A2 /* WPImageSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A81033A52DFC637ACED0FA216E3BB8FC /* WPImageSource.m */; };
 		DB2E92A71137AD2E6993E8B0CE682C89 /* AFURLConnectionOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 40E1B45CC50F6EAF21A536D6C9893BDD /* AFURLConnectionOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DB42C604EF2F39D542F805AC6A05E090 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2B240D99C3FC6A7DC6C66A2434CA799 /* MobileCoreServices.framework */; };
 		DD37E76796AA424FEC6892E730889AC5 /* NSString+Util.h in Headers */ = {isa = PBXBuildFile; fileRef = D7DEE070DAC8C5EF881BFB2E8D728F45 /* NSString+Util.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DECD5915774351B8473476B041DD87D7 /* AFHTTPSessionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 12859EF6011ABD3E43963D3E0717123D /* AFHTTPSessionManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E1ED34DB49C6A05D740B8425F88CEC20 /* DDMultiFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A31C17BC9C13EC5C8A480424510E3C /* DDMultiFormatter.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		DF446E238CBD47619D093B0C9285248F /* WordPress-iOS-Shared-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 091E059F0A024ADAB4349682887F4D13 /* WordPress-iOS-Shared-dummy.m */; };
 		E2302A2494625F5274D279CB30E9309C /* HRCgUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A3BCF4460CEA3EC746E066FE8DEFF11 /* HRCgUtil.m */; };
 		E4E8C7F4D04ED2F11C6A07AEB943C478 /* HRColorUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 05EB2341D7BDB6BBEDCF27031DC6B45E /* HRColorUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E5B196456082A102D9DA22202C006928 /* CYRTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = D5BDBC1816376ED0DD2FD3B20EEDCEBD /* CYRTextStorage.m */; };
@@ -162,9 +162,9 @@
 		E784CFFDEE10A85E4AF2D34B71D8E4C5 /* CYRLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 535DD83F09E9EDE3A26B9A0F8DF6EF99 /* CYRLayoutManager.m */; };
 		E7C4EA74E30CD5FEE22F66BA988BDAFF /* WPEditorLoggingConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 38E5FC35E5C4CE8153AEC910A4874DB3 /* WPEditorLoggingConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E819E8AE93ED37C19758CBF97453A18C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C31A9B26388001B26382C7C355DA572 /* Foundation.framework */; };
-		EF70B070A79FFD86CF42B332FFDD0C0A /* UIImage+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C383D6F67804FCFE297BDB3857EDB41 /* UIImage+Util.m */; };
+		E9DDF9AA3D72CBBBC16B7D3738032804 /* DDASLLogCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D90C4DA4061C8192A122DED0F8A9C81 /* DDASLLogCapture.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		EA3F3283E641AE887551FFD453BD5D93 /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 1818F50AFBD5E4CF37E7919335826BF7 /* DDAbstractDatabaseLogger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		EFA3094E1C6C27C5FC35BBEFF1FA91B5 /* NSString+XMLExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = DEC4F3D5C760E4B7666979E0BACF98C3 /* NSString+XMLExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EFF4147C7F6D61CAEE692F68CF37343C /* WPStyleGuide.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D8ED481E1BC195639196581FF43F80 /* WPStyleGuide.m */; };
 		F08E19D8B440D85D564273B1A501B1FC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57F2B5E013FD1D42752E768761E043FC /* CoreGraphics.framework */; };
 		F1BD4CDAC17FBFF998B2948D74D5FF19 /* Merriweather-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A581E48DA860B0A84DF51D890C146296 /* Merriweather-Regular.ttf */; };
 		F2AF56F00E313B9CD0F4ADA3C5D73BDF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A19DF616941A51576DD057A9FD8F4AD8 /* Security.framework */; };
@@ -174,11 +174,11 @@
 		F4DCBA2A42A38C6E7A755182DA50DEA2 /* AFNetworkActivityIndicatorManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 96FCB33471D5EC659A92ADDCBC9EA4CB /* AFNetworkActivityIndicatorManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F56FAAE8954D74F573B8296F707F6BE2 /* WPLegacyKeyboardToolbarDone.m in Sources */ = {isa = PBXBuildFile; fileRef = 472538606B188E3B58A11E812135B7F9 /* WPLegacyKeyboardToolbarDone.m */; };
 		F725D84EF2686B9949611BEB0133533C /* WPEditorField.h in Headers */ = {isa = PBXBuildFile; fileRef = B3A8B617FDCC8D5CAEB58F4D683D63AD /* WPEditorField.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FB69EF9D24B656135A3E4A3F491E13EA /* WPTextFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3591089D0C70DA49C5BCF71A3F4593B6 /* WPTextFieldTableViewCell.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		FBAC1959B14A03F79CF5795B803FBE9E /* WPTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 02B2BD72080ADACC4951A34F6012BD6C /* WPTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FC83AD857F3B41BD8750BD76406E6EE6 /* HRColorPickerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 41BF664F63E28CFA14A1573BCA5EEB14 /* HRColorPickerViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FCBD6DD30D27AF5994F7F1191385BF70 /* HRBrightnessCursor.h in Headers */ = {isa = PBXBuildFile; fileRef = BF76901F529E7ACCDF883BCFAC1A5F3F /* HRBrightnessCursor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FD6F966F458CEE40B07A2367BA3BC8EC /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 627C17C0AD3FD51252D494826BF0FD78 /* UIProgressView+AFNetworking.m */; };
-		FE6239BDE2049B920243DC0F907F57B9 /* DDDispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D9E267DE3EF7C44BE3D7CF26E344AC /* DDDispatchQueueLogFormatter.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		FEBFC6818E10E0DF9427A64EF84785E3 /* WPNUXUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = EE57A0785282C51D3568E8A2A9A5BEBF /* WPNUXUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FF2EF03C558C22F92392F22751F62E40 /* WPEditorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 756BDE9888D2DE82B0C6F02A38F8550B /* WPEditorView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -1347,7 +1347,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 864673C3FB1A1CA65B07410DBA5B2408 /* Build configuration list for PBXNativeTarget "WordPress-iOS-Shared" */;
 			buildPhases = (
-				9ED38590018582C7E6705AAE2729BEE9 /* Sources */,
+				94839B7636E4B9FE4C02709AA85177A2 /* Sources */,
 				FAB403835781E8515E1B075623DD64D7 /* Frameworks */,
 				BAC92A781618CEDABDC065F4DA437D94 /* Headers */,
 			);
@@ -1367,7 +1367,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 670E26168F4EE7333F65E3D75AC66AE2 /* Build configuration list for PBXNativeTarget "WordPressCom-Analytics-iOS" */;
 			buildPhases = (
-				0704E4CA9B7CE0067C073DFD90D48058 /* Sources */,
+				0C463EAD210F1F6868E72A1DC29E892D /* Sources */,
 				D99675C66F4BB0D3F0F70E8CB9479231 /* Frameworks */,
 				44D117445D453C3EB33748C0F3473754 /* Headers */,
 			);
@@ -1532,12 +1532,12 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		0704E4CA9B7CE0067C073DFD90D48058 /* Sources */ = {
+		0C463EAD210F1F6868E72A1DC29E892D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62EC1FC9033ACBA112E2215088D4FD4B /* WordPressCom-Analytics-iOS-dummy.m in Sources */,
-				640E20B03CCE6552156691C5BA773536 /* WPAnalytics.m in Sources */,
+				59B30A48A3044B1FC1E099379E9E36E2 /* WordPressCom-Analytics-iOS-dummy.m in Sources */,
+				6B21C79E5BE15854CE49BC31467E478F /* WPAnalytics.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1570,15 +1570,37 @@
 			buildActionMask = 2147483647;
 			files = (
 				A34EF7C35E4E0657AFC8B4BA0B343867 /* CocoaLumberjack-dummy.m in Sources */,
-				6077EFC05DC2551A7F5A1CFAC0B90187 /* DDAbstractDatabaseLogger.m in Sources */,
-				9DFB1378A337698012F7CE5D593DC04F /* DDASLLogCapture.m in Sources */,
-				656479029A5A15463E080FD25F8903B2 /* DDASLLogger.m in Sources */,
-				6DAEF151B35D00265D60C4AD34431DD9 /* DDContextFilterLogFormatter.m in Sources */,
-				FE6239BDE2049B920243DC0F907F57B9 /* DDDispatchQueueLogFormatter.m in Sources */,
-				41F221F9E8FDE456D3E9EB34B4C5EBF1 /* DDFileLogger.m in Sources */,
-				D70BDFA09F4803DCFEAD7AF5DFE21C6A /* DDLog.m in Sources */,
-				E1ED34DB49C6A05D740B8425F88CEC20 /* DDMultiFormatter.m in Sources */,
-				BF525D162B9ABC5DFA69FB7A8779F76E /* DDTTYLogger.m in Sources */,
+				EA3F3283E641AE887551FFD453BD5D93 /* DDAbstractDatabaseLogger.m in Sources */,
+				E9DDF9AA3D72CBBBC16B7D3738032804 /* DDASLLogCapture.m in Sources */,
+				94EF9B9483DB7448D2F2F97925391330 /* DDASLLogger.m in Sources */,
+				AE9FABCD153C3FB12ACD62E2959F0A76 /* DDContextFilterLogFormatter.m in Sources */,
+				2A341E564B365A715F82798C0AA8550A /* DDDispatchQueueLogFormatter.m in Sources */,
+				918CFF83C2961DCC838AC83A2382B4C7 /* DDFileLogger.m in Sources */,
+				A89B71D906477ECFDBEEBF0C5B886B90 /* DDLog.m in Sources */,
+				8926989B7DEAA703AAE27DBB9FD53A58 /* DDMultiFormatter.m in Sources */,
+				98C3DB185A6E5453D4EC6628C8AB69BD /* DDTTYLogger.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		94839B7636E4B9FE4C02709AA85177A2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF97499A702BD5074F2A93AD4A115F7E /* NSString+Util.m in Sources */,
+				62FC8AAF2C1C5E301640FA4F52AA8051 /* NSString+XMLExtensions.m in Sources */,
+				D2FD98149977E6F623A6ABF43D7982DB /* UIColor+Helpers.m in Sources */,
+				B541F3D73641996D841608513AF9A20B /* UIImage+Util.m in Sources */,
+				DF446E238CBD47619D093B0C9285248F /* WordPress-iOS-Shared-dummy.m in Sources */,
+				581782F83EE27D813A9D310525168F77 /* WPAnimatedImageResponseSerializer.m in Sources */,
+				C47D0FDFB63631CA1937A3CF4C9E40D5 /* WPDeviceIdentification.m in Sources */,
+				BE58D876A7930DCEF425CBBA8715974A /* WPFontManager.m in Sources */,
+				7664947689FFCAD4C36D5FCB02510E14 /* WPImageSource.m in Sources */,
+				7D700FDC37FC4BB38CA21B640C1EB793 /* WPNoResultsView.m in Sources */,
+				D3805DE746C8620DBA50E1A509D479B7 /* WPNUXUtility.m in Sources */,
+				B751EF49B3C904A9A87944F623E56DE7 /* WPStyleGuide.m in Sources */,
+				1EB449FF05FBBE4AB13092249AC51C9A /* WPTableViewCell.m in Sources */,
+				111E95D69D0B9CEFA3B54218AE1FE57D /* WPTableViewSectionHeaderFooterView.m in Sources */,
+				FB69EF9D24B656135A3E4A3F491E13EA /* WPTextFieldTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1604,28 +1626,6 @@
 				FD6F966F458CEE40B07A2367BA3BC8EC /* UIProgressView+AFNetworking.m in Sources */,
 				854BC4449D8CAD0F2799B021D1914C3B /* UIRefreshControl+AFNetworking.m in Sources */,
 				9A04E971065AF4281E43947994A53D07 /* UIWebView+AFNetworking.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9ED38590018582C7E6705AAE2729BEE9 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9F4E7EB6B629D110A4093253F775F4D2 /* NSString+Util.m in Sources */,
-				6F1BBAC334B3809D5645A20C3491202B /* NSString+XMLExtensions.m in Sources */,
-				00B33989231736CA1F18E2765FBB04FE /* UIColor+Helpers.m in Sources */,
-				EF70B070A79FFD86CF42B332FFDD0C0A /* UIImage+Util.m in Sources */,
-				08CA9A1880D3F9230EFE0D7FD3550FC8 /* WordPress-iOS-Shared-dummy.m in Sources */,
-				4064841A97106DD1C1EAA0D55A3A6AA0 /* WPAnimatedImageResponseSerializer.m in Sources */,
-				ACE6CF09908B9B6B669763107226CA4D /* WPDeviceIdentification.m in Sources */,
-				CB0216031B54E797CF7B85BF45FB62DC /* WPFontManager.m in Sources */,
-				D8E692C40741AEC60E71D13285DE59A2 /* WPImageSource.m in Sources */,
-				0E511628E01652F3E6296503C7337F5A /* WPNoResultsView.m in Sources */,
-				597C006DA8531B30E5D6FBC0D69DC73F /* WPNUXUtility.m in Sources */,
-				EFF4147C7F6D61CAEE692F68CF37343C /* WPStyleGuide.m in Sources */,
-				8A25F72B5A84EC4A98DBA47C6F8D5257 /* WPTableViewCell.m in Sources */,
-				D7C7FB52184AB3A5FF5FF835CD657468 /* WPTableViewSectionHeaderFooterView.m in Sources */,
-				6547621CAE32F224BF3BCFECF85128CC /* WPTextFieldTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

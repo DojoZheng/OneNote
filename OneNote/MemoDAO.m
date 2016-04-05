@@ -45,7 +45,7 @@ static MemoDAO *shareManager = nil;
     [memo setValue:model.memoAdvanceTime forKey:@"advanceTime"];
     [memo setValue:model.memoPlace forKey:@"place"];
     [memo setValue:[NSNumber numberWithInt:model.memoRemindMode] forKey:@"remindMode"];
-//    [memo setValue:model.objectID forKey:@"bmobObjectid"];
+    [memo setValue:model.objectID forKey:@"bmobObjectid"];
 
     
     NSError *error = nil;
@@ -61,6 +61,37 @@ static MemoDAO *shareManager = nil;
 }
 
 
+-(void)removeAll{
+    NSManagedObjectContext *cxt = [self managedObjectContext];
+    
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:_Macro_EntityForName inManagedObjectContext:cxt];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    fetchRequest.entity = entity;
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"createTime" ascending:YES];
+    NSArray *sortDescriptors = @[sortDescriptor];
+    fetchRequest.sortDescriptors = sortDescriptors;
+    
+    NSError *error = nil;
+    NSArray *listData = [cxt executeFetchRequest:fetchRequest error:&error];
+    
+    for (MemoManagedObject *mo in listData) {
+        Memo *memo = [[Memo alloc]initWithCreateTime:mo.createTime
+                                              openid:mo.openid
+                                               title:mo.title
+                                          remindTime:mo.remindTime
+                                         advanceTime:mo.advanceTime
+                                               place:mo.place
+                                          remindMode:mo.remindMode.intValue
+                                            objectid:mo.bmobObjectid
+                      ];
+        [self remove:memo];
+    }
+    
+    return ;
+}
 
 -(int) remove:(Memo*)model {
     NSManagedObjectContext *cxt = [self managedObjectContext];

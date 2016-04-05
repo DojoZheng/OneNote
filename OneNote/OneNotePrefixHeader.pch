@@ -28,4 +28,13 @@
 //NSUserDefaults相关Key
 #define _Macro_BmobUndeletedMemos @"BmobUndeletedMemos"
 
+//NSNotificationCenter相关Key
+#define _Macro_BmobGetMemosInfo @"BmobGetMemosInfo"
+#define _Macro_TencentLogout @"TencentLogout"
+#define _Macro_RemoveLocalData @"RemoveLocalData"
+
+
+#import <CocoaLumberjack/CocoaLumberjack.h>
+#import "WPEditorDemoLoggingConfiguration.h"
+
 #endif /* OneNotePrefixHeader_pch */

@@ -40,7 +40,10 @@ PODS:
   - WordPressCom-Analytics-iOS (0.1.4)
 
 DEPENDENCIES:
+  - CocoaLumberjack (~> 2.2.0)
   - WordPress-iOS-Editor (~> 1.1.5)
+  - WordPress-iOS-Shared (~> 0.5.0)
+  - WordPressCom-Analytics-iOS (~> 0.1.0)
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60

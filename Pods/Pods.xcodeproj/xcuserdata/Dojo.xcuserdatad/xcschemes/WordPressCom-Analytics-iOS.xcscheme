@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '941A794F32F763211A315142'
+               BlueprintIdentifier = 'ACEA158496C693B60693DD3E'
                BlueprintName = 'WordPressCom-Analytics-iOS'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libWordPressCom-Analytics-iOS.a'>

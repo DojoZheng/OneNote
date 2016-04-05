@@ -32,6 +32,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //退出登录的时候刷新用户头像和信息
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(RefreshLeftSortsVC)
+     name:_Macro_TencentLogout
+     object:nil];
+    
     UIImageView *imageview = [[UIImageView alloc] initWithFrame:self.view.bounds];
     imageview.image = [UIImage imageNamed:@"hu"];
     [self.view addSubview:imageview];
@@ -43,7 +50,7 @@
     tableview.delegate  = self;
     tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:tableview];
-
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -91,13 +98,29 @@
             }
             [tableView deselectRowAtIndexPath:indexPath animated:YES];
             AppDelegate *tempAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-            [tempAppDelegate.LeftSlideVC closeLeftView];//关闭左侧抽屉
+            [tempAppDelegate.LeftSlideVC closeLeftView]; //关闭左侧抽屉
             return;
             break;
         }
         case 1:
+        {
             NSLog(@"退出");
+            //先调用一次同步上传，更新数据
+            [self uploadToBmob];
+            
+            //清除本地数据
+            [[NSNotificationCenter defaultCenter]postNotificationName:_Macro_RemoveLocalData object:self userInfo:nil];
+            
+            //调用QQ腾讯退出的接口
+            if ([_QQLogoutDelegate respondsToSelector:@selector(QQLogoutButtonTouchUp:)]) {
+                [_QQLogoutDelegate QQLogoutButtonTouchUp:self];
+            }
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
+            AppDelegate *tempAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            [tempAppDelegate.LeftSlideVC closeLeftView];//关闭左侧抽屉
+            return;
             break;
+        }
             
         case 2:
             NSLog(@"同步刷新");
@@ -162,7 +185,13 @@
 //    [_nickName setFont:[UIFont systemFontOfSize:12]];
     [view addSubview:_location];
     
-    
+    if (userData == nil) {
+        _nickName.text = @"昵称";
+        _gender.text = @"性别";
+        _location.text = @"地址";
+        //        [_headImageView setBackgroundImage:[UIImage imageNamed:@"menu"] forState:UIControlStateNormal];
+        [_headImageView setImage:[UIImage imageNamed:@"QQImage"]];
+    }
    
     return view;
 }
@@ -172,6 +201,15 @@
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     NSData* userData = [defaults objectForKey:_Macro_User];
     ONUser* user = [NSKeyedUnarchiver unarchiveObjectWithData:userData];
+    
+    if (userData == nil) {
+        _nickName.text = @"昵称";
+        _gender.text = @"性别";
+        _location.text = @"地址";
+//        [_headImageView setBackgroundImage:[UIImage imageNamed:@"menu"] forState:UIControlStateNormal];
+        [_headImageView setImage:[UIImage imageNamed:@"QQImage"]];
+        return;
+    }
     
     //更新用户信息
     _nickName.text = user.nickName;

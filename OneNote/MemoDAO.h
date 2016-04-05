@@ -19,6 +19,7 @@
 
 //删除方法
 -(int) remove:(Memo*)model;
+-(void)removeAll;
 
 //修改方法
 -(int) modify:(Memo*)model;

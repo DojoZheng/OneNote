@@ -45,6 +45,11 @@
 		451980AF1C5E28CD00429DA4 /* NoteListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 451980AD1C5E28CD00429DA4 /* NoteListCell.m */; };
 		451980B51C5E2E0400429DA4 /* NoteListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 451980B41C5E2E0400429DA4 /* NoteListViewController.m */; };
 		E10D9C521C5A00170019613C /* Memo.m in Sources */ = {isa = PBXBuildFile; fileRef = E10D9C511C5A00170019613C /* Memo.m */; };
+		E11B7C0A1C9AA16B00535108 /* WPEditorDemoLoggingConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = E11B7C091C9AA16B00535108 /* WPEditorDemoLoggingConfiguration.m */; };
+		E11B7C0D1C9AA1E100535108 /* WPImageMetaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E11B7C0C1C9AA1E100535108 /* WPImageMetaViewController.m */; };
+		E11B7C101C9AA22400535108 /* WPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E11B7C0F1C9AA22400535108 /* WPViewController.m */; };
+		E11B7C121C9AA6EB00535108 /* libWordPress-iOS-Editor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E11B7C111C9AA6EB00535108 /* libWordPress-iOS-Editor.a */; };
+		E11B7C141C9AA71F00535108 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E11B7C131C9AA71F00535108 /* QuartzCore.framework */; };
 		E138F55A1C43A5230013E451 /* BmobSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E138F5591C43A5230013E451 /* BmobSDK.framework */; };
 		E138F55D1C43A5370013E451 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E138F55B1C43A5370013E451 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		E138F55E1C43A5370013E451 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E138F55C1C43A5370013E451 /* TencentOpenAPI.framework */; };
@@ -181,6 +186,14 @@
 		94BE4F342C67321173262B58 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E10D9C501C5A00170019613C /* Memo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Memo.h; sourceTree = "<group>"; };
 		E10D9C511C5A00170019613C /* Memo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Memo.m; sourceTree = "<group>"; };
+		E11B7C081C9AA16B00535108 /* WPEditorDemoLoggingConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPEditorDemoLoggingConfiguration.h; sourceTree = "<group>"; };
+		E11B7C091C9AA16B00535108 /* WPEditorDemoLoggingConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPEditorDemoLoggingConfiguration.m; sourceTree = "<group>"; };
+		E11B7C0B1C9AA1E100535108 /* WPImageMetaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPImageMetaViewController.h; sourceTree = "<group>"; };
+		E11B7C0C1C9AA1E100535108 /* WPImageMetaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPImageMetaViewController.m; sourceTree = "<group>"; };
+		E11B7C0E1C9AA22400535108 /* WPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPViewController.h; sourceTree = "<group>"; };
+		E11B7C0F1C9AA22400535108 /* WPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPViewController.m; sourceTree = "<group>"; };
+		E11B7C111C9AA6EB00535108 /* libWordPress-iOS-Editor.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libWordPress-iOS-Editor.a"; path = "Pods/../build/Debug-iphoneos/libWordPress-iOS-Editor.a"; sourceTree = "<group>"; };
+		E11B7C131C9AA71F00535108 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E138F5591C43A5230013E451 /* BmobSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BmobSDK.framework; path = "Bmob SDK/Bmob_SDK_iOS_v1.6.5/BmobSDK.framework"; sourceTree = "<group>"; };
 		E138F55B1C43A5370013E451 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TencentOpenApi_IOS_Bundle.bundle; path = "QQ SDK/TencentOpenApi_IOS_Bundle.bundle"; sourceTree = "<group>"; };
 		E138F55C1C43A5370013E451 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TencentOpenAPI.framework; path = "QQ SDK/TencentOpenAPI.framework"; sourceTree = "<group>"; };
@@ -274,6 +287,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E11B7C141C9AA71F00535108 /* QuartzCore.framework in Frameworks */,
+				E11B7C121C9AA6EB00535108 /* libWordPress-iOS-Editor.a in Frameworks */,
 				E1C4DFEB1C5F3F8200A36562 /* CoreData.framework in Frameworks */,
 				E146FD801C40D0CB00FE2B44 /* Accelerate.framework in Frameworks */,
 				22B276B51C152A6D0059A167 /* CoreLocation.framework in Frameworks */,
@@ -347,8 +362,8 @@
 				E1C4E0311C605AB200A36562 /* OneNote.xcdatamodeld */,
 				22B276951C1528EE0059A167 /* OneNotePrefixHeader.pch */,
 				221060E51C040D5000B49A89 /* Images.xcassets */,
-				451980911C5E288700429DA4 /* NoteEdittingModule */,
 				E1F45A881C57212000F81A93 /* Memo */,
+				451980911C5E288700429DA4 /* NoteEdittingModule */,
 				E138F5711C4613F40013E451 /* 笔记 */,
 				E138F5701C4613C10013E451 /* 其他 */,
 				22B2766F1C0F137F0059A167 /* 引导页 */,
@@ -449,7 +464,6 @@
 		22B276961C1529700059A167 /* Frameworks & SDK */ = {
 			isa = PBXGroup;
 			children = (
-				E1E7630F1C91724B00FD0F75 /* WordPress */,
 				22B276991C1529980059A167 /* Bomb SDK */,
 				22B276981C1529910059A167 /* QQ SDK */,
 				22B276971C1529830059A167 /* System Frameworks */,
@@ -501,6 +515,8 @@
 		3B8741C5D8E0CF547E4BCBDD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E11B7C131C9AA71F00535108 /* QuartzCore.framework */,
+				E11B7C111C9AA6EB00535108 /* libWordPress-iOS-Editor.a */,
 				F49EE88AF4661CFDA894F0BA /* libPods.a */,
 			);
 			name = Frameworks;
@@ -584,6 +600,12 @@
 		E138F5711C4613F40013E451 /* 笔记 */ = {
 			isa = PBXGroup;
 			children = (
+				E11B7C081C9AA16B00535108 /* WPEditorDemoLoggingConfiguration.h */,
+				E11B7C091C9AA16B00535108 /* WPEditorDemoLoggingConfiguration.m */,
+				E11B7C0B1C9AA1E100535108 /* WPImageMetaViewController.h */,
+				E11B7C0C1C9AA1E100535108 /* WPImageMetaViewController.m */,
+				E11B7C0E1C9AA22400535108 /* WPViewController.h */,
+				E11B7C0F1C9AA22400535108 /* WPViewController.m */,
 				E138F5721C46150B0013E451 /* NoteViewController.h */,
 				E138F5731C46150B0013E451 /* NoteViewController.m */,
 				E138F5741C46150B0013E451 /* NoteViewController.xib */,
@@ -767,13 +789,6 @@
 				E1CD4CFA1C65E8A500A684E5 /* UserBL.m */,
 			);
 			name = "BusinessLogic Layer";
-			sourceTree = "<group>";
-		};
-		E1E7630F1C91724B00FD0F75 /* WordPress */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = WordPress;
 			sourceTree = "<group>";
 		};
 		E1F45A881C57212000F81A93 /* Memo */ = {
@@ -984,6 +999,7 @@
 				451980AF1C5E28CD00429DA4 /* NoteListCell.m in Sources */,
 				E1C4E05B1C6094C200A36562 /* NoteDAO.m in Sources */,
 				221060DE1C040D5000B49A89 /* AppDelegate.m in Sources */,
+				E11B7C0D1C9AA1E100535108 /* WPImageMetaViewController.m in Sources */,
 				22B2768B1C13D8C10059A167 /* LeftSlideViewController.m in Sources */,
 				451980A71C5E28C100429DA4 /* UIColor+VNHex.m in Sources */,
 				E187FE3B1C5CF11200B02450 /* UIImage+MultiFormat.m in Sources */,
@@ -991,6 +1007,7 @@
 				E1C4E05E1C6094CD00A36562 /* MemoDAO.m in Sources */,
 				E1B3DAD61C5A1A0B00D0B3BE /* MemoTableViewCell.m in Sources */,
 				451980A61C5E28C100429DA4 /* Colours.m in Sources */,
+				E11B7C0A1C9AA16B00535108 /* WPEditorDemoLoggingConfiguration.m in Sources */,
 				E1C4E0431C60902400A36562 /* MemoManagedObject.m in Sources */,
 				221060DB1C040D5000B49A89 /* main.m in Sources */,
 				E187FE3E1C5CF11200B02450 /* UIImageView+WebCache.m in Sources */,
@@ -1001,6 +1018,7 @@
 				22B276921C13D8DC0059A167 /* LeftSortsViewController.m in Sources */,
 				22B276911C13D8DC0059A167 /* otherViewController.m in Sources */,
 				E138F56E1C45EE620013E451 /* ONCollectionViewCell.m in Sources */,
+				E11B7C101C9AA22400535108 /* WPViewController.m in Sources */,
 				22B2768C1C13D8C10059A167 /* UIView_extra.m in Sources */,
 				E187FE311C5CF11200B02450 /* NSData+ImageContentType.m in Sources */,
 				451980AA1C5E28C100429DA4 /* NoteManager.m in Sources */,
@@ -1189,6 +1207,10 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = OneNote/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = scut.OneNote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1220,6 +1242,10 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = OneNote/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = scut.OneNote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

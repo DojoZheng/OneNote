@@ -34,7 +34,7 @@
 @interface MemoViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
 
 
-@property (nonatomic,strong) UIButton* munuBtn;
+@property (nonatomic,strong) UIButton* menuBtn;
 @property (nonatomic,strong) ADLivelyTableView* memoTableView;
 @property (nonatomic,assign) NSInteger presentTextFieldTag;
 @property (nonatomic,strong) NSMutableArray* BmobUnDeletedMemos;
@@ -49,6 +49,7 @@
 @property (nonatomic,retain) UIAlertController* memoAlertController;
 
 @property (nonatomic,strong) Memo* addedMemo;
+@property (nonatomic,retain) Memo* currentMemo;
 
 @end
 
@@ -57,11 +58,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    //接受NSNotificationCenter的获取Memos的消息
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(GetMemosInfoFromBmob) name:_Macro_BmobGetMemosInfo object:nil];
+    
+    //退出登录时的操作
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(RefreshMemoView) name:_Macro_TencentLogout object:nil];
+    
+    //
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(RemoveLocalMemosData)
+     name:_Macro_RemoveLocalData object:nil];
 //    [self initCoreData];
-    
-    
-
-    
 //    ONDatePicker* tempDatePicker = [[ONDatePicker alloc] init];
 //        [self.view addSubview:tempDatePicker];
 //        [tempDatePicker setDelegate:self];
@@ -98,21 +110,21 @@
     ONUser* User = [NSKeyedUnarchiver unarchiveObjectWithData:userData];
     
     //设置侧边栏Button
-    _munuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _munuBtn.frame = CGRectMake(0, 0, 30, 30);
+    _menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _menuBtn.frame = CGRectMake(0, 0, 30, 30);
     if (User != NULL) {
-        [_munuBtn.imageView sd_setImageWithURL:[NSURL URLWithString:User.figureUrl1] placeholderImage:[UIImage imageNamed:@"menu"] options:SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        [_menuBtn.imageView sd_setImageWithURL:[NSURL URLWithString:User.figureUrl1] placeholderImage:[UIImage imageNamed:@"menu"] options:SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             NSLog(@"头像加载成功");
-            _munuBtn.layer.masksToBounds = YES;
-            _munuBtn.layer.cornerRadius  = 15;
-            [_munuBtn setBackgroundImage:_munuBtn.imageView.image forState:UIControlStateNormal];
+            _menuBtn.layer.masksToBounds = YES;
+            _menuBtn.layer.cornerRadius  = 15;
+            [_menuBtn setBackgroundImage:_menuBtn.imageView.image forState:UIControlStateNormal];
         }];
         
     }else{
-        [_munuBtn setBackgroundImage:[UIImage imageNamed:@"menu"] forState:UIControlStateNormal];
+        [_menuBtn setBackgroundImage:[UIImage imageNamed:@"menu"] forState:UIControlStateNormal];
     }
-    [_munuBtn addTarget:self action:@selector(openOrCloseLeftList) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_munuBtn];
+    [_menuBtn addTarget:self action:@selector(openOrCloseLeftList) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_menuBtn];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -156,15 +168,24 @@
     NSData* userData = [defaults objectForKey:_Macro_User];
     ONUser* User = [NSKeyedUnarchiver unarchiveObjectWithData:userData];
     
-    [_munuBtn.imageView
+    if (userData == nil) {
+        _menuBtn.layer.masksToBounds = NO;
+        [_menuBtn setBackgroundImage:[UIImage imageNamed:@"menu"] forState:UIControlStateNormal];
+        return;
+    }
+    
+    [_menuBtn.imageView
      sd_setImageWithURL:[NSURL URLWithString:User.figureUrl1]
      placeholderImage:[UIImage imageNamed:@"menu"]
      options:SDWebImageRetryFailed
      completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
          NSLog(@"菜单头像刷新成功！");
-         [_munuBtn setBackgroundImage:_munuBtn.imageView.image forState:UIControlStateNormal];
+         _menuBtn.layer.masksToBounds = YES;
+         _menuBtn.layer.cornerRadius  = 15;
+         [_menuBtn setBackgroundImage:_menuBtn.imageView.image forState:UIControlStateNormal];
+         
      }];
-    self.navigationItem.leftBarButtonItem.customView = _munuBtn;
+    self.navigationItem.leftBarButtonItem.customView = _menuBtn;
 }
 
 #pragma mark - UITableViewDataSource
@@ -194,7 +215,7 @@
      */
     
     //1.先获取当前Memo
-    Memo* currentMemo = self.memoArray[indexPath.row];
+    _currentMemo = self.memoArray[indexPath.row];
     
     //2.初始化AlertController
     UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"新建备忘录" message:NULL preferredStyle:UIAlertControllerStyleAlert];
@@ -205,7 +226,7 @@
     
     [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         textField.placeholder = @"输入：备忘录标题";
-        textField.text = [NSString stringWithFormat:@"%@",currentMemo.memoTitle];
+        textField.text = [NSString stringWithFormat:@"%@",_currentMemo.memoTitle];
         textField.tag = 101;
         textField.delegate = self;
         textField.clearButtonMode = UITextFieldViewModeAlways;
@@ -213,12 +234,14 @@
         //        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alertTextFieldDidChange:) name:UITextFieldTextDidEndEditingNotification object:textField];
     }];
     
+
+    
     [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         textField.placeholder = @"输入：时间";
-        if (currentMemo.memoRemindTime == nil) {
+        if (_currentMemo.memoRemindTime == nil) {
             textField.text = @"";
         }else{
-            textField.text = currentMemo.memoRemindTime;
+            textField.text = _currentMemo.memoRemindTime;
         }
         textField.tag = 102;
         textField.delegate = self;
@@ -227,10 +250,10 @@
     
     [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         textField.placeholder = @"输入：地点";
-        if (currentMemo.memoPlace == nil) {
+        if (_currentMemo.memoPlace == nil) {
             textField.text = @"";
         }else{
-            textField.text = currentMemo.memoPlace;
+            textField.text = _currentMemo.memoPlace;
         }
         textField.tag = 103;
         textField.delegate = self;
@@ -239,10 +262,10 @@
     
     [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         textField.placeholder = @"输入：提醒时间";
-        if (currentMemo.memoAdvanceTime == nil) {
+        if (_currentMemo.memoAdvanceTime == nil) {
             textField.text = @"";
         }else{
-            textField.text = currentMemo.memoAdvanceTime;
+            textField.text = _currentMemo.memoAdvanceTime;
         }
         textField.tag = 104;
         textField.delegate = self;
@@ -251,7 +274,7 @@
     
     [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         textField.placeholder = @"选择：提醒模式";
-        switch (currentMemo.memoRemindMode) {
+        switch (_currentMemo.memoRemindMode) {
             case 0:
                 textField.text = @"提醒模式: 无";
                 break;
@@ -283,8 +306,12 @@
         UITextField* remindTime = alertController.textFields[1];
         UITextField* place = alertController.textFields[2];
         UITextField* advanceTime = alertController.textFields[3];
+        UITextField* remindMode = alertController.textFields[4];
         
-
+        //获取openid
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        NSString* openid = [defaults objectForKey:App_OpenID];
+        
         if ([memoTitle.text isEqualToString:@""]) {
             NSLog(@"未输入标题");
             UIAlertController* remindInput = [UIAlertController
@@ -300,15 +327,21 @@
             [self presentViewController:remindInput animated:YES completion:nil];
         }else{
             MemoBL* memoBL = [[MemoBL alloc]init];
-            currentMemo.memoTitle = memoTitle.text;
-            currentMemo.memoRemindTime = remindTime.text;
-            currentMemo.memoPlace = place.text;
-            currentMemo.memoAdvanceTime = advanceTime.text;
+//            currentMemo.memoTitle = memoTitle.text;
+//            currentMemo.memoRemindTime = remindTime.text;
+//            currentMemo.memoPlace = place.text;
+//            currentMemo.memoAdvanceTime = advanceTime.text;
+//            currentMemo.memoRemindMode = [remindMode.text intValue];
             
             //先对本地进行修改
-            self.memoArray = [memoBL modify:currentMemo];
-            //然后对Bmob云端进行修改
-            [self modifyToBmob:currentMemo];
+            self.memoArray = [memoBL modify:_currentMemo];
+            
+            if (openid == nil) {
+                NSLog(@"用户未登录");
+            }else{
+                //然后对Bmob云端进行修改
+                [self modifyToBmob:_currentMemo];
+            }
             
             [self.memoTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationAutomatic];
         }
@@ -420,9 +453,11 @@
 //        UITextField* place = alertController.textFields[2];
 //        UITextField* advanceTime = alertController.textFields[3];
 ;
-        
-        
-        
+
+        //获取openid
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        NSString* openid = [defaults objectForKey:App_OpenID];
+
         if ([memoTitle.text isEqualToString:@""]) {
             NSLog(@"未输入标题");
             UIAlertController* remindInput = [UIAlertController
@@ -445,8 +480,17 @@
             //先将数据存入本地
             self.memoArray = [memoBL createMemo:_addedMemo];
 //            [self.memoArray addObject:addedMemo];
-            //再将数据存入云后端Bmob
-            [self insertToBmob:_addedMemo];
+            
+            if(openid == nil){
+                //判断如果openid为空，用户没有登录，就不上传数据
+                NSLog(@"用户未登录！");
+            }else{
+                //再将数据存入云后端Bmob
+                [self insertToBmob:_addedMemo];
+            }
+            
+            //然后需要将_addedMemo置为空
+            _addedMemo = nil;
             
             NSArray* indexPaths = [self.memoTableView indexPathsForVisibleRows];
             NSIndexPath* lastIndexPath = [indexPaths lastObject];
@@ -520,21 +564,44 @@
 // called when 'return' key pressed. return NO to ignore.
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     if (textField.tag == 101) {
-        _addedMemo.memoTitle = textField.text;
-//        textField.text = [NSString stringWithFormat:@"%@",textField.text];
+        if (_addedMemo != nil) {
+            _addedMemo.memoTitle = textField.text;
+        }
         
-    }else if(textField.tag == 103){
-        _addedMemo.memoPlace = textField.text;
 //        textField.text = [NSString stringWithFormat:@"%@",textField.text];
+        if (_currentMemo != nil) {
+            _currentMemo.memoTitle = textField.text;
+        }
+    }else if(textField.tag == 103){
+        if (_addedMemo != nil) {
+            _addedMemo.memoPlace = textField.text;
+        }
+
+//        textField.text = [NSString stringWithFormat:@"%@",textField.text];
+        if (_currentMemo != nil) {
+            _currentMemo.memoPlace = textField.text;
+        }
     }
     return YES;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField;{
     if (textField.tag == 101) {
-        _addedMemo.memoTitle = textField.text;
+        if (_addedMemo != nil) {
+            _addedMemo.memoTitle = textField.text;
+        }
+        
+        if (_currentMemo != nil) {
+            _currentMemo.memoTitle = textField.text;
+        }
     }else if(textField.tag == 103){
-        _addedMemo.memoPlace = textField.text;
+        if (_addedMemo != nil) {
+            _addedMemo.memoPlace = textField.text;
+        }
+        
+        if (_currentMemo != nil) {
+            _currentMemo.memoPlace = textField.text;
+        }
     }
 
 }
@@ -545,10 +612,23 @@
     NSString* str = [outputFormatter stringFromDate:self.datePicker.date];
     UITextField* presentTF = _memoAlertController.textFields[_presentTextFieldTag-101];
     if(presentTF.tag == 102){
-        _addedMemo.memoRemindTime = str;
+        if (_addedMemo != nil) {
+            _addedMemo.memoRemindTime = str;
+        }
+        if (_currentMemo != nil) {
+            _currentMemo.memoRemindTime = str;
+        }
+        
         presentTF.text = [NSString stringWithFormat:@"%@",str];
     }else if (presentTF.tag == 104){
-        _addedMemo.memoAdvanceTime = str;
+        
+        if (_addedMemo != nil) {
+            _addedMemo.memoAdvanceTime = str;
+        }
+        
+        if (_currentMemo != nil) {
+            _currentMemo.memoAdvanceTime = str;
+        }
         presentTF.text = [NSString stringWithFormat:@"%@",str];
     }
     
@@ -646,7 +726,14 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     UITextField* tf = _memoAlertController.textFields[4];
     tf.text = [NSString stringWithFormat:@"提醒模式:%@",[self.remindModeArray objectAtIndex:row]];
-    _addedMemo.memoRemindMode = (int)row;
+    if (_addedMemo != nil) {
+        _addedMemo.memoRemindMode = (int)row;
+    }
+    
+    if (_currentMemo != nil) {
+        _currentMemo.memoRemindMode = (int)row;
+    }
+
 }
 
 #pragma mark - UIPickerViewDataSource
@@ -748,6 +835,54 @@
             [defaults setObject:self.BmobUnDeletedMemos forKey:_Macro_BmobUndeletedMemos];
         }}];
     return 0;
+}
+
+- (void)GetMemosInfoFromBmob {
+    //在获取数据之前初始化数组和CoreData
+    [self RemoveLocalMemosData];
+    
+	//从后台数据库获取对应openid用户的所有Memos
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    NSString* openid = [defaults objectForKey:App_OpenID];
+    BmobQuery* query = [BmobQuery queryWithClassName:_Macro_BmobMemoTable];
+    [query whereKey:@"openid" equalTo:openid];
+    
+    //存储数据的数据和BusinessLogic
+    if (_memoArray == nil) {
+        _memoArray = [[NSMutableArray alloc]init];
+    }
+    
+    if(_memoBL == nil){
+        _memoBL = [[MemoBL alloc]init];
+    }
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        for (BmobObject*obj in array) {
+            Memo* memo = [[Memo alloc]
+                initWithCreateTime:[obj objectForKey:@"createTime"]
+                          openid:[obj objectForKey:@"openid"]
+                          title:[obj objectForKey:@"title"]
+                          remindTime:[obj objectForKey:@"remindTime"]
+                          advanceTime:[obj objectForKey:@"advanceTime"]
+                          place:[obj objectForKey:@"place"]
+                          remindMode:[[obj objectForKey:@"remindMode"] intValue]
+                          objectid:obj.objectId];
+            [_memoBL createMemo:memo];
+        }
+        
+        _memoArray = [_memoBL findAll];
+        [_memoTableView reloadData];
+    }];
+    
+
+}
+
+- (void)RemoveLocalMemosData {
+    if (_memoBL == nil) {
+        _memoBL = [[MemoBL alloc]init];
+    }
+    _memoArray = [_memoBL removeAll];
+    [self.memoTableView reloadData];
 }
 
 @end

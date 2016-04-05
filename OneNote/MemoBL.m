@@ -26,6 +26,12 @@
     return [dao findAll];
 }
 
+-(NSMutableArray*) removeAll{
+    MemoDAO *dao = [MemoDAO sharedManager];
+    [dao removeAll];
+    return [dao findAll];
+}
+
 -(NSMutableArray*) findAll {
     MemoDAO *dao = [MemoDAO sharedManager];
     return [dao findAll];

@@ -66,23 +66,29 @@ UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlow
     [_menuBtn addTarget:self action:@selector(openOrCloseLeftList) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_menuBtn];
 
+    //退出登录的时候刷新用户头像和信息
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(RefreshNoteView)
+     name:_Macro_TencentLogout
+     object:nil];
     
-    //从QQ接口获取账户信息：初始化 用户头像+用户名
-    BmobUser* user = [[BmobUser alloc]init];
-    [user setUsername:@"zheng"];
-    [user setPassword:@"666"];
-    [user setEmail:@"zdj@mail.com"];
-    [user signUpInBackgroundWithBlock:^(BOOL isSuccessful, NSError *error) {
-        if (isSuccessful) {
-            NSLog(@"User Successful");
-        }else{
-            NSLog(@"User Failed");
-        }
-        
-        if (error) {
-            NSLog(@"Error!");
-        }
-    }];
+//    //从QQ接口获取账户信息：初始化 用户头像+用户名
+//    BmobUser* user = [[BmobUser alloc]init];
+//    [user setUsername:@"zheng"];
+//    [user setPassword:@"666"];
+//    [user setEmail:@"zdj@mail.com"];
+//    [user signUpInBackgroundWithBlock:^(BOOL isSuccessful, NSError *error) {
+//        if (isSuccessful) {
+//            NSLog(@"User Successful");
+//        }else{
+//            NSLog(@"User Failed");
+//        }
+//        
+//        if (error) {
+//            NSLog(@"Error!");
+//        }
+//    }];
 
     //初始化TableView
     [self displayTableView];
@@ -218,6 +224,7 @@ UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlow
 {
     
 }
+
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
     
 }
@@ -354,12 +361,21 @@ UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlow
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     NSData* userData = [defaults objectForKey:_Macro_User];
     ONUser* User = [NSKeyedUnarchiver unarchiveObjectWithData:userData];
+    
+    if (userData == nil) {
+        _menuBtn.layer.masksToBounds = NO;
+        [_menuBtn setBackgroundImage:[UIImage imageNamed:@"menu"] forState:UIControlStateNormal];
+        return;
+    }
+    
     [_menuBtn.imageView
      sd_setImageWithURL:[NSURL URLWithString:User.figureUrl1]
      placeholderImage:[UIImage imageNamed:@"menu"]
      options:SDWebImageRetryFailed
      completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         NSLog(@"菜单头像刷新成功！");
+         _menuBtn.layer.masksToBounds = YES;
+         _menuBtn.layer.cornerRadius  = 15;
         [_menuBtn setBackgroundImage:_menuBtn.imageView.image forState:UIControlStateNormal];
     }];
     self.navigationItem.leftBarButtonItem.customView = _menuBtn;

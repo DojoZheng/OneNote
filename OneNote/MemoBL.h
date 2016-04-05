@@ -11,11 +11,12 @@
 
 @interface MemoBL : NSObject
 
-//插入Note方法
+//插入Memo方法
 -(NSMutableArray*) createMemo:(Memo*)model;
 
-//删除Note方法
+//删除Memo方法
 -(NSMutableArray*) remove:(Memo*)model;
+-(NSMutableArray*) removeAll;
 
 //查询所用数据方法
 -(NSMutableArray*) findAll;
@@ -23,7 +24,7 @@
 //按照主键查询数据方法
 -(Memo*) findById:(Memo*)model;
 
-//修改Note方法
+//修改Memo方法
 -(NSMutableArray*) modify:(Memo*)model;
 
 - (void)printInfo;

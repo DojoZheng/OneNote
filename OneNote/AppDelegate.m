@@ -18,7 +18,7 @@
 #define FirstTimeIn @"firstTimeIn"
 #define TencentRedirectURL @"www.qq.com"
 
-@interface AppDelegate ()<DrawerQQLoginDelegate>
+@interface AppDelegate ()<DrawerQQLoginDelegate,DrawerQQLogoutDelegate>
 
 @property (nonatomic,strong) GuideViewController* guideVC;
 @property (nonatomic,strong) HomeViewController* homeVC;
@@ -204,6 +204,7 @@
         self.leftSortVC = [[LeftSortsViewController alloc] init];
         //为抽屉视图的登录按钮添加代理
         self.leftSortVC.QQLoginDelegate = self;
+        self.leftSortVC.QQLogoutDelegate = self;
     }else{
         [self.leftSortVC RefreshLeftSortsVC];
     }
@@ -259,7 +260,11 @@
         _QQLoginAccessTokenText = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
         _QQLoginAccessTokenText.text = _tencentOAuth.accessToken;
         
-        //
+        //发送一个消息给MemoViewController获取用户数据
+        NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
+        [center postNotificationName:_Macro_BmobGetMemosInfo
+                              object:self
+                            userInfo:nil];
         
     }else{
         _QQLoginAccessTokenText = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
@@ -323,13 +328,34 @@
     NSLog(@"closing");
 }
 
-/**
- *  Description: DrawerQQLoginDelegate代理方法的实现
- */
+
+#pragma mark - DrawerQQLoginDelegate代理方法的实现
 -(void)QQLoginButtonTouchUp:(LeftSortsViewController*)leftSortsVC{
     [self enterQQLoginView];
 }
 
+#pragma mark - DrawerQQLogoutDelegate代理方法的实现
+- (void)QQLogoutButtonTouchUp:(LeftSortsViewController*)leftSortsVC{
+/**
+ * 退出登录(退出登录后，TecentOAuth失效，需要重新初始化)
+ * \param delegate 第三方应用用于接收请求返回结果的委托对象
+ */
+    [_tencentOAuth logout:self];
+}
+
+/**
+ * 退出登录的回调
+ */
+- (void)tencentDidLogout{
+    NSLog(@"退出登录");
+    //头像和个人信息设置为空
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:nil forKey:_Macro_User];
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:_Macro_TencentLogout
+     object:self
+     userInfo:nil];
+}
 
 #pragma mark - Core Data stack
 

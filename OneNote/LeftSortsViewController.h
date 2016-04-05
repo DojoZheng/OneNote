@@ -20,10 +20,18 @@
 
 @end
 
+@protocol DrawerQQLogoutDelegate <NSObject>
+
+@required
+- (void)QQLogoutButtonTouchUp:(LeftSortsViewController*)leftSortsVC;
+
+@end
+
 @interface LeftSortsViewController : UIViewController
 
 @property (nonatomic,strong) UITableView *tableview;
 @property (nonatomic,assign) id <DrawerQQLoginDelegate> QQLoginDelegate;
+@property (nonatomic,assign) id <DrawerQQLogoutDelegate>QQLogoutDelegate;
 
 //Memos数组
 @property (nonatomic,strong) NSArray* memosArray;
