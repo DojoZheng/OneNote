@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15C50" minimumToolsVersion="Xcode 7.0">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Xcode 7.0">
     <entity name="MemoManagedObject" representedClassName="MemoManagedObject" syncable="YES">
         <attribute name="advanceTime" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="bmobObjectid" optional="YES" attributeType="String" syncable="YES"/>
@@ -12,11 +12,14 @@
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserManagedObject" inverseName="memo" inverseEntity="UserManagedObject" syncable="YES"/>
     </entity>
     <entity name="NoteManagedObject" representedClassName="NoteManagedObject" syncable="YES">
+        <attribute name="bodyPlaceholderText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bodyText" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createTime" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="folder" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="objectid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="openid" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="titlePlaceholderText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="titleText" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserManagedObject" inverseName="note" inverseEntity="UserManagedObject" syncable="YES"/>
     </entity>
     <entity name="UserManagedObject" representedClassName="UserManagedObject" syncable="YES">
@@ -31,7 +34,7 @@
     </entity>
     <elements>
         <element name="MemoManagedObject" positionX="-470" positionY="414" width="128" height="180"/>
-        <element name="NoteManagedObject" positionX="-146" positionY="443" width="128" height="133"/>
+        <element name="NoteManagedObject" positionX="-146" positionY="414" width="128" height="180"/>
         <element name="UserManagedObject" positionX="-317" positionY="207" width="128" height="163"/>
     </elements>
 </model>

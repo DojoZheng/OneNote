@@ -8,38 +8,38 @@
 
 #import <Foundation/Foundation.h>
 #import "NoteDAO.h"
-//#import "ONNote.h"
+#import "NoteManagedObject.h"
 
 @interface NoteBL : NSObject
 
 //插入Note方法
--(NSMutableArray*) createNote:(ONNote*)model;
+-(NSMutableArray*) createNote:(NoteManagedObject*)model;
 
 //删除Note方法
--(NSMutableArray*) remove:(ONNote*)model;
-
+-(NSMutableArray*) remove:(NoteManagedObject*)model;
+-(NSMutableArray*)removeAll;
 //查询所用数据方法
 -(NSMutableArray*) findAll;
 
 //按照主键查询数据方法
--(ONNote*) findById:(ONNote*)model;
+-(NoteManagedObject*) findById:(NoteManagedObject*)model;
 
 //修改Note方法
--(NSMutableArray*) modify:(ONNote*)model;
+-(NSMutableArray*) modify:(NoteManagedObject*)model;
 
 ////插入Note方法
-//-(int) create:(ONNote*)model;
+//-(int) create:(NoteManagedObject*)model;
 //
 ////删除Note方法
-//-(int) remove:(ONNote*)model;
+//-(int) remove:(NoteManagedObject*)model;
 //
 ////修改Note方法
-//-(int) modify:(ONNote*)model;
+//-(int) modify:(NoteManagedObject*)model;
 //
 ////查询所有数据方法
 //-(NSMutableArray*) findAll;
 //
 ////按照主键查询数据方法
-//-(ONNote*) findById:(ONNote*)model;
+//-(NoteManagedObject*) findById:(NoteManagedObject*)model;
 
 @end

@@ -14,6 +14,8 @@
 #import "NoteViewController.h"
 #import "NoteListViewController.h"
 #import "NoteDetailViewController.h"
+#import "WPViewController.h"
+#import "NoteBL.h"
 
 #define vBackBarButtonItemName  @"backArrow.png"    //导航条返回默认图片名
 
@@ -36,6 +38,10 @@ UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlow
     
     //右上角创建笔记或者文件夹
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"新建" style:UIBarButtonItemStylePlain target:self action:@selector(createNew)];
+    
+    //初始化笔记数组
+    NoteBL* noteBL = [[NoteBL alloc]init];
+    _NoteArray = [noteBL findAll];
     
     
     //毛玻璃特效
@@ -152,6 +158,7 @@ UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlow
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 2;
 }
+
 - (nullable NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     if (0 == section) {
         return @"文件夹";
@@ -195,6 +202,7 @@ UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlow
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath{
     return YES;
 }
+
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 2;
@@ -345,7 +353,8 @@ UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlow
     
     UIAlertAction *createNote = [UIAlertAction actionWithTitle:@"创建笔记" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action){
         NSLog(@"Create new notes");
-       [self.navigationController pushViewController: [[NoteDetailViewController alloc] init] animated:YES ];
+//       [self.navigationController pushViewController: [[NoteDetailViewController alloc] init] animated:YES ];
+        [self.navigationController pushViewController:[[WPViewController alloc]init] animated:YES];
     }];
     
     [alertController addAction:createDir];

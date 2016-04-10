@@ -199,4 +199,8 @@ MFMailComposeViewControllerDelegate, UINavigationControllerDelegate, UIAlertView
     }
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+- (void)moreActionButtonPressed {
+	
+}
 @end

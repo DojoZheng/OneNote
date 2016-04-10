@@ -12,6 +12,7 @@
 //Memo本身的信息
 @property (nonatomic,copy)NSString* memoCreateTime;
 @property (nonatomic,copy)NSString* openID;
+@property (nonatomic,copy)NSString* objectID;
 
 //Memo记录的信息
 @property (nonatomic,copy)NSString* memoTitle;
@@ -21,7 +22,7 @@
 @property (nonatomic,copy)NSString* memoPlace;
 @property (nonatomic,assign)int memoRemindMode; //0:无 1:铃声 2:震动 3:铃声+震动
 
-@property (nonatomic,strong) NSString* objectID;
+
 
 - (instancetype)initWithCreateTime:(NSString*)createTime
                             openid:(NSString*)openid

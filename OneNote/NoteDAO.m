@@ -23,15 +23,18 @@ static NoteDAO *shareManager = nil;
     return shareManager;
 }
 
--(int) create:(ONNote*)model {
+-(int) create:(NoteManagedObject*)model {
     NSManagedObjectContext *cxt = [self managedObjectContext];
     
     NoteManagedObject *note = [NSEntityDescription insertNewObjectForEntityForName:_Macro_EntityForName inManagedObjectContext:cxt];
-    [note setValue: model.title forKey:@"title"];
-    [note setValue: model.createTime forKey:@"createTime"];
+    [note setValue:model.createTime forKey:@"createTime"];
     [note setValue:model.openid forKey:@"openid"];
-    [note setValue:model.text forKey:@"text"];
+    [note setValue:model.objectid forKey:@"objectid"];
     [note setValue:model.folder forKey:@"folder"];
+    [note setValue:model.titleText forKey:@"titleText"];
+    [note setValue:model.titlePlaceholderText forKey:@"titlePlaceholderText"];
+    [note setValue:model.bodyText forKey:@"bodyText"];
+    [note setValue:model.bodyPlaceholderText forKey:@"bodyPlaceholderText"];
     
     //    note.date = model.date;
     //    note.content = model.content;
@@ -44,7 +47,7 @@ static NoteDAO *shareManager = nil;
     return 0;
 }
 
--(int) remove:(ONNote*)model {
+-(int) remove:(NoteManagedObject*)model {
     NSManagedObjectContext *cxt = [self managedObjectContext];
     
     NSEntityDescription *entityDescription = [NSEntityDescription
@@ -54,7 +57,7 @@ static NoteDAO *shareManager = nil;
     [request setEntity:entityDescription];
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                              @"createTime =  %@", model.createTime];
+                              @"createTime = %@", model.createTime];
     [request setPredicate:predicate];
     
     NSError *error = nil;
@@ -73,7 +76,7 @@ static NoteDAO *shareManager = nil;
     return 0;
 }
 
--(int) modify:(ONNote*)model {
+-(int) modify:(NoteManagedObject*)model {
     NSManagedObjectContext *cxt = [self managedObjectContext];
     
     NSEntityDescription *entityDescription = [NSEntityDescription
@@ -83,16 +86,22 @@ static NoteDAO *shareManager = nil;
     [request setEntity:entityDescription];
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                              @"createTime =  %@", model.createTime];
+                              @"createTime = %@", model.createTime];
     [request setPredicate:predicate];
     
     NSError *error = nil;
     NSArray *listData = [cxt executeFetchRequest:request error:&error];
     if ([listData count] > 0) {
         NoteManagedObject *note = [listData lastObject];
-        note.title = model.title;
-        note.text = model.text;
+        note.openid = model.openid;
+        note.objectid = model.objectid;
+        note.folder = model.folder;
+//        note.createTime = model.createTime;
         
+        note.titleText = model.titleText;
+        note.titlePlaceholderText = model.titlePlaceholderText;
+        note.bodyText = model.bodyText;
+        note.bodyPlaceholderText = model.bodyPlaceholderText;
         
         error = nil;
         if ([cxt hasChanges] && ![cxt save:&error]){
@@ -103,7 +112,7 @@ static NoteDAO *shareManager = nil;
     return 0;
 }
 
--(NSMutableArray*) findAll {
+-(NSArray*) findAll {
     NSManagedObjectContext *cxt = [self managedObjectContext];
     
     NSEntityDescription *entity = [NSEntityDescription
@@ -119,22 +128,10 @@ static NoteDAO *shareManager = nil;
     NSError *error = nil;
     NSArray *listData = [cxt executeFetchRequest:fetchRequest error:&error];
     
-    NSMutableArray *resListData = [[NSMutableArray alloc] init];
-    
-    for (NoteManagedObject *mo in listData) {
-        ONNote *note = [[ONNote alloc]
-                        initWithCreateTime:mo.createTime
-                        openid:mo.openid
-                        title:mo.title
-                        text:mo.text
-                        folder:mo.folder];
-        [resListData addObject:note];
-    }
-    
-    return resListData;
+    return listData;
 }
 
--(ONNote*) findById:(ONNote*)model {
+-(NoteManagedObject*) findById:(NoteManagedObject*)model {
     NSManagedObjectContext *cxt = [self managedObjectContext];
     
     NSEntityDescription *entity = [NSEntityDescription
@@ -142,22 +139,33 @@ static NoteDAO *shareManager = nil;
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     fetchRequest.entity = entity;
-    fetchRequest.predicate = [NSPredicate predicateWithFormat: @"createTime =  %@",model.createTime];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat: @"createTime = %@",model.createTime];
     
     NSError *error = nil;
     NSArray *listData = [cxt executeFetchRequest:fetchRequest error:&error];
     
     if ([listData count] > 0) {
         NoteManagedObject *mo = [listData lastObject];
-        ONNote *note = [[ONNote alloc]
+        NoteManagedObject *note = [[NoteManagedObject alloc]
                         initWithCreateTime:mo.createTime
-                        openid:mo.openid
-                        title:mo.title
-                        text:mo.text
-                        folder:mo.folder];
+                                   openid:mo.openid
+                                   objectid:mo.objectid
+                                   folder:mo.folder
+                                   titleText:mo.titleText
+                                   titlePlaceholderText:mo.titlePlaceholderText
+                                   bodyText:mo.bodyText
+                                   bodyPlaceholderText:mo.bodyPlaceholderText];
         return note;
     }
     return nil;
+}
+
+-(int)removeAll {
+    NSArray* array = [self findAll];
+    for (NoteManagedObject* note in array) {
+        [self remove:note];
+    }
+    return 0;
 }
 
 @end

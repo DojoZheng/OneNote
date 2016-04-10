@@ -58,7 +58,6 @@
 		E138F56F1C45EE620013E451 /* ONCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E138F56D1C45EE620013E451 /* ONCollectionViewCell.xib */; };
 		E138F5751C46150B0013E451 /* NoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E138F5731C46150B0013E451 /* NoteViewController.m */; };
 		E138F5761C46150B0013E451 /* NoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E138F5741C46150B0013E451 /* NoteViewController.xib */; };
-		E138F5BC1C47F1C80013E451 /* ONNote.m in Sources */ = {isa = PBXBuildFile; fileRef = E138F5BB1C47F1C80013E451 /* ONNote.m */; };
 		E146FCD11C3A57EC00FE2B44 /* ONUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E146FCD01C3A57EC00FE2B44 /* ONUser.m */; };
 		E146FD801C40D0CB00FE2B44 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E146FD7F1C40D0CB00FE2B44 /* Accelerate.framework */; };
 		E187FE301C5CF11200B02450 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E187FE101C5CF11200B02450 /* MKAnnotationView+WebCache.m */; };
@@ -84,8 +83,6 @@
 		E1B3DAD71C5A1A0B00D0B3BE /* MemoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1B3DAD51C5A1A0B00D0B3BE /* MemoTableViewCell.xib */; };
 		E1C4DFEB1C5F3F8200A36562 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C4DFEA1C5F3F8200A36562 /* CoreData.framework */; };
 		E1C4E0331C605AB200A36562 /* OneNote.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1C4E0311C605AB200A36562 /* OneNote.xcdatamodeld */; };
-		E1C4E0401C60902400A36562 /* NoteManagedObject+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C4E0351C60902400A36562 /* NoteManagedObject+CoreDataProperties.m */; };
-		E1C4E0411C60902400A36562 /* NoteManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C4E0371C60902400A36562 /* NoteManagedObject.m */; };
 		E1C4E0421C60902400A36562 /* MemoManagedObject+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C4E0391C60902400A36562 /* MemoManagedObject+CoreDataProperties.m */; };
 		E1C4E0431C60902400A36562 /* MemoManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C4E03B1C60902400A36562 /* MemoManagedObject.m */; };
 		E1C4E0441C60902400A36562 /* UserManagedObject+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C4E03D1C60902400A36562 /* UserManagedObject+CoreDataProperties.m */; };
@@ -94,6 +91,8 @@
 		E1C4E0581C6094B400A36562 /* UserDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C4E0571C6094B400A36562 /* UserDAO.m */; };
 		E1C4E05B1C6094C200A36562 /* NoteDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C4E05A1C6094C200A36562 /* NoteDAO.m */; };
 		E1C4E05E1C6094CD00A36562 /* MemoDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C4E05D1C6094CD00A36562 /* MemoDAO.m */; };
+		E1C86F291CB3AC4300914149 /* NoteManagedObject+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C86F261CB3AC4300914149 /* NoteManagedObject+CoreDataProperties.m */; };
+		E1C86F2A1CB3AC4300914149 /* NoteManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C86F281CB3AC4300914149 /* NoteManagedObject.m */; };
 		E1CD4CFB1C65E8A500A684E5 /* UserBL.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CD4CFA1C65E8A500A684E5 /* UserBL.m */; };
 		E1CD4CFE1C65E8BD00A684E5 /* NoteBL.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CD4CFD1C65E8BD00A684E5 /* NoteBL.m */; };
 		E1CD4D011C65EDD800A684E5 /* MemoBL.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CD4D001C65EDD800A684E5 /* MemoBL.m */; };
@@ -205,8 +204,6 @@
 		E138F5721C46150B0013E451 /* NoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteViewController.h; sourceTree = "<group>"; };
 		E138F5731C46150B0013E451 /* NoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteViewController.m; sourceTree = "<group>"; };
 		E138F5741C46150B0013E451 /* NoteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteViewController.xib; sourceTree = "<group>"; };
-		E138F5BA1C47F1C80013E451 /* ONNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ONNote.h; sourceTree = "<group>"; };
-		E138F5BB1C47F1C80013E451 /* ONNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ONNote.m; sourceTree = "<group>"; };
 		E146FCCF1C3A57EC00FE2B44 /* ONUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ONUser.h; sourceTree = "<group>"; };
 		E146FCD01C3A57EC00FE2B44 /* ONUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ONUser.m; sourceTree = "<group>"; };
 		E146FD7F1C40D0CB00FE2B44 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -251,10 +248,6 @@
 		E1B3DAD51C5A1A0B00D0B3BE /* MemoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MemoTableViewCell.xib; sourceTree = "<group>"; };
 		E1C4DFEA1C5F3F8200A36562 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		E1C4E0321C605AB200A36562 /* OneNote.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OneNote.xcdatamodel; sourceTree = "<group>"; };
-		E1C4E0341C60902400A36562 /* NoteManagedObject+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NoteManagedObject+CoreDataProperties.h"; sourceTree = "<group>"; };
-		E1C4E0351C60902400A36562 /* NoteManagedObject+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NoteManagedObject+CoreDataProperties.m"; sourceTree = "<group>"; };
-		E1C4E0361C60902400A36562 /* NoteManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteManagedObject.h; sourceTree = "<group>"; };
-		E1C4E0371C60902400A36562 /* NoteManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteManagedObject.m; sourceTree = "<group>"; };
 		E1C4E0381C60902400A36562 /* MemoManagedObject+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MemoManagedObject+CoreDataProperties.h"; sourceTree = "<group>"; };
 		E1C4E0391C60902400A36562 /* MemoManagedObject+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MemoManagedObject+CoreDataProperties.m"; sourceTree = "<group>"; };
 		E1C4E03A1C60902400A36562 /* MemoManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoManagedObject.h; sourceTree = "<group>"; };
@@ -271,6 +264,10 @@
 		E1C4E05A1C6094C200A36562 /* NoteDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteDAO.m; sourceTree = "<group>"; };
 		E1C4E05C1C6094CD00A36562 /* MemoDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoDAO.h; sourceTree = "<group>"; };
 		E1C4E05D1C6094CD00A36562 /* MemoDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoDAO.m; sourceTree = "<group>"; };
+		E1C86F251CB3AC4300914149 /* NoteManagedObject+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NoteManagedObject+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E1C86F261CB3AC4300914149 /* NoteManagedObject+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NoteManagedObject+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E1C86F271CB3AC4300914149 /* NoteManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteManagedObject.h; sourceTree = "<group>"; };
+		E1C86F281CB3AC4300914149 /* NoteManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteManagedObject.m; sourceTree = "<group>"; };
 		E1CD4CF91C65E8A500A684E5 /* UserBL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserBL.h; sourceTree = "<group>"; };
 		E1CD4CFA1C65E8A500A684E5 /* UserBL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserBL.m; sourceTree = "<group>"; };
 		E1CD4CFC1C65E8BD00A684E5 /* NoteBL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteBL.h; sourceTree = "<group>"; };
@@ -356,6 +353,7 @@
 		221060D81C040D5000B49A89 /* OneNote */ = {
 			isa = PBXGroup;
 			children = (
+				E1C86F211CB3540700914149 /* Note */,
 				E1C4E0461C60905200A36562 /* CoreData */,
 				221060DC1C040D5000B49A89 /* AppDelegate.h */,
 				221060DD1C040D5000B49A89 /* AppDelegate.m */,
@@ -363,11 +361,8 @@
 				22B276951C1528EE0059A167 /* OneNotePrefixHeader.pch */,
 				221060E51C040D5000B49A89 /* Images.xcassets */,
 				E1F45A881C57212000F81A93 /* Memo */,
-				451980911C5E288700429DA4 /* NoteEdittingModule */,
-				E138F5711C4613F40013E451 /* 笔记 */,
 				E138F5701C4613C10013E451 /* 其他 */,
 				22B2766F1C0F137F0059A167 /* 引导页 */,
-				22B276701C0F141F0059A167 /* Note主界面 */,
 				221060EA1C040D5100B49A89 /* Info.plist */,
 				22B2767D1C13D0C10059A167 /* 侧边栏（抽屉） */,
 				221060D91C040D5000B49A89 /* Supporting Files */,
@@ -597,7 +592,7 @@
 			name = "其他";
 			sourceTree = "<group>";
 		};
-		E138F5711C4613F40013E451 /* 笔记 */ = {
+		E138F5711C4613F40013E451 /* WordPressEditor */ = {
 			isa = PBXGroup;
 			children = (
 				E11B7C081C9AA16B00535108 /* WPEditorDemoLoggingConfiguration.h */,
@@ -610,14 +605,7 @@
 				E138F5731C46150B0013E451 /* NoteViewController.m */,
 				E138F5741C46150B0013E451 /* NoteViewController.xib */,
 			);
-			name = "笔记";
-			sourceTree = "<group>";
-		};
-		E14166F01C8047010004A414 /* InformationSystem Layer */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "InformationSystem Layer";
+			name = WordPressEditor;
 			sourceTree = "<group>";
 		};
 		E187FE0E1C5CF11200B02450 /* SDWebImage */ = {
@@ -712,11 +700,20 @@
 		E1C4E0491C60907800A36562 /* Memo */ = {
 			isa = PBXGroup;
 			children = (
-				E14166F01C8047010004A414 /* InformationSystem Layer */,
 				E1CD4CF41C65E7E700A684E5 /* BusinessLogic Layer */,
 				E1CD4CF31C65E7DB00A684E5 /* Persistent Layer */,
 			);
 			name = Memo;
+			sourceTree = "<group>";
+		};
+		E1C86F211CB3540700914149 /* Note */ = {
+			isa = PBXGroup;
+			children = (
+				451980911C5E288700429DA4 /* NoteEdittingModule */,
+				22B276701C0F141F0059A167 /* Note主界面 */,
+				E138F5711C4613F40013E451 /* WordPressEditor */,
+			);
+			name = Note;
 			sourceTree = "<group>";
 		};
 		E1CD4CF31C65E7DB00A684E5 /* Persistent Layer */ = {
@@ -755,14 +752,12 @@
 		E1CD4CF61C65E84B00A684E5 /* Persistent Layer */ = {
 			isa = PBXGroup;
 			children = (
-				E1C4E0341C60902400A36562 /* NoteManagedObject+CoreDataProperties.h */,
-				E1C4E0351C60902400A36562 /* NoteManagedObject+CoreDataProperties.m */,
-				E1C4E0361C60902400A36562 /* NoteManagedObject.h */,
-				E1C4E0371C60902400A36562 /* NoteManagedObject.m */,
 				E1C4E0591C6094C200A36562 /* NoteDAO.h */,
 				E1C4E05A1C6094C200A36562 /* NoteDAO.m */,
-				E138F5BA1C47F1C80013E451 /* ONNote.h */,
-				E138F5BB1C47F1C80013E451 /* ONNote.m */,
+				E1C86F251CB3AC4300914149 /* NoteManagedObject+CoreDataProperties.h */,
+				E1C86F261CB3AC4300914149 /* NoteManagedObject+CoreDataProperties.m */,
+				E1C86F271CB3AC4300914149 /* NoteManagedObject.h */,
+				E1C86F281CB3AC4300914149 /* NoteManagedObject.m */,
 			);
 			name = "Persistent Layer";
 			sourceTree = "<group>";
@@ -1014,6 +1009,7 @@
 				E10D9C521C5A00170019613C /* Memo.m in Sources */,
 				E1F45A8E1C57216B00F81A93 /* MemoViewController.m in Sources */,
 				22B276691C0EEC240059A167 /* GuideViewController.m in Sources */,
+				E1C86F291CB3AC4300914149 /* NoteManagedObject+CoreDataProperties.m in Sources */,
 				E1C4E0331C605AB200A36562 /* OneNote.xcdatamodeld in Sources */,
 				22B276921C13D8DC0059A167 /* LeftSortsViewController.m in Sources */,
 				22B276911C13D8DC0059A167 /* otherViewController.m in Sources */,
@@ -1022,10 +1018,8 @@
 				22B2768C1C13D8C10059A167 /* UIView_extra.m in Sources */,
 				E187FE311C5CF11200B02450 /* NSData+ImageContentType.m in Sources */,
 				451980AA1C5E28C100429DA4 /* NoteManager.m in Sources */,
-				E138F5BC1C47F1C80013E451 /* ONNote.m in Sources */,
 				451980A91C5E28C100429DA4 /* VNConstants.m in Sources */,
 				22B2766E1C0EF1400059A167 /* GuideView.m in Sources */,
-				E1C4E0401C60902400A36562 /* NoteManagedObject+CoreDataProperties.m in Sources */,
 				451980A81C5E28C100429DA4 /* NSDate+Conversion.m in Sources */,
 				E187FE371C5CF11200B02450 /* SDWebImageManager.m in Sources */,
 				E187FE341C5CF11200B02450 /* SDWebImageDecoder.m in Sources */,
@@ -1035,6 +1029,7 @@
 				E187FE301C5CF11200B02450 /* MKAnnotationView+WebCache.m in Sources */,
 				E1C4E0551C6092E900A36562 /* ONCoreDataDAO.m in Sources */,
 				E1C4E0441C60902400A36562 /* UserManagedObject+CoreDataProperties.m in Sources */,
+				E1C86F2A1CB3AC4300914149 /* NoteManagedObject.m in Sources */,
 				E1CD4D011C65EDD800A684E5 /* MemoBL.m in Sources */,
 				E1C4E0451C60902400A36562 /* UserManagedObject.m in Sources */,
 				E187FE331C5CF11200B02450 /* SDWebImageCompat.m in Sources */,
@@ -1044,7 +1039,6 @@
 				E1CD4CFB1C65E8A500A684E5 /* UserBL.m in Sources */,
 				E187FE3A1C5CF11200B02450 /* UIImage+GIF.m in Sources */,
 				E187FE321C5CF11200B02450 /* SDImageCache.m in Sources */,
-				E1C4E0411C60902400A36562 /* NoteManagedObject.m in Sources */,
 				451980971C5E28B700429DA4 /* NoteDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

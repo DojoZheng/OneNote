@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *bmobObjectid;
 @property (nullable, nonatomic, retain) UserManagedObject *user;
 
+
 @end
 
 NS_ASSUME_NONNULL_END

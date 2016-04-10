@@ -7,6 +7,7 @@
 //
 
 
+#import <Availability.h>
 
 #ifndef OneNotePrefixHeader_pch
 #define OneNotePrefixHeader_pch
@@ -16,7 +17,7 @@
 
 #define AppKey_Bmob @"8ba6f55903ae84dfd78a0ab49622e1b4"
 #define AppID_QQ @"1104951150"
-#define App_OpenID @"OneNote_UserOpenID"
+
 //#define AppID_QQ @"1105054639"
 
 #define _Macro_User @"OneNoteUser"
@@ -27,6 +28,7 @@
 
 //NSUserDefaults相关Key
 #define _Macro_BmobUndeletedMemos @"BmobUndeletedMemos"
+#define App_OpenID @"OneNote_UserOpenID"
 
 //NSNotificationCenter相关Key
 #define _Macro_BmobGetMemosInfo @"BmobGetMemosInfo"
@@ -36,5 +38,6 @@
 
 #import <CocoaLumberjack/CocoaLumberjack.h>
 #import "WPEditorDemoLoggingConfiguration.h"
+
 
 #endif /* OneNotePrefixHeader_pch */

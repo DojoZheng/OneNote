@@ -2,7 +2,7 @@
 //  NoteManagedObject+CoreDataProperties.m
 //  OneNote
 //
-//  Created by Dojo on 16/2/2.
+//  Created by Dojo on 16/4/5.
 //  Copyright © 2016年 Dongjia Zheng. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -16,8 +16,11 @@
 @dynamic createTime;
 @dynamic folder;
 @dynamic openid;
-@dynamic text;
-@dynamic title;
+@dynamic titleText;
+@dynamic bodyText;
+@dynamic objectid;
+@dynamic titlePlaceholderText;
+@dynamic bodyPlaceholderText;
 @dynamic user;
 
 @end

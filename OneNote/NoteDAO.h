@@ -8,25 +8,24 @@
 
 #import "ONCoreDataDAO.h"
 #import "NoteManagedObject.h"
-#import "ONNote.h"
 
 @interface NoteDAO : ONCoreDataDAO
 
 + (NoteDAO*)sharedManager;
 
 //插入Note方法
--(int) create:(ONNote*)model;
+-(int) create:(NoteManagedObject*)model;
 
 //删除Note方法
--(int) remove:(ONNote*)model;
-
+-(int)remove:(NoteManagedObject*)model;
+-(int)removeAll;
 //修改Note方法
--(int) modify:(ONNote*)model;
+-(int) modify:(NoteManagedObject*)model;
 
 //查询所有数据方法
 -(NSMutableArray*) findAll;
 
 //按照主键查询数据方法
--(ONNote*) findById:(ONNote*)model;
+-(NoteManagedObject*) findById:(NoteManagedObject*)model;
 
 @end

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ADLivelyTableView.h"
 #import "ONCollectionViewCell.h"
-#import "ONNote.h"
+
 
 @interface HomeViewController : UIViewController
 

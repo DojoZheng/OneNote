@@ -11,6 +11,8 @@
 #import "HomeViewController.h"
 #import "MemoViewController.h"
 #import "ONUser.h"
+#import <CocoaLumberjack/CocoaLumberjack.h>
+#import <WordPressEditor/WPEditorViewController.h>
 
 #import <TencentOpenAPI/TencentOAuth.h>
 #import <BmobSDK/Bmob.h>
@@ -38,6 +40,11 @@
 
 #pragma mark - Lifecycle
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    //Default to white
+    [[UIToolbar appearanceWhenContainedInInstancesOfClasses:@[[WPEditorViewController class]]] setBarTintColor:[UIColor whiteColor]];
+    
+    [DDLog addLogger:[DDASLLogger sharedInstance]];
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
     
     //启动Bmob后台云服务
     [Bmob registerWithAppKey:AppKey_Bmob];

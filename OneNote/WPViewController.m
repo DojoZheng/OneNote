@@ -9,11 +9,16 @@
 #import <WordPressEditor/WPEditorView.h>
 //#import "WPEditorView.h"
 #import "WPImageMetaViewController.h"
+#import "NoteManagedObject.h"
+#import "NoteBL.h"
 
 @interface WPViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, WPImageMetaViewControllerDelegate>
 @property(nonatomic, strong) NSMutableDictionary *mediaAdded;
 @property(nonatomic, strong) NSString *selectedMediaID;
 @property(nonatomic, strong) NSCache *videoPressCache;
+
+//Note
+@property(nonatomic, strong) NoteManagedObject* noteMO;
 
 @end
 
@@ -23,11 +28,25 @@
 {
     [super viewDidLoad];
     
+    //初始化当前Note
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    NSString* openid = [defaults objectForKey:App_OpenID];
+    if (_noteMO == nil) {
+        _noteMO = [[NoteManagedObject alloc]
+                   initWithCreateTime:[self getCurrentTime]
+                   openid:openid
+                   objectid:@""
+                   folder:@""
+                   titleText:[self titleText]
+                   titlePlaceholderText:[self titlePlaceholderText]
+                   bodyText:[self bodyText]
+                   bodyPlaceholderText:[self bodyPlaceholderText]
+                   ];
+    }
+    
     self.delegate = self;
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit"
-                style:UIBarButtonItemStylePlain
-               target:self
-               action:@selector(editTouchedUpInside)];
+    [self initBarItem];
+    
     self.mediaAdded = [NSMutableDictionary dictionary];
     self.videoPressCache = [[NSCache alloc] init];
 }
@@ -51,6 +70,7 @@
 
 - (IBAction)exit:(UIStoryboardSegue*)segue
 {
+    
 }
 
 #pragma mark - WPEditorViewControllerDelegate
@@ -67,10 +87,11 @@
 
 - (void)editorDidFinishLoadingDOM:(WPEditorViewController *)editorController
 {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"content" ofType:@"html"];
-    NSString *htmlParam = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    [self setTitleText:@"I'm editing a post!"];
-    [self setBodyText:htmlParam];
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"content" ofType:@"html"];
+//    NSString *htmlParam = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+//    [self setTitleText:@"I'm editing a post!"];
+    [self setTitleText:@"I'm editing title!"];
+//    [self setBodyText:htmlParam];
 }
 
 - (BOOL)editorShouldDisplaySourceView:(WPEditorViewController *)editorController
@@ -453,6 +474,54 @@
 - (void)imageMetaViewController:(WPImageMetaViewController *)controller didFinishEditingImageMeta:(WPImageMeta *)imageMeta
 {
     [self.editorView updateCurrentImageMeta:imageMeta];
+}
+
+- (void)initBarItem {
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit"
+                                                                              style:UIBarButtonItemStylePlain
+                                                                             target:self
+                                                                             action:@selector(editTouchedUpInside)];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
+                initWithTitle:@"Back"
+                        style:UIBarButtonItemStylePlain
+                    target:self
+                                             action:@selector(backTouchedUpInside)];
+    
+}
+
+- (void)backTouchedUpInside {
+    //先对笔记文件进行保存和上传操作
+    NoteBL* noteBL = [[NoteBL alloc]init];
+    if (self.noteMO != nil) {
+        _noteMO.bodyPlaceholderText = self.bodyPlaceholderText;
+        _noteMO.bodyText = self.bodyText;
+        _noteMO.titlePlaceholderText = self.titlePlaceholderText;
+        _noteMO.titleText = self.titleText;
+        if ([noteBL findById:self.noteMO] == nil) {
+            //说明CoreData没有数据，则新建Note
+            [noteBL createNote:self.noteMO];
+        }else{
+            //否则，说明CoreData已经存在数据，修改Note
+            [noteBL modify:self.noteMO];
+        }
+
+    }
+
+    //再进行云存储
+    
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+/**
+ *  获取系统当前时间
+ */
+- (NSString*)getCurrentTime{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    NSString* currentDate = [formatter stringFromDate:[NSDate date]];
+    return currentDate;
 }
 
 @end

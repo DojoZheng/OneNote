@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OneNote/AppDelegate.m"
-            timestampString = "481094459.392364"
+            timestampString = "481514943.942261"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "334"
-            endingLineNumber = "334"
+            startingLineNumber = "341"
+            endingLineNumber = "341"
             landmarkName = "-QQLoginButtonTouchUp:"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OneNote/AppDelegate.m"
-            timestampString = "481094459.392364"
+            timestampString = "481514943.942261"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "328"
-            endingLineNumber = "328"
+            startingLineNumber = "335"
+            endingLineNumber = "335"
             landmarkName = "-tencentOAuth:doCloseViewController:"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,12 +58,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OneNote/HomeViewController.m"
-            timestampString = "481111617.616771"
+            timestampString = "481515164.155173"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "358"
-            endingLineNumber = "358"
-            landmarkName = "-RefreshNoteView"
+            startingLineNumber = "362"
+            endingLineNumber = "362"
+            landmarkName = "-createNew"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -74,13 +74,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OneNote/HomeViewController.m"
-            timestampString = "481111617.616771"
+            timestampString = "481515164.155173"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "360"
-            endingLineNumber = "360"
-            landmarkName = "-RefreshNoteView"
-            landmarkType = "5">
+            startingLineNumber = "364"
+            endingLineNumber = "364"
+            landmarkName = "@implementation HomeViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -186,7 +186,7 @@
                   moduleName = "OneNote"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Dojo/Documents/Xcode/OneNote/OneNote/MemoViewController.m"
-                  timestampString = "481194473.998902"
+                  timestampString = "481958648.505304"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "239"
@@ -201,7 +201,7 @@
                   moduleName = "OneNote"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Dojo/Documents/Xcode/OneNote/OneNote/MemoViewController.m"
-                  timestampString = "481194473.999166"
+                  timestampString = "481958648.505487"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "239"
@@ -298,7 +298,7 @@
                   moduleName = "OneNote"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Dojo/Documents/Xcode/OneNote/OneNote/MemoViewController.m"
-                  timestampString = "481194474.003399"
+                  timestampString = "481958648.508392"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "775"
@@ -313,7 +313,7 @@
                   moduleName = "OneNote"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Dojo/Documents/Xcode/OneNote/OneNote/MemoViewController.m"
-                  timestampString = "481194474.003623"
+                  timestampString = "481958648.508582"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "775"

@@ -486,6 +486,7 @@ typedef enum
  * \return 是否仍然回调返回原始的api请求结果。
  * \note 不实现该协议接口则默认为不开启增量授权流程。若需要增量授权请调用\ref TencentOAuth#incrAuthWithPermissions: \n注意：增量授权时用户可能会修改登录的帐号
  */
+
 - (BOOL)tencentNeedPerformIncrAuth:(TencentOAuth *)tencentOAuth withPermissions:(NSArray *)permissions;
 
 /**
