@@ -37,6 +37,9 @@
 @property (nonatomic,strong) NSArray* memosArray;
 @property (nonatomic,strong) NSMutableArray* unDeletedMemos;
 
+//Notes数组
+@property (nonatomic,strong) NSArray* notesArray;
+
 
 -(void)RefreshLeftSortsVC;
 @end

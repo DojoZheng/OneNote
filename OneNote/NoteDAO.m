@@ -23,7 +23,7 @@ static NoteDAO *shareManager = nil;
     return shareManager;
 }
 
--(int) create:(NoteManagedObject*)model {
+-(int) create:(Note*)model {
     NSManagedObjectContext *cxt = [self managedObjectContext];
     
     NoteManagedObject *note = [NSEntityDescription insertNewObjectForEntityForName:_Macro_EntityForName inManagedObjectContext:cxt];
@@ -47,7 +47,7 @@ static NoteDAO *shareManager = nil;
     return 0;
 }
 
--(int) remove:(NoteManagedObject*)model {
+-(int) remove:(Note*)model {
     NSManagedObjectContext *cxt = [self managedObjectContext];
     
     NSEntityDescription *entityDescription = [NSEntityDescription
@@ -76,7 +76,7 @@ static NoteDAO *shareManager = nil;
     return 0;
 }
 
--(int) modify:(NoteManagedObject*)model {
+-(int) modify:(Note*)model {
     NSManagedObjectContext *cxt = [self managedObjectContext];
     
     NSEntityDescription *entityDescription = [NSEntityDescription
@@ -96,8 +96,6 @@ static NoteDAO *shareManager = nil;
         note.openid = model.openid;
         note.objectid = model.objectid;
         note.folder = model.folder;
-//        note.createTime = model.createTime;
-        
         note.titleText = model.titleText;
         note.titlePlaceholderText = model.titlePlaceholderText;
         note.bodyText = model.bodyText;
@@ -128,10 +126,25 @@ static NoteDAO *shareManager = nil;
     NSError *error = nil;
     NSArray *listData = [cxt executeFetchRequest:fetchRequest error:&error];
     
-    return listData;
+    NSMutableArray *resListData = [[NSMutableArray alloc] init];
+    
+    for (NoteManagedObject* noteMO in listData) {
+        Note *note = [[Note alloc]
+                      initWithCreateTime:noteMO.createTime
+                      openid:noteMO.openid
+                      objectid:noteMO.objectid
+                      folder:noteMO.folder
+                      titleText:noteMO.titleText
+                      titlePlaceholderText:noteMO.titlePlaceholderText
+                      bodyText:noteMO.bodyText
+                      bodyPlaceholderText:noteMO.bodyPlaceholderText];
+        [resListData addObject:note];
+    }
+    
+    return resListData;
 }
 
--(NoteManagedObject*) findById:(NoteManagedObject*)model {
+-(Note*) findById:(Note*)model {
     NSManagedObjectContext *cxt = [self managedObjectContext];
     
     NSEntityDescription *entity = [NSEntityDescription
@@ -145,16 +158,16 @@ static NoteDAO *shareManager = nil;
     NSArray *listData = [cxt executeFetchRequest:fetchRequest error:&error];
     
     if ([listData count] > 0) {
-        NoteManagedObject *mo = [listData lastObject];
-        NoteManagedObject *note = [[NoteManagedObject alloc]
-                        initWithCreateTime:mo.createTime
-                                   openid:mo.openid
-                                   objectid:mo.objectid
-                                   folder:mo.folder
-                                   titleText:mo.titleText
-                                   titlePlaceholderText:mo.titlePlaceholderText
-                                   bodyText:mo.bodyText
-                                   bodyPlaceholderText:mo.bodyPlaceholderText];
+        NoteManagedObject *noteMO = [listData lastObject];
+        Note *note = [[Note alloc]
+                        initWithCreateTime:noteMO.createTime
+                                   openid:noteMO.openid
+                                   objectid:noteMO.objectid
+                                   folder:noteMO.folder
+                                   titleText:noteMO.titleText
+                                   titlePlaceholderText:noteMO.titlePlaceholderText
+                                   bodyText:noteMO.bodyText
+                                   bodyPlaceholderText:noteMO.bodyPlaceholderText];
         return note;
     }
     return nil;
@@ -162,7 +175,16 @@ static NoteDAO *shareManager = nil;
 
 -(int)removeAll {
     NSArray* array = [self findAll];
-    for (NoteManagedObject* note in array) {
+    for (NoteManagedObject* noteMO in array) {
+        Note *note = [[Note alloc]
+                      initWithCreateTime:noteMO.createTime
+                      openid:noteMO.openid
+                      objectid:noteMO.objectid
+                      folder:noteMO.folder
+                      titleText:noteMO.titleText
+                      titlePlaceholderText:noteMO.titlePlaceholderText
+                      bodyText:noteMO.bodyText
+                      bodyPlaceholderText:noteMO.bodyPlaceholderText];
         [self remove:note];
     }
     return 0;

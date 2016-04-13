@@ -14,6 +14,7 @@
 #import "MemoBL.h"
 #import "Memo.h"
 #import <BmobSDK/Bmob.h>
+#import "NoteBL.h"
 
 
 @interface LeftSortsViewController () <UITableViewDelegate,UITableViewDataSource>
@@ -126,7 +127,9 @@
             NSLog(@"同步刷新");
             //上传操作
             [self uploadToBmob];
-            //下载操作
+            
+            //上传笔记
+            [self uploadNote];
             
             break;
         case 3:
@@ -301,7 +304,8 @@
     [batch batchObjectsInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
         if (isSuccessful) {
             NSLog(@"同步上传成功");
-            
+            NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:nil forKey:_Macro_BmobUndeletedMemos];
         }
         NSLog(@"batch error %@",[error description]);
     }];
@@ -311,5 +315,95 @@
 -(int)downloadFromBmob{
 
     return 0;
+}
+
+- (void)uploadNote {
+    //Note的上传操作
+    if (self.notesArray == nil) {
+        self.notesArray = [[NSArray alloc]init];
+    }
+    NoteBL* noteBL = [[NoteBL alloc]init];
+    self.notesArray = [noteBL findAll];
+    NSMutableArray* unUploadNotes = [[NSMutableArray alloc]initWithCapacity:10];
+    NSMutableArray* modifyNotes = [[NSMutableArray alloc]initWithCapacity:10];
+    for (Note* note in self.notesArray) {
+        if (note.objectid == nil) {//objectid为空说明没有上传到Bmob
+            [unUploadNotes addObject:note];
+        }else{//objectid不为空说明已经上传到bmob，只需要刷新一下即可
+            [modifyNotes addObject:note];
+        }
+    }
+    
+    
+    //添加新Notes到Bmob
+    BmobObject* addNote = [BmobObject objectWithClassName:_Macro_BmobNoteTable];
+    for (Note* note in unUploadNotes) {
+        /**
+         *  初始化NoteEntity:
+         @property (nonatomic, strong) NSString *createTime;
+         @property (nonatomic, strong) NSString *folder;
+         @property (nonatomic, strong) NSString *openid;
+         @property (nonatomic, strong) NSString *titleText;
+         @property (nonatomic, strong) NSString *bodyText;
+         @property (nonatomic, strong) NSString *objectid;
+         @property (nonatomic, strong) NSString *titlePlaceholderText;
+         @property (nonatomic, strong) NSString *bodyPlaceholderText;
+         */
+        NSDictionary* dataDict = [[NSDictionary alloc]initWithObjectsAndKeys:
+                                  note.createTime,@"createTime",
+                                  note.folder,@"folder",
+                                  note.openid,@"openid",
+                                  note.titleText,@"titleText",
+                                  note.bodyText,@"bodyText",
+                                  note.objectid,@"objectid",
+                                  note.titlePlaceholderText,@"titlePlaceholderText",
+                                  note.bodyPlaceholderText,@"bodyPlaceholderText",
+                                  nil];
+        [addNote saveAllWithDictionary:dataDict];
+        [addNote saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+            if (isSuccessful) {
+                NSLog(@"上传一条备忘录成功！---Objectid:%@",addNote.objectId);
+                //修改coredata里对应Memo的objectid
+                note.objectid = addNote.objectId;
+                NoteBL* noteBL = [[NoteBL alloc]init];
+                self.notesArray = [noteBL modify:note];
+            }else{
+                NSLog(@"上传出错:%@",error);
+                
+            }
+        }];
+    }
+    
+    //批处理：刷新已上传的Memos & 删除未删除的Memos
+    BmobObjectsBatch    *batch = [[BmobObjectsBatch alloc] init] ;
+    for (Note* note in modifyNotes) {
+        NSDictionary* dataDict = [[NSDictionary alloc]initWithObjectsAndKeys:
+                                  note.createTime,@"createTime",
+                                  note.folder,@"folder",
+                                  note.openid,@"openid",
+                                  note.titleText,@"titleText",
+                                  note.bodyText,@"bodyText",
+                                  note.objectid,@"objectid",
+                                  note.titlePlaceholderText,@"titlePlaceholderText",
+                                  note.bodyPlaceholderText,@"bodyPlaceholderText",
+                                  nil];
+        [batch updateBmobObjectWithClassName:_Macro_BmobNoteTable objectId:note.objectid parameters:dataDict];
+    }
+    
+    //在GameScore表中删除objectId为30752bb92f的数据
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray* bmobUndeletedNotes = [defaults objectForKey:_Macro_BmobUndeletedNotes];
+    for (NSString* objectid in bmobUndeletedNotes) {
+        [batch deleteBmobObjectWithClassName:_Macro_BmobNoteTable objectId:objectid];
+    }
+    
+    [batch batchObjectsInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+        if (isSuccessful) {
+            NSLog(@"同步上传成功");
+            NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:nil forKey:_Macro_BmobUndeletedNotes];
+        }
+        NSLog(@"batch error %@",[error description]);
+    }];
 }
 @end

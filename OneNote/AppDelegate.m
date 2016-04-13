@@ -153,7 +153,8 @@
     self.guideVC.didSelectedEnter = ^(){
         [weakSelf.guideVC.view removeFromSuperview];
         weakSelf.guideVC = nil;
-        [weakSelf NoteViewTab];
+//        [weakSelf NoteViewTab];
+        [weakSelf enterTabBarController];
     };
     
     //进入QQ登陆界面

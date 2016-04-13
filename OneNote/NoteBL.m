@@ -11,14 +11,14 @@
 @implementation NoteBL
 
 
--(NSMutableArray*) createNote:(NoteManagedObject*)model {
+-(NSMutableArray*) createNote:(Note*)model {
     NoteDAO *dao = [NoteDAO sharedManager];
     [dao create:model];
     
     return [dao findAll];
 }
 
--(NSMutableArray*) remove:(NoteManagedObject*)model {
+-(NSMutableArray*) remove:(Note*)model {
     NoteDAO *dao = [NoteDAO sharedManager];
     [dao remove:model];
     
@@ -30,12 +30,12 @@
     return [dao findAll];
 }
 
--(NoteManagedObject*) findById:(NoteManagedObject*)model {
+-(Note*) findById:(Note*)model {
     NoteDAO* dao = [NoteDAO sharedManager];
     return [dao findById:model];
 }
 
--(NSMutableArray*) modify:(NoteManagedObject*)model {
+-(NSMutableArray*) modify:(Note*)model {
     NoteDAO* dao = [NoteDAO sharedManager];
     [dao modify:model];
     

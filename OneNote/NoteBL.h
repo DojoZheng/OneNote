@@ -9,23 +9,24 @@
 #import <Foundation/Foundation.h>
 #import "NoteDAO.h"
 #import "NoteManagedObject.h"
+#import "Note.h"
 
 @interface NoteBL : NSObject
 
 //插入Note方法
--(NSMutableArray*) createNote:(NoteManagedObject*)model;
+-(NSMutableArray*) createNote:(Note*)model;
 
 //删除Note方法
--(NSMutableArray*) remove:(NoteManagedObject*)model;
+-(NSMutableArray*) remove:(Note*)model;
 -(NSMutableArray*)removeAll;
 //查询所用数据方法
 -(NSMutableArray*) findAll;
 
 //按照主键查询数据方法
--(NoteManagedObject*) findById:(NoteManagedObject*)model;
+-(NoteManagedObject*) findById:(Note*)model;
 
 //修改Note方法
--(NSMutableArray*) modify:(NoteManagedObject*)model;
+-(NSMutableArray*) modify:(Note*)model;
 
 ////插入Note方法
 //-(int) create:(NoteManagedObject*)model;

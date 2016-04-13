@@ -96,6 +96,7 @@
 		E1CD4CFB1C65E8A500A684E5 /* UserBL.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CD4CFA1C65E8A500A684E5 /* UserBL.m */; };
 		E1CD4CFE1C65E8BD00A684E5 /* NoteBL.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CD4CFD1C65E8BD00A684E5 /* NoteBL.m */; };
 		E1CD4D011C65EDD800A684E5 /* MemoBL.m in Sources */ = {isa = PBXBuildFile; fileRef = E1CD4D001C65EDD800A684E5 /* MemoBL.m */; };
+		E1DB59891CBAA127002493FE /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = E1DB59881CBAA127002493FE /* Note.m */; };
 		E1F45A8E1C57216B00F81A93 /* MemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F45A8D1C57216B00F81A93 /* MemoViewController.m */; };
 		EE3B0064FBE463BA1F254B43 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F49EE88AF4661CFDA894F0BA /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -274,6 +275,8 @@
 		E1CD4CFD1C65E8BD00A684E5 /* NoteBL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteBL.m; sourceTree = "<group>"; };
 		E1CD4CFF1C65EDD800A684E5 /* MemoBL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoBL.h; sourceTree = "<group>"; };
 		E1CD4D001C65EDD800A684E5 /* MemoBL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoBL.m; sourceTree = "<group>"; };
+		E1DB59871CBAA127002493FE /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
+		E1DB59881CBAA127002493FE /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
 		E1F45A8C1C57216B00F81A93 /* MemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoViewController.h; sourceTree = "<group>"; };
 		E1F45A8D1C57216B00F81A93 /* MemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoViewController.m; sourceTree = "<group>"; };
 		F49EE88AF4661CFDA894F0BA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -336,7 +339,6 @@
 				221060FD1C040D5100B49A89 /* OneNoteUITests */,
 				221060D71C040D5000B49A89 /* Products */,
 				AEFDC0B377B6AB5AC4481732 /* Pods */,
-				3B8741C5D8E0CF547E4BCBDD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -459,6 +461,7 @@
 		22B276961C1529700059A167 /* Frameworks & SDK */ = {
 			isa = PBXGroup;
 			children = (
+				3B8741C5D8E0CF547E4BCBDD /* Wordpress-Frameworks */,
 				22B276991C1529980059A167 /* Bomb SDK */,
 				22B276981C1529910059A167 /* QQ SDK */,
 				22B276971C1529830059A167 /* System Frameworks */,
@@ -507,14 +510,14 @@
 			name = "Bomb SDK";
 			sourceTree = "<group>";
 		};
-		3B8741C5D8E0CF547E4BCBDD /* Frameworks */ = {
+		3B8741C5D8E0CF547E4BCBDD /* Wordpress-Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				E11B7C131C9AA71F00535108 /* QuartzCore.framework */,
 				E11B7C111C9AA6EB00535108 /* libWordPress-iOS-Editor.a */,
 				F49EE88AF4661CFDA894F0BA /* libPods.a */,
 			);
-			name = Frameworks;
+			name = "Wordpress-Frameworks";
 			sourceTree = "<group>";
 		};
 		451980911C5E288700429DA4 /* NoteEdittingModule */ = {
@@ -758,6 +761,8 @@
 				E1C86F261CB3AC4300914149 /* NoteManagedObject+CoreDataProperties.m */,
 				E1C86F271CB3AC4300914149 /* NoteManagedObject.h */,
 				E1C86F281CB3AC4300914149 /* NoteManagedObject.m */,
+				E1DB59871CBAA127002493FE /* Note.h */,
+				E1DB59881CBAA127002493FE /* Note.m */,
 			);
 			name = "Persistent Layer";
 			sourceTree = "<group>";
@@ -990,6 +995,7 @@
 				E1C4E0421C60902400A36562 /* MemoManagedObject+CoreDataProperties.m in Sources */,
 				451980AB1C5E28C100429DA4 /* VNNote.m in Sources */,
 				E1CD4CFE1C65E8BD00A684E5 /* NoteBL.m in Sources */,
+				E1DB59891CBAA127002493FE /* Note.m in Sources */,
 				E1C4E0581C6094B400A36562 /* UserDAO.m in Sources */,
 				451980AF1C5E28CD00429DA4 /* NoteListCell.m in Sources */,
 				E1C4E05B1C6094C200A36562 /* NoteDAO.m in Sources */,

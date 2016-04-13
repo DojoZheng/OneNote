@@ -9,16 +9,15 @@
 #import <WordPressEditor/WPEditorView.h>
 //#import "WPEditorView.h"
 #import "WPImageMetaViewController.h"
-#import "NoteManagedObject.h"
-#import "NoteBL.h"
+#import <BmobSDK/Bmob.h>
+
 
 @interface WPViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, WPImageMetaViewControllerDelegate>
 @property(nonatomic, strong) NSMutableDictionary *mediaAdded;
 @property(nonatomic, strong) NSString *selectedMediaID;
 @property(nonatomic, strong) NSCache *videoPressCache;
 
-//Note
-@property(nonatomic, strong) NoteManagedObject* noteMO;
+
 
 @end
 
@@ -28,21 +27,36 @@
 {
     [super viewDidLoad];
     
-    //初始化当前Note
-    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    NSString* openid = [defaults objectForKey:App_OpenID];
-    if (_noteMO == nil) {
-        _noteMO = [[NoteManagedObject alloc]
-                   initWithCreateTime:[self getCurrentTime]
-                   openid:openid
-                   objectid:@""
-                   folder:@""
-                   titleText:[self titleText]
-                   titlePlaceholderText:[self titlePlaceholderText]
-                   bodyText:[self bodyText]
-                   bodyPlaceholderText:[self bodyPlaceholderText]
-                   ];
-    }
+
+//    if (_currentNote == nil) {
+//        _currentNote = [[Note alloc]
+//                   initWithCreateTime:[self getCurrentTime]
+//                   openid:openid
+//                   objectid:@""
+//                   folder:@""
+//                   titleText:[self titleText]
+//                   titlePlaceholderText:[self titlePlaceholderText]
+//                   bodyText:[self bodyText]
+//                   bodyPlaceholderText:[self bodyPlaceholderText]
+//                   ];
+//        _currentNote = [[NoteManagedObject alloc]init];
+//        _currentNote.createTime = [self getCurrentTime];
+//        _currentNote.openid = openid;
+//        _currentNote.objectid = @"";
+//        _currentNote.folder = @"";
+//        _currentNote.titleText = [self titleText];
+//        _currentNote.titlePlaceholderText = [self titlePlaceholderText];
+//        _currentNote.bodyPlaceholderText = [self bodyPlaceholderText];
+//        _currentNote.bodyText = [self bodyText];
+//    }
+//    else{
+//        [self startEditing];
+//        self.titleText = _currentNote.titleText;
+//        self.titlePlaceholderText = _currentNote.titlePlaceholderText;
+//        self.bodyText = _currentNote.bodyText;
+//        self.bodyPlaceholderText = _currentNote.bodyPlaceholderText;
+//        [self stopEditing];
+//    }
     
     self.delegate = self;
     [self initBarItem];
@@ -60,6 +74,7 @@
         [self startEditing];
     }
 }
+
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     [self.editorView saveSelection];
@@ -90,8 +105,17 @@
 //    NSString *path = [[NSBundle mainBundle] pathForResource:@"content" ofType:@"html"];
 //    NSString *htmlParam = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
 //    [self setTitleText:@"I'm editing a post!"];
-    [self setTitleText:@"I'm editing title!"];
-//    [self setBodyText:htmlParam];
+    if (_currentNote == nil) {
+        //说明还没有初始化_currentNote，是新Create的Note
+        [self setTitlePlaceholderText:@"Please input the title!"];
+        [self setBodyPlaceholderText:@"Editing..."];
+    }else{//说明是在modify Note
+        [self setBodyPlaceholderText:_currentNote.bodyPlaceholderText];
+        [self setTitlePlaceholderText:_currentNote.titlePlaceholderText];
+        [self setBodyText:_currentNote.bodyText];
+        self.titleText = _currentNote.titleText;
+    }
+
 }
 
 - (BOOL)editorShouldDisplaySourceView:(WPEditorViewController *)editorController
@@ -477,10 +501,10 @@
 }
 
 - (void)initBarItem {
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit"
-                                                                              style:UIBarButtonItemStylePlain
-                                                                             target:self
-                                                                             action:@selector(editTouchedUpInside)];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit"
+//                                                                              style:UIBarButtonItemStylePlain
+//                                                                             target:self
+//                                                                             action:@selector(editTouchedUpInside)];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
                 initWithTitle:@"Back"
@@ -493,23 +517,52 @@
 - (void)backTouchedUpInside {
     //先对笔记文件进行保存和上传操作
     NoteBL* noteBL = [[NoteBL alloc]init];
-    if (self.noteMO != nil) {
-        _noteMO.bodyPlaceholderText = self.bodyPlaceholderText;
-        _noteMO.bodyText = self.bodyText;
-        _noteMO.titlePlaceholderText = self.titlePlaceholderText;
-        _noteMO.titleText = self.titleText;
-        if ([noteBL findById:self.noteMO] == nil) {
-            //说明CoreData没有数据，则新建Note
-            [noteBL createNote:self.noteMO];
-        }else{
-            //否则，说明CoreData已经存在数据，修改Note
-            [noteBL modify:self.noteMO];
-        }
-
-    }
-
-    //再进行云存储
     
+    //初始化当前Note
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    NSString* openid = [defaults objectForKey:App_OpenID];
+    if (_currentNote == nil) {//说明是Create一个Note
+        _currentNote = [[Note alloc]
+                        initWithCreateTime:[self getCurrentTime]
+                        openid:openid
+                        objectid:@""
+                        folder:@""
+                        titleText:[self titleText]
+                        titlePlaceholderText:[self titlePlaceholderText]
+                        bodyText:[self bodyText]
+                        bodyPlaceholderText:[self bodyPlaceholderText]
+                        ];
+        if ([noteBL findById:self.currentNote] == nil) {
+            //说明CoreData没有数据，则新建Note
+            [noteBL createNote:self.currentNote];
+            NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
+            [center postNotificationName:_Macro_CreateNote object:self userInfo:nil];
+            
+            //然后再上传到Bmob
+            if(openid == nil){
+                //判断如果openid为空，用户没有登录，就不上传数据
+                NSLog(@"用户未登录！");
+            }else{
+                //再将数据存入云后端Bmob
+                [self insertToBmob:self.currentNote];
+            }
+        }
+    }else{//说明是Modify一个Note
+        _currentNote.bodyPlaceholderText = self.bodyPlaceholderText;
+        _currentNote.bodyText = self.bodyText;
+        _currentNote.titlePlaceholderText = self.titlePlaceholderText;
+        _currentNote.titleText = self.titleText;
+        //否则，说明CoreData已经存在数据，修改Note
+        [noteBL modify:self.currentNote];
+        NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
+        [center postNotificationName:_Macro_ModifyNote object:self userInfo:nil];
+        
+        //对Bmob进行修改
+        [self modifyToBmob:_currentNote];
+    }
+    
+    
+    //再进行云存储
     
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -523,5 +576,71 @@
     NSString* currentDate = [formatter stringFromDate:[NSDate date]];
     return currentDate;
 }
+
+#pragma mark - Bmob云后端操作
+- (int)insertToBmob:(Note*)model {
+    //在NoteEntity创建一条数据，如果当前没NoteEntity表，则会创建NoteEntity表
+    BmobObject  *noteEntity = [BmobObject objectWithClassName:_Macro_BmobNoteTable];
+    /**
+     *  初始化NoteEntity:
+     @property (nonatomic, strong) NSString *createTime;
+     @property (nonatomic, strong) NSString *folder;
+     @property (nonatomic, strong) NSString *openid;
+     @property (nonatomic, strong) NSString *titleText;
+     @property (nonatomic, strong) NSString *bodyText;
+     @property (nonatomic, strong) NSString *objectid;
+     @property (nonatomic, strong) NSString *titlePlaceholderText;
+     @property (nonatomic, strong) NSString *bodyPlaceholderText;
+     */
+    [noteEntity setObject:model.createTime forKey:@"createTime"];
+    [noteEntity setObject:model.folder forKey:@"folder"];
+    [noteEntity setObject:model.openid forKey:@"openid"];
+    [noteEntity setObject:model.titleText forKey:@"titleText"];
+    [noteEntity setObject:model.bodyText forKey:@"bodyText"];
+    [noteEntity setObject:model.titlePlaceholderText forKey:@"titlePlaceholderText"];
+    [noteEntity setObject:model.bodyPlaceholderText forKey:@"bodyPlaceholderText"];
+    
+    
+    //异步保存到服务器
+    [noteEntity saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+        if (isSuccessful) {
+            //创建成功后会返回objectId，updatedAt，createdAt等信息
+            //创建对象成功，打印对象值
+            NSLog(@"%@",noteEntity);
+            model.objectid = noteEntity.objectId;
+            //将objectID存入CoreData
+            NoteBL* noteBL = [[NoteBL alloc]init];
+            [noteBL modify:model];
+            [[NSNotificationCenter defaultCenter]postNotificationName:_Macro_ModifyNote object:self userInfo:nil];
+        } else if (error){
+            //发生错误后的动作
+            NSLog(@"%@",error);
+        } else {
+            NSLog(@"Unknow error");
+        }
+        
+    }];
+    return 0;
+    
+}
+
+- (int)modifyToBmob:(Note*)model{
+    BmobObject *noteEntity = [BmobObject objectWithoutDatatWithClassName:_Macro_BmobNoteTable objectId:model.objectid];
+    [noteEntity setObject:model.titlePlaceholderText forKey:@"titlePlaceholderText"];
+    [noteEntity setObject:model.titleText forKey:@"titleText"];
+    [noteEntity setObject:model.bodyPlaceholderText forKey:@"bodyPlaceholderText"];
+    [noteEntity setObject:model.bodyText forKey:@"bodyText"];
+    [noteEntity setObject:model.folder forKey:@"folder"];
+    
+    [noteEntity updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+        if (isSuccessful) {
+            NSLog(@"%@",noteEntity);
+        } else {
+            NSLog(@"%@",error);
+        }
+    }];
+    return 0;
+}
+
 
 @end

@@ -16,6 +16,8 @@
 #import "NoteDetailViewController.h"
 #import "WPViewController.h"
 #import "NoteBL.h"
+#import "Note.h"
+
 
 #define vBackBarButtonItemName  @"backArrow.png"    //导航条返回默认图片名
 
@@ -24,7 +26,9 @@
 UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,NoteListControllerDelegate>
 
 @property (nonatomic,strong) UIButton* menuBtn;
-@property (nonatomic,strong) UITableView* tableView;
+@property (nonatomic,strong) ADLivelyTableView* tableView;
+@property(nonatomic, strong) NSMutableArray *BmobUnDeletedNotes;
+
 @end
 
 @implementation HomeViewController
@@ -32,6 +36,11 @@ UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlow
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //添加对NSNotificationCenter的监听
+    NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self selector:@selector(createNote:) name:_Macro_CreateNote object:nil];
+    [center addObserver:self selector:@selector(modifyNote:) name:_Macro_ModifyNote object:nil];
     
 //    self.title = NSLocalizedString(@"Home", "Home");
     self.view.backgroundColor = [UIColor whiteColor];
@@ -115,10 +124,8 @@ UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlow
     //tableView出现的时候，清除选中状态
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
     
-    
-    
     [NoteListViewController sharedNoteListViewController].delegate = self;
-    //列表的delegate
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -155,36 +162,38 @@ UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlow
  *  第一个Section管理文件夹
     第二个Section管理文件
  */
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
-}
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+//    return 2;
+//}
 
 - (nullable NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     if (0 == section) {
-        return @"文件夹";
-    }else{
         return @"文件";
+    }else{
+        return @"文件夹";
     }
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (section == 0) {
-        return 5;
-    }else{
-        return self.NoteArray.count;
-    }
+    return self.NoteArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *Identifier = @"Identifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:Identifier];
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.font = [UIFont systemFontOfSize:20.0f];
     cell.backgroundColor = [UIColor clearColor];
+    
+//    NoteBL* noteBL = [[NoteBL alloc]init];
+//    self.NoteArray = [noteBL findAll];
+    Note* note = [self.NoteArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = note.titleText;
+    cell.detailTextLabel.text = note.bodyText;
     
     return cell;
 }
@@ -193,15 +202,36 @@ UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlow
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    //进入Note编辑界面
+    WPViewController* wpVC = [[WPViewController alloc]init];
+    Note* note = [self.NoteArray objectAtIndex:indexPath.row];
+    wpVC.currentNote = note;
+    [self.navigationController pushViewController:wpVC animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
     
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NoteBL* noteBL = [[NoteBL alloc]init];
+        //先对CoreData进行操作
+        Note* deletedNote = [self.NoteArray objectAtIndex:indexPath.row];
+        self.NoteArray = [noteBL remove:deletedNote];
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        //再对Bmob云端进行操作
+        [self removeFromBmob:deletedNote];
+        
+        //        [self.memoTableView reloadData];
+    }
+}
+
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath{
     return YES;
 }
+
 
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
@@ -298,13 +328,13 @@ UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlow
 
 - (void)displayTableView{
     if (_tableView == nil) {
-//        _tableView = [[ADLivelyTableView alloc]initWithFrame:CGRectMake(0,0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStylePlain];
-//        self.tableView.dataSource = self;
-//        self.tableView.delegate = self;
-//        self.tableView.backgroundColor = [UIColor whiteColor];
-//        [self.tableView setInitialCellTransformBlock:ADLivelyTransformFan];
-//        self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
-        
+        _tableView = [[ADLivelyTableView alloc]initWithFrame:CGRectMake(0,0, self.view.bounds.size.width, self.view.bounds.size.height-self.tabBarController.tabBar.height) style:UITableViewStylePlain];
+        self.tableView.dataSource = self;
+        self.tableView.delegate = self;
+        self.tableView.backgroundColor = [UIColor whiteColor];
+        [self.tableView setInitialCellTransformBlock:ADLivelyTransformFan];
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
+        self.tableView.rowHeight = 90;
         
         [self.view addSubview:self.tableView];
     }
@@ -390,17 +420,19 @@ UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlow
     self.navigationItem.leftBarButtonItem.customView = _menuBtn;
 }
 
-#pragma mark - Getter and Setter
--(UITableView*)tableView
-{
-    if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width , self.view.bounds.size.height) style:UITableViewStylePlain];
-        _tableView.delegate = [NoteListViewController sharedNoteListViewController];
-        _tableView.dataSource = [NoteListViewController sharedNoteListViewController];
-        [NoteListViewController sharedNoteListViewController].NoteListTableView = _tableView;
-    }
-    return _tableView;
-}
+
+
+//#pragma mark - Getter and Setter
+//-(UITableView*)tableView
+//{
+//    if (!_tableView) {
+//        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width , self.view.bounds.size.height) style:UITableViewStylePlain];
+//        _tableView.delegate = [NoteListViewController sharedNoteListViewController];
+//        _tableView.dataSource = [NoteListViewController sharedNoteListViewController];
+//        [NoteListViewController sharedNoteListViewController].NoteListTableView = _tableView;
+//    }
+//    return _tableView;
+//}
 
 #pragma mark - NoteListViewController Delegate
 -(void)deleteRows:(NSArray *)rowsIndexPath
@@ -411,5 +443,57 @@ UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlow
 -(void)jumpToDetailPage:(UIViewController*)nextPageController
 {
     [self.navigationController pushViewController:nextPageController animated:YES];
+    
 }
+
+- (void)createNote:(id)sender {
+    //刷新数组
+    NoteBL* noteBL = [[NoteBL alloc]init];
+    self.NoteArray = [noteBL findAll];
+    //刷新tableView
+    NSArray* indexPaths = [self.tableView indexPathsForVisibleRows];
+    NSIndexPath* lastIndexPath = [indexPaths lastObject];
+    if (lastIndexPath == nil) {
+        lastIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObjects:lastIndexPath,nil] withRowAnimation:UITableViewRowAnimationMiddle];
+    }else{
+        NSIndexPath* nextIndexPath = [NSIndexPath indexPathForRow:lastIndexPath.row+1 inSection:lastIndexPath.section];
+        [self.tableView beginUpdates];
+        [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObjects:nextIndexPath,nil] withRowAnimation:UITableViewRowAnimationMiddle];
+        [self.tableView endUpdates];
+    }
+}
+
+- (void)modifyNote:(id)sender {
+    //刷新数组
+    NoteBL* noteBL = [[NoteBL alloc]init];
+    self.NoteArray = [noteBL findAll];
+    [self.tableView reloadData];
+}
+
+- (int)removeFromBmob:(Note*)model{
+    BmobObject *bmobObject = [BmobObject objectWithoutDatatWithClassName:_Macro_BmobNoteTable  objectId:model.objectid];
+    [bmobObject deleteInBackgroundWithBlock:^(BOOL isSuccessful, NSError *error) {
+        if (isSuccessful) {
+            //删除成功后的动作
+            NSLog(@"%@",bmobObject);
+            NSLog(@"successful");
+        } else{
+            if (error) {
+                NSLog(@"从Bmob删除报错Error:%@",error);
+            }else{
+                NSLog(@"从Bmob删除报错Error:未知错误");
+            }
+            //将未删除的Memo的objecid存放起来，当用户在点击抽屉栏的“同步刷新”时，可以重新删除
+            if(self.BmobUnDeletedNotes == nil){
+                self.BmobUnDeletedNotes = [[NSMutableArray alloc]initWithCapacity:10];
+            }
+            [self.BmobUnDeletedNotes addObject:model.objectid];
+            NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:self.BmobUnDeletedNotes forKey:_Macro_BmobUndeletedNotes];
+        }}];
+    return 0;
+}
+
+
 @end

@@ -303,10 +303,10 @@
     UIAlertAction* confirmAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         NSLog(@"Action:%@",action.title);
         UITextField* memoTitle = alertController.textFields[0];
-        UITextField* remindTime = alertController.textFields[1];
-        UITextField* place = alertController.textFields[2];
-        UITextField* advanceTime = alertController.textFields[3];
-        UITextField* remindMode = alertController.textFields[4];
+//        UITextField* remindTime = alertController.textFields[1];
+//        UITextField* place = alertController.textFields[2];
+//        UITextField* advanceTime = alertController.textFields[3];
+//        UITextField* remindMode = alertController.textFields[4];
         
         //获取openid
         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];

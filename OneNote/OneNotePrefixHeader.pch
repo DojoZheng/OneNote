@@ -25,15 +25,19 @@
 
 //Bmob的数据表
 #define _Macro_BmobMemoTable @"RemindEntity"
+#define _Macro_BmobNoteTable @"NoteEntity"
 
 //NSUserDefaults相关Key
 #define _Macro_BmobUndeletedMemos @"BmobUndeletedMemos"
+#define _Macro_BmobUndeletedNotes @"BmobUndeletedNotes"
 #define App_OpenID @"OneNote_UserOpenID"
 
 //NSNotificationCenter相关Key
 #define _Macro_BmobGetMemosInfo @"BmobGetMemosInfo"
 #define _Macro_TencentLogout @"TencentLogout"
 #define _Macro_RemoveLocalData @"RemoveLocalData"
+#define _Macro_CreateNote @"CreateNote"
+#define _Macro_ModifyNote @"ModifyNote"
 
 
 #import <CocoaLumberjack/CocoaLumberjack.h>
