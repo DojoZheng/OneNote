@@ -274,6 +274,11 @@
                               object:self
                             userInfo:nil];
         
+        //发送一个消息给HomeViewController获取用户数据
+        [center postNotificationName:_Macro_BmobGetNotesInfo
+                              object:self
+                            userInfo:nil];
+        
     }else{
         _QQLoginAccessTokenText = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
         _QQLoginAccessTokenText.text = @"登陆失败，没有获取access token";

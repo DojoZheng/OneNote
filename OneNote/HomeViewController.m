@@ -37,6 +37,17 @@ UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlow
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //接受NSNotificationCenter的获取Notes的消息
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(GetNotesInfoFromBmob) name:_Macro_BmobGetNotesInfo object:nil];
+    
+    //退出登录后清除本地数据
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(RemoveLocalNotesData)
+     name:_Macro_RemoveLocalData object:nil];
+    
     //添加对NSNotificationCenter的监听
     NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(createNote:) name:_Macro_CreateNote object:nil];
@@ -493,6 +504,49 @@ UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlow
             [defaults setObject:self.BmobUnDeletedNotes forKey:_Macro_BmobUndeletedNotes];
         }}];
     return 0;
+}
+
+- (void)GetNotesInfoFromBmob {
+    //在获取数据之前初始化数组和CoreData
+    [self RemoveLocalNotesData];
+    
+    //从后台数据库获取对应openid用户的所有Memos
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    NSString* openid = [defaults objectForKey:App_OpenID];
+    BmobQuery* query = [BmobQuery queryWithClassName:_Macro_BmobNoteTable];
+    [query whereKey:@"openid" equalTo:openid];
+    
+    //存储数据的数据和BusinessLogic
+    if (_NoteArray == nil) {
+        _NoteArray = [[NSMutableArray alloc]init];
+    }
+    
+    NoteBL* noteBL = [[NoteBL alloc]init];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        for (BmobObject*obj in array) {
+            Note* note = [[Note alloc]
+                          initWithCreateTime:[obj objectForKey:@"createTime"]
+                          openid:[obj objectForKey:@"openid"]
+                          objectid:[obj objectForKey:@"objectid"]
+                          folder:[obj objectForKey:@"folder"]
+                          titleText:[obj objectForKey:@"titleText"]
+                          titlePlaceholderText:[obj objectForKey:@"titlePlaceholderText"]
+                          bodyText:[obj objectForKey:@"bodyText"]
+                          bodyPlaceholderText:[obj objectForKey:@"bodyPlaceholderText"]];
+            [noteBL createNote:note];
+        }
+        
+        _NoteArray = [noteBL findAll];
+        [_tableView reloadData];
+    }];
+
+}
+
+- (void)RemoveLocalNotesData {
+    NoteBL* noteBL = [[NoteBL alloc]init];
+    _NoteArray = [noteBL removeAll];
+    [self.tableView reloadData];
 }
 
 

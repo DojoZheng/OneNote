@@ -68,11 +68,12 @@
      addObserver:self
      selector:@selector(RefreshMemoView) name:_Macro_TencentLogout object:nil];
     
-    //
+    //退出登录后清除本地数据
     [[NSNotificationCenter defaultCenter]
      addObserver:self
      selector:@selector(RemoveLocalMemosData)
      name:_Macro_RemoveLocalData object:nil];
+    
 //    [self initCoreData];
 //    ONDatePicker* tempDatePicker = [[ONDatePicker alloc] init];
 //        [self.view addSubview:tempDatePicker];
