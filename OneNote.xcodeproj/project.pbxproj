@@ -44,6 +44,8 @@
 		451980AB1C5E28C100429DA4 /* VNNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 451980A31C5E28C100429DA4 /* VNNote.m */; };
 		451980AF1C5E28CD00429DA4 /* NoteListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 451980AD1C5E28CD00429DA4 /* NoteListCell.m */; };
 		451980B51C5E2E0400429DA4 /* NoteListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 451980B41C5E2E0400429DA4 /* NoteListViewController.m */; };
+		E109D4AB1CD1B2D600F9E67D /* ScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E109D4A91CD1B2D600F9E67D /* ScoreViewController.m */; };
+		E109D4AC1CD1B2D600F9E67D /* ScoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E109D4AA1CD1B2D600F9E67D /* ScoreViewController.xib */; };
 		E10D9C521C5A00170019613C /* Memo.m in Sources */ = {isa = PBXBuildFile; fileRef = E10D9C511C5A00170019613C /* Memo.m */; };
 		E11B7C0A1C9AA16B00535108 /* WPEditorDemoLoggingConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = E11B7C091C9AA16B00535108 /* WPEditorDemoLoggingConfiguration.m */; };
 		E11B7C0D1C9AA1E100535108 /* WPImageMetaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E11B7C0C1C9AA1E100535108 /* WPImageMetaViewController.m */; };
@@ -184,6 +186,9 @@
 		451980B41C5E2E0400429DA4 /* NoteListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteListViewController.m; sourceTree = "<group>"; };
 		537957E12F804A972DBD1D2B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		94BE4F342C67321173262B58 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		E109D4A81CD1B2D600F9E67D /* ScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreViewController.h; sourceTree = "<group>"; };
+		E109D4A91CD1B2D600F9E67D /* ScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreViewController.m; sourceTree = "<group>"; };
+		E109D4AA1CD1B2D600F9E67D /* ScoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScoreViewController.xib; sourceTree = "<group>"; };
 		E10D9C501C5A00170019613C /* Memo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Memo.h; sourceTree = "<group>"; };
 		E10D9C511C5A00170019613C /* Memo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Memo.m; sourceTree = "<group>"; };
 		E11B7C081C9AA16B00535108 /* WPEditorDemoLoggingConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPEditorDemoLoggingConfiguration.h; sourceTree = "<group>"; };
@@ -355,6 +360,7 @@
 		221060D81C040D5000B49A89 /* OneNote */ = {
 			isa = PBXGroup;
 			children = (
+				E109D4A71CD1B2B100F9E67D /* Score */,
 				E1C86F211CB3540700914149 /* Note */,
 				E1C4E0461C60905200A36562 /* CoreData */,
 				221060DC1C040D5000B49A89 /* AppDelegate.h */,
@@ -583,6 +589,16 @@
 				94BE4F342C67321173262B58 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E109D4A71CD1B2B100F9E67D /* Score */ = {
+			isa = PBXGroup;
+			children = (
+				E109D4A81CD1B2D600F9E67D /* ScoreViewController.h */,
+				E109D4A91CD1B2D600F9E67D /* ScoreViewController.m */,
+				E109D4AA1CD1B2D600F9E67D /* ScoreViewController.xib */,
+			);
+			name = Score;
 			sourceTree = "<group>";
 		};
 		E138F5701C4613C10013E451 /* 其他 */ = {
@@ -908,6 +924,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22B276C51C152D900059A167 /* Bmob_iOS_SDK更新历史.txt in Resources */,
+				E109D4AC1CD1B2D600F9E67D /* ScoreViewController.xib in Resources */,
 				E138F56F1C45EE620013E451 /* ONCollectionViewCell.xib in Resources */,
 				E138F5761C46150B0013E451 /* NoteViewController.xib in Resources */,
 				221060E61C040D5000B49A89 /* Images.xcassets in Resources */,
@@ -1002,6 +1019,7 @@
 				221060DE1C040D5000B49A89 /* AppDelegate.m in Sources */,
 				E11B7C0D1C9AA1E100535108 /* WPImageMetaViewController.m in Sources */,
 				22B2768B1C13D8C10059A167 /* LeftSlideViewController.m in Sources */,
+				E109D4AB1CD1B2D600F9E67D /* ScoreViewController.m in Sources */,
 				451980A71C5E28C100429DA4 /* UIColor+VNHex.m in Sources */,
 				E187FE3B1C5CF11200B02450 /* UIImage+MultiFormat.m in Sources */,
 				E187FE3C1C5CF11200B02450 /* UIImage+WebP.m in Sources */,

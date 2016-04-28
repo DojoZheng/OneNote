@@ -32,7 +32,7 @@
 #pragma mark - 重写set方法
 - (void)setMemo:(Memo *)memo{
     _memo = memo;
-    self.title.text = [NSString stringWithFormat:@"# %@ #",memo.memoTitle];
+    self.title.text = [NSString stringWithFormat:@"%@",memo.memoTitle];
     self.memoPlace.text = memo.memoPlace;
     self.memoTime.text = memo.memoRemindTime;
     self.advanceTime.text = memo.memoAdvanceTime;
@@ -44,9 +44,10 @@
     if (cell == nil) {
         //        cell = [[MemoTableViewCell alloc]init];
         cell = [[[NSBundle mainBundle]loadNibNamed:@"MemoTableViewCell" owner:nil options:nil] firstObject];
-        cell.backgroundColor = [UIColor colorWithRed:0.96 green:0.86 blue:0.42 alpha:1];
-        
+        cell.backgroundColor = [UIColor colorWithRed:0.98 green:0.97 blue:0.60 alpha:1];
+//        cell.backgroundColor = [UIColor clearColor];
 //        [cell.title sizeToFit];
+
         NSLog(@"创建了一个Cell");
     }
     return cell;

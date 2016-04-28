@@ -87,6 +87,13 @@
     self.memoArray = [self.memoBL findAll];
     
     self.title = @"备忘录";
+    //选择自己喜欢的颜色
+    UIColor * titleColor = [UIColor whiteColor];
+    //这里我们设置的是颜色，还可以设置shadow等，具体可以参见api
+    NSDictionary * dict = [NSDictionary dictionaryWithObject:titleColor forKey:UITextAttributeTextColor];
+    
+    //大功告成
+    self.navigationController.navigationBar.titleTextAttributes = dict;
     self.view.backgroundColor = [UIColor whiteColor];
     //备忘录列表
     self.memoTableView = [[ADLivelyTableView alloc]initWithFrame:CGRectMake(0,0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStylePlain];
@@ -97,10 +104,14 @@
 //    self.memoTableView.backgroundColor = [UIColor grayColor];
     self.memoTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 //    self.memoTableView.separatorColor = [UIColor blackColor];
+    
+    //更改背景色
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.36 green:0.25 blue:0.22 alpha:1];
+    self.memoTableView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.memoTableView];
     
     //右上角添加创建Memo的按钮
-    UIButton* addMemoButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 20)];
+    UIButton* addMemoButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
     [addMemoButton setBackgroundImage:[UIImage imageNamed:@"AddMemo"] forState:UIControlStateNormal];
     [addMemoButton addTarget:self action:@selector(addMemo) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:addMemoButton];

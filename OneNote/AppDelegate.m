@@ -168,14 +168,21 @@
 #pragma mark - TabBarController
 /**
  *  Description:创建TabBarController
- 子视图控制器：1.Note 2.Memo
+ 子视图控制器：1.Note 2.Memo 3.乐谱Score
  */
 - (void)enterTabBarController{
     //1.Note
     if (nil == self.homeVC) {
         self.homeVC = [[HomeViewController alloc]init];
-        self.homeVC.tabBarItem.title = @"Note";
-        self.homeVC.tabBarItem.image = [[UIImage imageNamed:@"pen"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        self.homeVC.tabBarItem.title = @"笔记";
+//        self.homeVC.tabBarItem.image = [[UIImage imageNamed:@"pen"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        UIImage* penImage = [UIImage imageNamed:@"pen"];
+        CGSize itemSize = CGSizeMake(30, 30);
+        UIGraphicsBeginImageContextWithOptions(itemSize, NO, 0.0);
+        CGRect imageRect = CGRectMake(0.0, 0.0,  itemSize.width, itemSize.height);
+        [penImage drawInRect:imageRect];
+        self.homeVC.tabBarItem.image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
     }else{
         [self.homeVC RefreshNoteView];
     }
@@ -184,7 +191,16 @@
     if (nil == self.memoVC) {
         self.memoVC = [[MemoViewController alloc]init];
         self.memoVC.tabBarItem.title = @"Memo";
-        self.memoVC.tabBarItem.image = [[UIImage imageNamed:@"memo"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//        self.memoVC.tabBarItem.image = [[UIImage imageNamed:@"memo"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+
+        UIImage* memoImage = [UIImage imageNamed:@"memo"];
+        CGSize itemSize = CGSizeMake(30, 30);
+        UIGraphicsBeginImageContextWithOptions(itemSize, NO, 0.0);
+        CGRect imageRect = CGRectMake(0.0, 0.0,  itemSize.width, itemSize.height);
+        [memoImage drawInRect:imageRect];
+        self.memoVC.tabBarItem.image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+//        self.memoVC.tabBarItem.imageInsets = UIEdgeInsetsMake(0, -10, -6, -10);
     }else{
         [self.memoVC RefreshMemoView];
     }
@@ -192,12 +208,12 @@
     //导航栏
     if (nil == self.mainNavigationController) {
         self.mainNavigationController = [[UINavigationController alloc]initWithRootViewController:self.homeVC];
-        self.mainNavigationController.tabBarItem.title = @"Note";
+        self.mainNavigationController.tabBarItem.title = @"笔记";
     }
     
     if (nil == self.memoNavigationController) {
         self.memoNavigationController = [[UINavigationController alloc]initWithRootViewController:self.memoVC];
-        self.memoNavigationController.tabBarItem.title = @"Memo";
+        self.memoNavigationController.tabBarItem.title = @"备忘录";
     }
     
     if (nil == self.ONTabBarController) {
