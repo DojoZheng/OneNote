@@ -44,8 +44,12 @@
 		451980AB1C5E28C100429DA4 /* VNNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 451980A31C5E28C100429DA4 /* VNNote.m */; };
 		451980AF1C5E28CD00429DA4 /* NoteListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 451980AD1C5E28CD00429DA4 /* NoteListCell.m */; };
 		451980B51C5E2E0400429DA4 /* NoteListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 451980B41C5E2E0400429DA4 /* NoteListViewController.m */; };
+		E105D9C11CD9D3C300393AFD /* StaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = E105D9C01CD9D3C300393AFD /* StaveView.m */; };
 		E109D4AB1CD1B2D600F9E67D /* ScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E109D4A91CD1B2D600F9E67D /* ScoreViewController.m */; };
 		E109D4AC1CD1B2D600F9E67D /* ScoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E109D4AA1CD1B2D600F9E67D /* ScoreViewController.xib */; };
+		E109D4AE1CD1F26900F9E67D /* MusicalToolBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = E109D4AD1CD1F26900F9E67D /* MusicalToolBar.xib */; };
+		E109D4B21CD2023600F9E67D /* EditScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E109D4B01CD2023600F9E67D /* EditScoreViewController.m */; };
+		E109D4B31CD2023600F9E67D /* EditScoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E109D4B11CD2023600F9E67D /* EditScoreViewController.xib */; };
 		E10D9C521C5A00170019613C /* Memo.m in Sources */ = {isa = PBXBuildFile; fileRef = E10D9C511C5A00170019613C /* Memo.m */; };
 		E11B7C0A1C9AA16B00535108 /* WPEditorDemoLoggingConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = E11B7C091C9AA16B00535108 /* WPEditorDemoLoggingConfiguration.m */; };
 		E11B7C0D1C9AA1E100535108 /* WPImageMetaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E11B7C0C1C9AA1E100535108 /* WPImageMetaViewController.m */; };
@@ -186,9 +190,15 @@
 		451980B41C5E2E0400429DA4 /* NoteListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteListViewController.m; sourceTree = "<group>"; };
 		537957E12F804A972DBD1D2B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		94BE4F342C67321173262B58 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		E105D9BF1CD9D3C300393AFD /* StaveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaveView.h; sourceTree = "<group>"; };
+		E105D9C01CD9D3C300393AFD /* StaveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaveView.m; sourceTree = "<group>"; };
 		E109D4A81CD1B2D600F9E67D /* ScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreViewController.h; sourceTree = "<group>"; };
 		E109D4A91CD1B2D600F9E67D /* ScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreViewController.m; sourceTree = "<group>"; };
 		E109D4AA1CD1B2D600F9E67D /* ScoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScoreViewController.xib; sourceTree = "<group>"; };
+		E109D4AD1CD1F26900F9E67D /* MusicalToolBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MusicalToolBar.xib; sourceTree = "<group>"; };
+		E109D4AF1CD2023600F9E67D /* EditScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditScoreViewController.h; sourceTree = "<group>"; };
+		E109D4B01CD2023600F9E67D /* EditScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditScoreViewController.m; sourceTree = "<group>"; };
+		E109D4B11CD2023600F9E67D /* EditScoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditScoreViewController.xib; sourceTree = "<group>"; };
 		E10D9C501C5A00170019613C /* Memo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Memo.h; sourceTree = "<group>"; };
 		E10D9C511C5A00170019613C /* Memo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Memo.m; sourceTree = "<group>"; };
 		E11B7C081C9AA16B00535108 /* WPEditorDemoLoggingConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPEditorDemoLoggingConfiguration.h; sourceTree = "<group>"; };
@@ -597,6 +607,12 @@
 				E109D4A81CD1B2D600F9E67D /* ScoreViewController.h */,
 				E109D4A91CD1B2D600F9E67D /* ScoreViewController.m */,
 				E109D4AA1CD1B2D600F9E67D /* ScoreViewController.xib */,
+				E109D4AD1CD1F26900F9E67D /* MusicalToolBar.xib */,
+				E109D4AF1CD2023600F9E67D /* EditScoreViewController.h */,
+				E109D4B01CD2023600F9E67D /* EditScoreViewController.m */,
+				E109D4B11CD2023600F9E67D /* EditScoreViewController.xib */,
+				E105D9BF1CD9D3C300393AFD /* StaveView.h */,
+				E105D9C01CD9D3C300393AFD /* StaveView.m */,
 			);
 			name = Score;
 			sourceTree = "<group>";
@@ -925,10 +941,12 @@
 			files = (
 				22B276C51C152D900059A167 /* Bmob_iOS_SDK更新历史.txt in Resources */,
 				E109D4AC1CD1B2D600F9E67D /* ScoreViewController.xib in Resources */,
+				E109D4AE1CD1F26900F9E67D /* MusicalToolBar.xib in Resources */,
 				E138F56F1C45EE620013E451 /* ONCollectionViewCell.xib in Resources */,
 				E138F5761C46150B0013E451 /* NoteViewController.xib in Resources */,
 				221060E61C040D5000B49A89 /* Images.xcassets in Resources */,
 				E138F55D1C43A5370013E451 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
+				E109D4B31CD2023600F9E67D /* EditScoreViewController.xib in Resources */,
 				E1B3DAD71C5A1A0B00D0B3BE /* MemoTableViewCell.xib in Resources */,
 				E187FE481C5CF21C00B02450 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				22B276791C0F19760059A167 /* Localizable.strings in Resources */,
@@ -1008,6 +1026,7 @@
 				E146FCD11C3A57EC00FE2B44 /* ONUser.m in Sources */,
 				E138F5751C46150B0013E451 /* NoteViewController.m in Sources */,
 				E187FE381C5CF11200B02450 /* SDWebImagePrefetcher.m in Sources */,
+				E105D9C11CD9D3C300393AFD /* StaveView.m in Sources */,
 				E187FE3F1C5CF11200B02450 /* UIView+WebCacheOperation.m in Sources */,
 				E1C4E0421C60902400A36562 /* MemoManagedObject+CoreDataProperties.m in Sources */,
 				451980AB1C5E28C100429DA4 /* VNNote.m in Sources */,
@@ -1027,6 +1046,7 @@
 				E1B3DAD61C5A1A0B00D0B3BE /* MemoTableViewCell.m in Sources */,
 				451980A61C5E28C100429DA4 /* Colours.m in Sources */,
 				E11B7C0A1C9AA16B00535108 /* WPEditorDemoLoggingConfiguration.m in Sources */,
+				E109D4B21CD2023600F9E67D /* EditScoreViewController.m in Sources */,
 				E1C4E0431C60902400A36562 /* MemoManagedObject.m in Sources */,
 				221060DB1C040D5000B49A89 /* main.m in Sources */,
 				E187FE3E1C5CF11200B02450 /* UIImageView+WebCache.m in Sources */,

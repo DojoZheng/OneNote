@@ -41,8 +41,16 @@
 #define _Macro_ModifyNote @"ModifyNote"
 
 
+#define NavigationBarHeight self.navigationController.tabBarController.tabBar.frame.size.height
+#define ScreenWidth [UIScreen mainScreen].bounds.size.width
+#define ScreenHeight [UIScreen mainScreen].bounds.size.height
+
+
 #import <CocoaLumberjack/CocoaLumberjack.h>
 #import "WPEditorDemoLoggingConfiguration.h"
+
+//画乐谱的时候使用的单位距离
+#define perX 3
 
 
 #endif /* OneNotePrefixHeader_pch */

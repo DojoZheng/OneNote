@@ -10,6 +10,7 @@
 #import "GuideViewController.h"
 #import "HomeViewController.h"
 #import "MemoViewController.h"
+#import "ScoreViewController.h"
 #import "ONUser.h"
 #import <CocoaLumberjack/CocoaLumberjack.h>
 #import <WordPressEditor/WPEditorViewController.h>
@@ -25,6 +26,7 @@
 @property (nonatomic,strong) GuideViewController* guideVC;
 @property (nonatomic,strong) HomeViewController* homeVC;
 @property (nonatomic,strong) MemoViewController* memoVC;
+@property (nonatomic,strong) ScoreViewController* scoreVC;
 @property (strong, nonatomic) LeftSortsViewController *leftSortVC;
 
 //QQ登陆
@@ -205,6 +207,23 @@
         [self.memoVC RefreshMemoView];
     }
     
+    //3.Score
+    if (nil == self.scoreVC) {
+        self.scoreVC = [[ScoreViewController alloc]init];
+        self.scoreVC.tabBarItem.title = @"Score";
+        UIImage* scoreImage = [UIImage imageNamed:@"music"];
+        CGSize itemSize = CGSizeMake(30, 30);
+        UIGraphicsBeginImageContextWithOptions(itemSize, NO, 0.0);
+        CGRect imageRect = CGRectMake(0.0, 0.0,  itemSize.width, itemSize.height);
+        [scoreImage drawInRect:imageRect];
+        self.scoreVC.tabBarItem.image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        //        self.memoVC.tabBarItem.imageInsets = UIEdgeInsetsMake(0, -10, -6, -10);
+    }else{
+        [self.memoVC RefreshMemoView];
+    }
+    
+    
     //导航栏
     if (nil == self.mainNavigationController) {
         self.mainNavigationController = [[UINavigationController alloc]initWithRootViewController:self.homeVC];
@@ -216,11 +235,17 @@
         self.memoNavigationController.tabBarItem.title = @"备忘录";
     }
     
+    if (nil == self.scoreNavigationController) {
+        self.scoreNavigationController = [[UINavigationController alloc]initWithRootViewController:self.scoreVC];
+        self.scoreNavigationController.tabBarItem.title = @"乐谱";
+    }
+    
     if (nil == self.ONTabBarController) {
         self.ONTabBarController = [[UITabBarController alloc]init];
         self.ONTabBarController.viewControllers = @
         [self.memoNavigationController,
-         self.mainNavigationController];
+         self.mainNavigationController,
+         self.scoreNavigationController];
     }
     
     if (self.leftSortVC == nil) {

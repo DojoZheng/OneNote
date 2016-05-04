@@ -25,6 +25,7 @@
 @property (strong, nonatomic) LeftSlideViewController *LeftSlideVC;
 @property (strong, nonatomic) UINavigationController *mainNavigationController;
 @property (strong, nonatomic) UINavigationController *memoNavigationController;
+@property (strong, nonatomic) UINavigationController *scoreNavigationController;
 @property (strong, nonatomic) UITabBarController *ONTabBarController;
 
 //CoreData
