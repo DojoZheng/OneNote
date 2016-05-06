@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>major</key>
+		<string>C大调</string>
+		<key>image</key>
+		<string>1C大调</string>
+	</dict>
+	<dict>
+		<key>major</key>
+		<string>F大调</string>
+		<key>image</key>
+		<string>2F大调</string>
+	</dict>
+	<dict>
+		<key>major</key>
+		<string>降B大调</string>
+		<key>image</key>
+		<string>3降B大调</string>
+	</dict>
+	<dict>
+		<key>major</key>
+		<string>降E大调</string>
+		<key>image</key>
+		<string>4降E大调</string>
+	</dict>
+	<dict>
+		<key>major</key>
+		<string>降A大调</string>
+		<key>image</key>
+		<string>5降A大调</string>
+	</dict>
+	<dict>
+		<key>major</key>
+		<string>降D大调</string>
+		<key>image</key>
+		<string>6降D大调</string>
+	</dict>
+	<dict>
+		<key>major</key>
+		<string>降G大调</string>
+		<key>image</key>
+		<string>7降G大调</string>
+	</dict>
+	<dict>
+		<key>major</key>
+		<string>B大调</string>
+		<key>image</key>
+		<string>8B大调</string>
+	</dict>
+</array>
+</plist>

@@ -8,9 +8,10 @@
 
 #import "EditScoreViewController.h"
 #import "StaveView.h"
+#import "MajorsKeyBoardView.h"
 
 
-@interface EditScoreViewController ()
+@interface EditScoreViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *scoreTitle;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
@@ -26,15 +27,18 @@
     self.numOfStave = 0;
     self.title = @"编辑乐谱";
     self.scrollView.contentSize = CGSizeMake(ScreenWidth, ScreenHeight*2);
+    self.scoreTitle.delegate = self;
+//    self.tabBarController.tabBar.hidden = YES;
     
     UIBarButtonItem* leftBarButton = [[UIBarButtonItem alloc]
-                                      initWithTitle:@"<我的乐谱"
+                                      initWithTitle:@"我的乐谱"
                                       style:UIBarButtonItemStylePlain
                                       target:self
                                       action:@selector(backToMyScore)];
     self.navigationItem.leftBarButtonItem = leftBarButton;
 
     [self initKeyBoardToolBar];
+    [self chooseClefTextField];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -102,8 +106,12 @@
 - (void)addStaveTouchedUp {
 	//添加五线谱
     
-    StaveView* stave = [[StaveView alloc]initWithFrame:CGRectMake(0, 52*perX*self.numOfStave, ScreenWidth, 52*perX)];
+    StaveView* stave = [[StaveView alloc]initWithFrame:CGRectMake(0, 40+ 52*perX*self.numOfStave, ScreenWidth, 52*perX)];
     stave.backgroundColor = [UIColor whiteColor];
+    //添加手势
+    UITapGestureRecognizer* tapRec = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapStaveView:)];
+    tapRec.numberOfTapsRequired = 1;
+    [stave addGestureRecognizer:tapRec];
     [self.scrollView addSubview:stave];
     self.numOfStave++;
 }
@@ -130,5 +138,30 @@
      }];
 }
 
+#pragma mark - UITextField
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (void)tapStaveView:(id)sender {
+    
+}
+
+- (void)chooseClefTextField {
+//    UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, 40, 20)];
+//    label.textAlignment = NSTextAlignmentCenter;
+//    label.text = @"调式";
+//    [self.scrollView addSubview:label];
+    
+    UITextField* tf = [[UITextField alloc]initWithFrame:CGRectMake(5, 5, 120, 30)];
+    tf.placeholder = @"请选择调式";
+    tf.inputAccessoryView = [[MajorsKeyBoardView alloc]init];
+    tf.textColor = [UIColor blueColor];
+//    tf.borderStyle = UITextBorderStyleRoundedRect;
+    tf.delegate = self;
+    
+    [self.scrollView addSubview:tf];
+}
 
 @end

@@ -45,6 +45,11 @@
 		451980AF1C5E28CD00429DA4 /* NoteListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 451980AD1C5E28CD00429DA4 /* NoteListCell.m */; };
 		451980B51C5E2E0400429DA4 /* NoteListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 451980B41C5E2E0400429DA4 /* NoteListViewController.m */; };
 		E105D9C11CD9D3C300393AFD /* StaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = E105D9C01CD9D3C300393AFD /* StaveView.m */; };
+		E105D9C51CDC2FFC00393AFD /* FlatMajors.plist in Resources */ = {isa = PBXBuildFile; fileRef = E105D9C41CDC2FFC00393AFD /* FlatMajors.plist */; };
+		E105D9C91CDC324B00393AFD /* MajorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E105D9C81CDC324B00393AFD /* MajorManager.m */; };
+		E105D9CB1CDC356E00393AFD /* SharpMajors.plist in Resources */ = {isa = PBXBuildFile; fileRef = E105D9CA1CDC356E00393AFD /* SharpMajors.plist */; };
+		E105D9CE1CDC391D00393AFD /* MajorsKeyBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = E105D9CD1CDC391D00393AFD /* MajorsKeyBoardView.m */; };
+		E105D9D01CDC7F8E00393AFD /* MajorsKeyBoard.xib in Resources */ = {isa = PBXBuildFile; fileRef = E105D9CF1CDC7F8E00393AFD /* MajorsKeyBoard.xib */; };
 		E109D4AB1CD1B2D600F9E67D /* ScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E109D4A91CD1B2D600F9E67D /* ScoreViewController.m */; };
 		E109D4AC1CD1B2D600F9E67D /* ScoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E109D4AA1CD1B2D600F9E67D /* ScoreViewController.xib */; };
 		E109D4AE1CD1F26900F9E67D /* MusicalToolBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = E109D4AD1CD1F26900F9E67D /* MusicalToolBar.xib */; };
@@ -192,6 +197,13 @@
 		94BE4F342C67321173262B58 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E105D9BF1CD9D3C300393AFD /* StaveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaveView.h; sourceTree = "<group>"; };
 		E105D9C01CD9D3C300393AFD /* StaveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaveView.m; sourceTree = "<group>"; };
+		E105D9C41CDC2FFC00393AFD /* FlatMajors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FlatMajors.plist; sourceTree = "<group>"; };
+		E105D9C71CDC324B00393AFD /* MajorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MajorManager.h; sourceTree = "<group>"; };
+		E105D9C81CDC324B00393AFD /* MajorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MajorManager.m; sourceTree = "<group>"; };
+		E105D9CA1CDC356E00393AFD /* SharpMajors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SharpMajors.plist; sourceTree = "<group>"; };
+		E105D9CC1CDC391D00393AFD /* MajorsKeyBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MajorsKeyBoardView.h; sourceTree = "<group>"; };
+		E105D9CD1CDC391D00393AFD /* MajorsKeyBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MajorsKeyBoardView.m; sourceTree = "<group>"; };
+		E105D9CF1CDC7F8E00393AFD /* MajorsKeyBoard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MajorsKeyBoard.xib; sourceTree = "<group>"; };
 		E109D4A81CD1B2D600F9E67D /* ScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreViewController.h; sourceTree = "<group>"; };
 		E109D4A91CD1B2D600F9E67D /* ScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreViewController.m; sourceTree = "<group>"; };
 		E109D4AA1CD1B2D600F9E67D /* ScoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScoreViewController.xib; sourceTree = "<group>"; };
@@ -601,18 +613,49 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		E105D9C21CDC2E4500393AFD /* 乐谱编辑 */ = {
+			isa = PBXGroup;
+			children = (
+				E105D9C61CDC321900393AFD /* 24大小调 */,
+				E109D4AF1CD2023600F9E67D /* EditScoreViewController.h */,
+				E109D4B01CD2023600F9E67D /* EditScoreViewController.m */,
+				E109D4B11CD2023600F9E67D /* EditScoreViewController.xib */,
+				E105D9C31CDC2F1C00393AFD /* 五线谱视图 */,
+			);
+			name = "乐谱编辑";
+			sourceTree = "<group>";
+		};
+		E105D9C31CDC2F1C00393AFD /* 五线谱视图 */ = {
+			isa = PBXGroup;
+			children = (
+				E105D9BF1CD9D3C300393AFD /* StaveView.h */,
+				E105D9C01CD9D3C300393AFD /* StaveView.m */,
+			);
+			name = "五线谱视图";
+			sourceTree = "<group>";
+		};
+		E105D9C61CDC321900393AFD /* 24大小调 */ = {
+			isa = PBXGroup;
+			children = (
+				E105D9C41CDC2FFC00393AFD /* FlatMajors.plist */,
+				E105D9CA1CDC356E00393AFD /* SharpMajors.plist */,
+				E105D9C71CDC324B00393AFD /* MajorManager.h */,
+				E105D9C81CDC324B00393AFD /* MajorManager.m */,
+				E105D9CC1CDC391D00393AFD /* MajorsKeyBoardView.h */,
+				E105D9CD1CDC391D00393AFD /* MajorsKeyBoardView.m */,
+				E105D9CF1CDC7F8E00393AFD /* MajorsKeyBoard.xib */,
+			);
+			name = "24大小调";
+			sourceTree = "<group>";
+		};
 		E109D4A71CD1B2B100F9E67D /* Score */ = {
 			isa = PBXGroup;
 			children = (
+				E105D9C21CDC2E4500393AFD /* 乐谱编辑 */,
 				E109D4A81CD1B2D600F9E67D /* ScoreViewController.h */,
 				E109D4A91CD1B2D600F9E67D /* ScoreViewController.m */,
 				E109D4AA1CD1B2D600F9E67D /* ScoreViewController.xib */,
 				E109D4AD1CD1F26900F9E67D /* MusicalToolBar.xib */,
-				E109D4AF1CD2023600F9E67D /* EditScoreViewController.h */,
-				E109D4B01CD2023600F9E67D /* EditScoreViewController.m */,
-				E109D4B11CD2023600F9E67D /* EditScoreViewController.xib */,
-				E105D9BF1CD9D3C300393AFD /* StaveView.h */,
-				E105D9C01CD9D3C300393AFD /* StaveView.m */,
 			);
 			name = Score;
 			sourceTree = "<group>";
@@ -939,6 +982,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E105D9C51CDC2FFC00393AFD /* FlatMajors.plist in Resources */,
 				22B276C51C152D900059A167 /* Bmob_iOS_SDK更新历史.txt in Resources */,
 				E109D4AC1CD1B2D600F9E67D /* ScoreViewController.xib in Resources */,
 				E109D4AE1CD1F26900F9E67D /* MusicalToolBar.xib in Resources */,
@@ -948,7 +992,9 @@
 				E138F55D1C43A5370013E451 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				E109D4B31CD2023600F9E67D /* EditScoreViewController.xib in Resources */,
 				E1B3DAD71C5A1A0B00D0B3BE /* MemoTableViewCell.xib in Resources */,
+				E105D9CB1CDC356E00393AFD /* SharpMajors.plist in Resources */,
 				E187FE481C5CF21C00B02450 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
+				E105D9D01CDC7F8E00393AFD /* MajorsKeyBoard.xib in Resources */,
 				22B276791C0F19760059A167 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1029,6 +1075,7 @@
 				E105D9C11CD9D3C300393AFD /* StaveView.m in Sources */,
 				E187FE3F1C5CF11200B02450 /* UIView+WebCacheOperation.m in Sources */,
 				E1C4E0421C60902400A36562 /* MemoManagedObject+CoreDataProperties.m in Sources */,
+				E105D9CE1CDC391D00393AFD /* MajorsKeyBoardView.m in Sources */,
 				451980AB1C5E28C100429DA4 /* VNNote.m in Sources */,
 				E1CD4CFE1C65E8BD00A684E5 /* NoteBL.m in Sources */,
 				E1DB59891CBAA127002493FE /* Note.m in Sources */,
@@ -1065,6 +1112,7 @@
 				451980A91C5E28C100429DA4 /* VNConstants.m in Sources */,
 				22B2766E1C0EF1400059A167 /* GuideView.m in Sources */,
 				451980A81C5E28C100429DA4 /* NSDate+Conversion.m in Sources */,
+				E105D9C91CDC324B00393AFD /* MajorManager.m in Sources */,
 				E187FE371C5CF11200B02450 /* SDWebImageManager.m in Sources */,
 				E187FE341C5CF11200B02450 /* SDWebImageDecoder.m in Sources */,
 				E187FE361C5CF11200B02450 /* SDWebImageDownloaderOperation.m in Sources */,
