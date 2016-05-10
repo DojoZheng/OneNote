@@ -28,6 +28,8 @@
 
 @property (nonatomic, strong)MajorManager * MManager;
 
+@property (nonatomic, strong)NSArray* currentMajor;
+
 @end
 
 @implementation MajorsKeyBoardView
@@ -87,6 +89,8 @@
 
 
 - (void)setMajorsFrame:(NSArray*)arrMajors {
+    self.currentMajor = arrMajors;
+    
     CGFloat majorX = 0;
     CGFloat majorY = 0;
     
@@ -107,6 +111,7 @@
         majorImageView.image = majorImage;
 //        majorBtn.imageView = majorImageView;
         [majorBtn addSubview:majorImageView];
+        majorBtn.tag = i;
         [majorBtn addTarget:self action:@selector(ChangeClef:) forControlEvents:UIControlEventTouchUpInside];
 
         //添加Major的Label
@@ -124,6 +129,10 @@
 
 - (void)ChangeClef:(id)sender {
     NSLog(@"林娇玲是索嗨");
+    UIButton* btn = sender;
+    NSDictionary* dict = [self.currentMajor objectAtIndex:btn.tag];
+    
+    self.block([dict objectForKey:@"major"]);
     [self block];
     [self sendBlock];
 }
@@ -135,30 +144,37 @@
     [self addSubview:self.toolBar];
     
     UIBarButtonItem * spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    UIBarButtonItem * recentlyFaceItem = [[UIBarButtonItem alloc] initWithTitle:@"最近表情" style:UIBarButtonItemStylePlain target:self action:@selector(tapRecentlyFaceBtn)];
-    UIBarButtonItem * normalFaceItem = [[UIBarButtonItem alloc] initWithTitle:@"普通" style:UIBarButtonItemStylePlain target:self action:@selector(tapNormalFaceBtn)];
-    UIBarButtonItem * bigFaceItem = [[UIBarButtonItem alloc] initWithTitle:@"大表情" style:UIBarButtonItemStylePlain target:self action:@selector(tapBigFaceBtn)];
-    UIBarButtonItem * sendItem = [[UIBarButtonItem alloc] initWithTitle:@"发送" style:UIBarButtonItemStylePlain target:self action:@selector(tapSendBtn)];
+    UIBarButtonItem * flatMajorItem = [[UIBarButtonItem alloc] initWithTitle:@"降调♭" style:UIBarButtonItemStylePlain target:self action:@selector(tapFlatMajorBtn)];
+    UIBarButtonItem * sharpMajorItem = [[UIBarButtonItem alloc] initWithTitle:@"升调♯" style:UIBarButtonItemStylePlain target:self action:@selector(tapSharpMajorBtn)];
+    UIBarButtonItem * confirmItem = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(tapConfirmBtn)];
     
-    [self.toolBar setItems:[NSArray arrayWithObjects:recentlyFaceItem,spaceItem,normalFaceItem,spaceItem,bigFaceItem,spaceItem,sendItem, nil]];
+    [self.toolBar setItems:[NSArray arrayWithObjects:spaceItem,flatMajorItem,spaceItem,sharpMajorItem,spaceItem, confirmItem, nil]];
 }
 
 
 //点击ToolBar上的按钮回调
-- (void)tapRecentlyFaceBtn
-{
-    [self fetchRecentlyFaces];
-}
-- (void)tapSendBtn
-{
-    self.sendBlock();
-}
-- (void)tapBigFaceBtn{
-    [self fetchBigFaces];
-}
-- (void)tapNormalFaceBtn
-{
-    [self fetchAllFaces];
+- (void)tapFlatMajorBtn {
+    [self fetchFlatMajors];
 }
 
+- (void)tapSharpMajorBtn {
+    [self fetchSharpMajors];
+}
+
+- (void)tapConfirmBtn {
+	self.sendBlock();
+}
+
+
+- (void)setMajorsKeyBoardBlock:(MajorsKeyBoardBlock)block {
+    self.block = block;
+}
+
+- (void)setMajorsKeyBoardSendBlock:(MajorsKeyBoardSendBlock)block {
+    self.sendBlock = block;
+}
+
+- (void)setMajorsKeyBoardDeleteBlock:(MajorsKeyBoardDeleteBlock)block {
+    self.deleteBlock = block;
+}
 @end

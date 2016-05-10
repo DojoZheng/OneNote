@@ -8,6 +8,21 @@
 
 #import "StaveView.h"
 
+#define ClefViewX (6*perX + 16*2.44/6.87*perX)
+#define ClefViewY (8*perX)
+#define ClefViewHeight 36*perX
+//#define FlatWidth (4 * 0.64 / 2.73 * perX)
+#define FlatWidth perX*1.5
+#define FlatHeight (4*perX)
+#define SharpWidth 3*perX
+#define SharpHeight 6*perX
+
+
+@interface StaveView()
+
+@property (nonatomic,strong) UIView* clefView;
+
+@end
 
 @implementation StaveView
 
@@ -99,5 +114,277 @@
     [self addSubview:fclefImageView];
 }
 
+- (void)drawMajorClef:(NSString*)majorName {
+    //降调
+    if (self.clefView != nil) {
+        [self.clefView removeFromSuperview];
+    }
+    if ([majorName isEqualToString:@"F大调"]) {
+        self.clefView = [[UIView alloc]initWithFrame:CGRectMake(ClefViewX, ClefViewY, FlatWidth, ClefViewHeight)];
+        [self drawFlatInX:0 inY:5*perX inView:self.clefView];
+        [self drawFlatInX:0 inY:27*perX inView:self.clefView];
+        [self addSubview:self.clefView];
+    }else if ([majorName isEqualToString:@"降B大调"]){
+        self.clefView = [[UIView alloc]initWithFrame:CGRectMake(ClefViewX, ClefViewY, FlatWidth*2, ClefViewHeight)];
+        //降Si（B）
+        [self drawFlatInX:0 inY:5*perX inView:self.clefView];
+        [self drawFlatInX:0 inY:27*perX inView:self.clefView];
+        //降Mi（E）
+        [self drawFlatInX:FlatWidth inY:2*perX inView:self.clefView];
+        [self drawFlatInX:FlatWidth inY:24*perX inView:self.clefView];
+        [self addSubview:self.clefView];
+    }else if ([majorName isEqualToString:@"降E大调"]){
+        self.clefView = [[UIView alloc]initWithFrame:CGRectMake(ClefViewX, ClefViewY, FlatWidth*3, ClefViewHeight)];
+        //降Si（B）
+        [self drawFlatInX:0 inY:5*perX inView:self.clefView];
+        [self drawFlatInX:0 inY:27*perX inView:self.clefView];
+        //降Mi（E）
+        [self drawFlatInX:FlatWidth inY:2*perX inView:self.clefView];
+        [self drawFlatInX:FlatWidth inY:24*perX inView:self.clefView];
+        //降La（A）
+        [self drawFlatInX:FlatWidth*2 inY:6*perX inView:self.clefView];
+        [self drawFlatInX:FlatWidth*2 inY:28*perX inView:self.clefView];
+        
+        [self addSubview:self.clefView];
+    }else if ([majorName isEqualToString:@"降A大调"]){
+        self.clefView = [[UIView alloc]initWithFrame:CGRectMake(ClefViewX, ClefViewY, FlatWidth*4, ClefViewHeight)];
+        //降Si（B）
+        [self drawFlatInX:0 inY:5*perX inView:self.clefView];
+        [self drawFlatInX:0 inY:27*perX inView:self.clefView];
+        //降Mi（E）
+        [self drawFlatInX:FlatWidth inY:2*perX inView:self.clefView];
+        [self drawFlatInX:FlatWidth inY:24*perX inView:self.clefView];
+        //降La（A）
+        [self drawFlatInX:FlatWidth*2 inY:6*perX inView:self.clefView];
+        [self drawFlatInX:FlatWidth*2 inY:28*perX inView:self.clefView];
+        //降Re（B）
+        [self drawFlatInX:FlatWidth*3 inY:3*perX inView:self.clefView];
+        [self drawFlatInX:FlatWidth*3 inY:25*perX inView:self.clefView];
+        [self addSubview:self.clefView];
+    }else if ([majorName isEqualToString:@"降D大调"]){
+        self.clefView = [[UIView alloc]initWithFrame:CGRectMake(ClefViewX, ClefViewY, FlatWidth*5, ClefViewHeight)];
+        //降Si（B）
+        [self drawFlatInX:0 inY:5*perX inView:self.clefView];
+        [self drawFlatInX:0 inY:27*perX inView:self.clefView];
+        //降Mi（E）
+        [self drawFlatInX:FlatWidth inY:2*perX inView:self.clefView];
+        [self drawFlatInX:FlatWidth inY:24*perX inView:self.clefView];
+        //降La（A）
+        [self drawFlatInX:FlatWidth*2 inY:6*perX inView:self.clefView];
+        [self drawFlatInX:FlatWidth*2 inY:28*perX inView:self.clefView];
+        //降Re（B）
+        [self drawFlatInX:FlatWidth*3 inY:3*perX inView:self.clefView];
+        [self drawFlatInX:FlatWidth*3 inY:25*perX inView:self.clefView];
+        //降So（G）
+        [self drawFlatInX:FlatWidth*4 inY:7*perX inView:self.clefView];
+        [self drawFlatInX:FlatWidth*4 inY:29*perX inView:self.clefView];
+        [self addSubview:self.clefView];
+    }else if ([majorName isEqualToString:@"降G大调"]){
+        self.clefView = [[UIView alloc]initWithFrame:CGRectMake(ClefViewX, ClefViewY, FlatWidth*6, ClefViewHeight)];
+        //降Si（B）
+        [self drawFlatInX:0 inY:5*perX inView:self.clefView];
+        [self drawFlatInX:0 inY:27*perX inView:self.clefView];
+        //降Mi（E）
+        [self drawFlatInX:FlatWidth inY:2*perX inView:self.clefView];
+        [self drawFlatInX:FlatWidth inY:24*perX inView:self.clefView];
+        //降La（A）
+        [self drawFlatInX:FlatWidth*2 inY:6*perX inView:self.clefView];
+        [self drawFlatInX:FlatWidth*2 inY:28*perX inView:self.clefView];
+        //降Re（B）
+        [self drawFlatInX:FlatWidth*3 inY:3*perX inView:self.clefView];
+        [self drawFlatInX:FlatWidth*3 inY:25*perX inView:self.clefView];
+        //降So（G）
+        [self drawFlatInX:FlatWidth*4 inY:7*perX inView:self.clefView];
+        [self drawFlatInX:FlatWidth*4 inY:29*perX inView:self.clefView];
+        //降Do（C）
+        [self drawFlatInX:FlatWidth*5 inY:4*perX inView:self.clefView];
+        [self drawFlatInX:FlatWidth*5 inY:26*perX inView:self.clefView];
+        [self addSubview:self.clefView];
+    }else if ([majorName isEqualToString:@"B大调"]){
+        self.clefView = [[UIView alloc]initWithFrame:CGRectMake(ClefViewX, ClefViewY, FlatWidth*7, ClefViewHeight)];
+        //降Si（B）
+        [self drawFlatInX:0 inY:5*perX inView:self.clefView];
+        [self drawFlatInX:0 inY:27*perX inView:self.clefView];
+        //降Mi（E）
+        [self drawFlatInX:FlatWidth inY:2*perX inView:self.clefView];
+        [self drawFlatInX:FlatWidth inY:24*perX inView:self.clefView];
+        //降La（A）
+        [self drawFlatInX:FlatWidth*2 inY:6*perX inView:self.clefView];
+        [self drawFlatInX:FlatWidth*2 inY:28*perX inView:self.clefView];
+        //降Re（B）
+        [self drawFlatInX:FlatWidth*3 inY:3*perX inView:self.clefView];
+        [self drawFlatInX:FlatWidth*3 inY:25*perX inView:self.clefView];
+        [self addSubview:self.clefView];
+        //降So（G）
+        [self drawFlatInX:FlatWidth*4 inY:7*perX inView:self.clefView];
+        [self drawFlatInX:FlatWidth*4 inY:29*perX inView:self.clefView];
+        //降Do（C）
+        [self drawFlatInX:FlatWidth*5 inY:4*perX inView:self.clefView];
+        [self drawFlatInX:FlatWidth*5 inY:26*perX inView:self.clefView];
+        [self addSubview:self.clefView];
+        //降Fa（F）
+        [self drawFlatInX:FlatWidth*6 inY:8*perX inView:self.clefView];
+        [self drawFlatInX:FlatWidth*6 inY:30*perX inView:self.clefView];
+    }else if
+    //升调
+    ([majorName isEqualToString:@"G大调"]) {
+        self.clefView = [[UIView alloc]initWithFrame:CGRectMake(ClefViewX, ClefViewY, SharpWidth*1, SharpHeight)];
+        //升Fa
+        [self drawSharpInX:0 inY:perX inView:self.clefView];
+        [self drawSharpInX:0 inY:27*perX inView:self.clefView];
+        [self addSubview:self.clefView];
+    }else if ([majorName isEqualToString:@"D大调"]){
+        self.clefView = [[UIView alloc]initWithFrame:CGRectMake(ClefViewX, ClefViewY, SharpWidth*2, SharpHeight)];
+        //升Fa（F）
+        [self drawSharpInX:SharpWidth*0 inY:perX inView:self.clefView];
+        [self drawSharpInX:SharpWidth*0 inY:27*perX inView:self.clefView];
 
+        //升Do（C）
+        [self drawSharpInX:SharpWidth*1 inY:4*perX inView:self.clefView];
+        [self drawSharpInX:SharpWidth*1 inY:30*perX inView:self.clefView];
+        
+        [self addSubview:self.clefView];
+    }else if ([majorName isEqualToString:@"A大调"]){
+        self.clefView = [[UIView alloc]initWithFrame:CGRectMake(ClefViewX, ClefViewY, SharpWidth*2, SharpHeight)];
+        //升Fa（F）
+        [self drawSharpInX:SharpWidth*0 inY:perX inView:self.clefView];
+        [self drawSharpInX:SharpWidth*0 inY:27*perX inView:self.clefView];
+        
+        //升Do（C）
+        [self drawSharpInX:SharpWidth*1 inY:4*perX inView:self.clefView];
+        [self drawSharpInX:SharpWidth*1 inY:30*perX inView:self.clefView];
+        
+        //升So（G）
+        [self drawSharpInX:SharpWidth*2 inY:0*perX inView:self.clefView];
+        [self drawSharpInX:SharpWidth*2 inY:26*perX inView:self.clefView];
+        
+        [self addSubview:self.clefView];
+    }else if ([majorName isEqualToString:@"E大调"]){
+        self.clefView = [[UIView alloc]initWithFrame:CGRectMake(ClefViewX, ClefViewY, SharpWidth*2, SharpHeight)];
+        //升Fa（F）
+        [self drawSharpInX:SharpWidth*0 inY:perX inView:self.clefView];
+        [self drawSharpInX:SharpWidth*0 inY:27*perX inView:self.clefView];
+        
+        //升Do（C）
+        [self drawSharpInX:SharpWidth*1 inY:4*perX inView:self.clefView];
+        [self drawSharpInX:SharpWidth*1 inY:30*perX inView:self.clefView];
+        
+        //升So（G）
+        [self drawSharpInX:SharpWidth*2 inY:0*perX inView:self.clefView];
+        [self drawSharpInX:SharpWidth*2 inY:26*perX inView:self.clefView];
+        
+        //升Re（D）
+        [self drawSharpInX:SharpWidth*3 inY:3*perX inView:self.clefView];
+        [self drawSharpInX:SharpWidth*3 inY:29*perX inView:self.clefView];
+        
+        [self addSubview:self.clefView];
+    }else if ([majorName isEqualToString:@"B大调升号"]){
+        self.clefView = [[UIView alloc]initWithFrame:CGRectMake(ClefViewX, ClefViewY, SharpWidth*2, SharpHeight)];
+        //升Fa（F）
+        [self drawSharpInX:SharpWidth*0 inY:perX inView:self.clefView];
+        [self drawSharpInX:SharpWidth*0 inY:27*perX inView:self.clefView];
+        
+        //升Do（C）
+        [self drawSharpInX:SharpWidth*1 inY:4*perX inView:self.clefView];
+        [self drawSharpInX:SharpWidth*1 inY:30*perX inView:self.clefView];
+        
+        //升So（G）
+        [self drawSharpInX:SharpWidth*2 inY:0*perX inView:self.clefView];
+        [self drawSharpInX:SharpWidth*2 inY:26*perX inView:self.clefView];
+        
+        //升Re（D）
+        [self drawSharpInX:SharpWidth*3 inY:3*perX inView:self.clefView];
+        [self drawSharpInX:SharpWidth*3 inY:29*perX inView:self.clefView];
+        
+        //升La（A）
+        [self drawSharpInX:SharpWidth*4 inY:6*perX inView:self.clefView];
+        [self drawSharpInX:SharpWidth*4 inY:32*perX inView:self.clefView];
+        
+        [self addSubview:self.clefView];
+    }else if ([majorName isEqualToString:@"升F大调"]){
+        self.clefView = [[UIView alloc]initWithFrame:CGRectMake(ClefViewX, ClefViewY, SharpWidth*2, SharpHeight)];
+        //升Fa（F）
+        [self drawSharpInX:SharpWidth*0 inY:perX inView:self.clefView];
+        [self drawSharpInX:SharpWidth*0 inY:27*perX inView:self.clefView];
+        
+        //升Do（C）
+        [self drawSharpInX:SharpWidth*1 inY:4*perX inView:self.clefView];
+        [self drawSharpInX:SharpWidth*1 inY:30*perX inView:self.clefView];
+        
+        //升So（G）
+        [self drawSharpInX:SharpWidth*2 inY:0*perX inView:self.clefView];
+        [self drawSharpInX:SharpWidth*2 inY:26*perX inView:self.clefView];
+        
+        //升Re（D）
+        [self drawSharpInX:SharpWidth*3 inY:3*perX inView:self.clefView];
+        [self drawSharpInX:SharpWidth*3 inY:29*perX inView:self.clefView];
+        
+        //升La（A）
+        [self drawSharpInX:SharpWidth*4 inY:6*perX inView:self.clefView];
+        [self drawSharpInX:SharpWidth*4 inY:32*perX inView:self.clefView];
+        
+        //升Mi（E）
+        [self drawSharpInX:SharpWidth*5 inY:2*perX inView:self.clefView];
+        [self drawSharpInX:SharpWidth*5 inY:28*perX inView:self.clefView];
+        
+        [self addSubview:self.clefView];
+    }else if ([majorName isEqualToString:@"降D大调升号"]){
+        self.clefView = [[UIView alloc]initWithFrame:CGRectMake(ClefViewX, ClefViewY, SharpWidth*2, SharpHeight)];
+        //升Fa（F）
+        [self drawSharpInX:SharpWidth*0 inY:perX inView:self.clefView];
+        [self drawSharpInX:SharpWidth*0 inY:27*perX inView:self.clefView];
+        
+        //升Do（C）
+        [self drawSharpInX:SharpWidth*1 inY:4*perX inView:self.clefView];
+        [self drawSharpInX:SharpWidth*1 inY:30*perX inView:self.clefView];
+        
+        //升So（G）
+        [self drawSharpInX:SharpWidth*2 inY:0*perX inView:self.clefView];
+        [self drawSharpInX:SharpWidth*2 inY:26*perX inView:self.clefView];
+        
+        //升Re（D）
+        [self drawSharpInX:SharpWidth*3 inY:3*perX inView:self.clefView];
+        [self drawSharpInX:SharpWidth*3 inY:29*perX inView:self.clefView];
+        
+        //升La（A）
+        [self drawSharpInX:SharpWidth*4 inY:6*perX inView:self.clefView];
+        [self drawSharpInX:SharpWidth*4 inY:32*perX inView:self.clefView];
+        
+        //升Mi（E）
+        [self drawSharpInX:SharpWidth*5 inY:2*perX inView:self.clefView];
+        [self drawSharpInX:SharpWidth*5 inY:28*perX inView:self.clefView];
+        
+        //升Si（B）
+        [self drawSharpInX:SharpWidth*6 inY:4*perX inView:self.clefView];
+        [self drawSharpInX:SharpWidth*6 inY:30*perX inView:self.clefView];
+        
+        [self addSubview:self.clefView];
+    }
+}
+
+- (void)drawFlatInX:(CGFloat)X inY:(CGFloat)Y inView:(UIView*)view{
+    //绘制降号
+    UIImage* flat = [UIImage imageNamed:@"flat"];
+    CGSize itemSize = CGSizeMake(FlatWidth, FlatHeight);
+    UIGraphicsBeginImageContextWithOptions(itemSize, NO, 0.0);
+    CGRect imageRect = CGRectMake(0.0, 0.0,  itemSize.width, itemSize.height);
+    [flat drawInRect:imageRect];
+    UIImageView* flatImageView = [[UIImageView alloc]initWithFrame:CGRectMake(X, Y, itemSize.width, itemSize.height)];
+    flatImageView.image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    [view addSubview:flatImageView];
+}
+
+- (void)drawSharpInX:(CGFloat)X inY:(CGFloat)Y inView:(UIView*)view{
+    //绘制升调
+    UIImage* sharp = [UIImage imageNamed:@"sharp"];
+    CGSize itemSize = CGSizeMake(SharpWidth, SharpHeight);
+    UIGraphicsBeginImageContextWithOptions(itemSize, NO, 0.0);
+    CGRect imageRect = CGRectMake(0.0, 0.0, itemSize.width, itemSize.height);
+    [sharp drawInRect:imageRect];
+    UIImageView* sharpImageView = [[UIImageView alloc]initWithFrame:CGRectMake(X, Y, itemSize.width, itemSize.height)];
+    sharpImageView.image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    [view addSubview:sharpImageView];
+}
 @end

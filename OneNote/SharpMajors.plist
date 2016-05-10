@@ -4,6 +4,12 @@
 <array>
 	<dict>
 		<key>major</key>
+		<string>C大调</string>
+		<key>image</key>
+		<string>1C大调</string>
+	</dict>
+	<dict>
+		<key>major</key>
 		<string>G大调</string>
 		<key>image</key>
 		<string>1G大调</string>
@@ -28,7 +34,7 @@
 	</dict>
 	<dict>
 		<key>major</key>
-		<string>B大调</string>
+		<string>B大调升号</string>
 		<key>image</key>
 		<string>5B大调</string>
 	</dict>
@@ -40,7 +46,7 @@
 	</dict>
 	<dict>
 		<key>major</key>
-		<string>降D大调</string>
+		<string>降D大调升号</string>
 		<key>image</key>
 		<string>7降D大调</string>
 	</dict>

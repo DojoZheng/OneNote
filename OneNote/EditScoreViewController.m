@@ -14,8 +14,11 @@
 @interface EditScoreViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *scoreTitle;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) MajorsKeyBoardView* majorsKB;
 
 @property (nonatomic) int numOfStave;
+@property (nonatomic, strong) NSMutableArray* stavesArr;
+@property (nonatomic, copy) NSString* currentClef;
 
 @end
 
@@ -28,7 +31,7 @@
     self.title = @"编辑乐谱";
     self.scrollView.contentSize = CGSizeMake(ScreenWidth, ScreenHeight*2);
     self.scoreTitle.delegate = self;
-//    self.tabBarController.tabBar.hidden = YES;
+
     
     UIBarButtonItem* leftBarButton = [[UIBarButtonItem alloc]
                                       initWithTitle:@"我的乐谱"
@@ -39,6 +42,9 @@
 
     [self initKeyBoardToolBar];
     [self chooseClefTextField];
+    
+    //初始化五线谱的数组
+    self.stavesArr = [[NSMutableArray alloc] initWithCapacity:10];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -114,6 +120,15 @@
     [stave addGestureRecognizer:tapRec];
     [self.scrollView addSubview:stave];
     self.numOfStave++;
+    
+    //判断一下当前的Clef，是什么调性
+    if (self.currentClef != nil) {
+        [stave drawMajorClef:self.currentClef];
+    }
+
+    
+    //添加到数组中
+    [self.stavesArr addObject:stave];
 }
 
 - (void)chooseModeTouchedUp {
@@ -133,6 +148,7 @@
          [UIView setAnimationBeginsFromCurrentState:YES];
          [UIView setAnimationCurve:[curve intValue]];
          self.navigationController.toolbar.center = CGPointMake(self.navigationController.toolbar.center.x, keyBoardEndY - self.navigationController.toolbar.bounds.size.height/2.0);
+//        self.navigationController.toolbar.center = CGPointMake(self.navigationController.toolbar.center.x, keyBoardEndY - self.navigationController.toolbar.bounds.size.height*1.5);
          // keyBoardEndY的坐标包括了状态栏的高度，要减去 }];
 
      }];
@@ -141,6 +157,11 @@
 #pragma mark - UITextField
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
+    return YES;
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    self.tabBarController.tabBar.hidden = YES;
     return YES;
 }
 
@@ -156,12 +177,55 @@
     
     UITextField* tf = [[UITextField alloc]initWithFrame:CGRectMake(5, 5, 120, 30)];
     tf.placeholder = @"请选择调式";
-    tf.inputAccessoryView = [[MajorsKeyBoardView alloc]init];
+    self.majorsKB = [[MajorsKeyBoardView alloc]init];
+//    tf.inputAccessoryView = self.majorsKB;
+    tf.inputView = self.majorsKB;
     tf.textColor = [UIColor blueColor];
 //    tf.borderStyle = UITextBorderStyleRoundedRect;
     tf.delegate = self;
-    
+    __weak __block UITextField * copy_tf = tf;
+    __weak __block EditScoreViewController* copy_vc = self;
+    [self.majorsKB setMajorsKeyBoardBlock:^(NSString *majorsName) {
+        copy_tf.text = majorsName;
+        copy_vc.currentClef = majorsName;
+        //在五线谱上面绘制相关图形
+        for (StaveView* view in copy_vc.stavesArr) {
+            [view drawMajorClef:majorsName];
+        }
+    }];
+    [self.majorsKB setMajorsKeyBoardSendBlock:^{
+        [copy_tf resignFirstResponder];
+    }];
     [self.scrollView addSubview:tf];
 }
 
+
+//- (void)drawClef:(NSString*)majorName inStave:(StaveView*)view{
+//    if ([majorName isEqualToString:@"F大调"]) {
+//        
+//        [self drawFlatInX:0 inY:perX inStave:view];
+//        [self drawFlatInX:0 inY:23*perX inStave:view];
+//    }else if ([majorName isEqualToString:@"<#string#>"])
+//}
+//
+//- (void)drawFlatInX:(CGFloat)X inY:(CGFloat)Y inStave:(StaveView*)view{
+//    CGFloat startX = (6*perX + 16*2.44/6.87*perX) + X;
+//    CGFloat startY = (12*perX) + Y;
+//    
+//        //绘制降号
+//        UIImage* flat = [UIImage imageNamed:@"flat"];
+//        CGSize itemSize = CGSizeMake(4 * 0.64/2.73 * perX, 4*perX);
+//        UIGraphicsBeginImageContextWithOptions(itemSize, NO, 0.0);
+//        CGRect imageRect = CGRectMake(0.0, 0.0,  itemSize.width, itemSize.height);
+//        [flat drawInRect:imageRect];
+//        UIImageView* flatImageView = [[UIImageView alloc]initWithFrame:CGRectMake(startX, startY, itemSize.width, itemSize.height)];
+//        flatImageView.image = UIGraphicsGetImageFromCurrentImageContext();
+//        UIGraphicsEndImageContext();
+//        [view addSubview:flatImageView];
+//    
+//}
+
+- (void)drawSharpInX:(CGFloat)X inY:(CGFloat)Y{
+    
+}
 @end

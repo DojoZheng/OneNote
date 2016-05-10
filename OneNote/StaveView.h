@@ -10,4 +10,7 @@
 
 @interface StaveView : UIView
 
+//绘制调性Clef
+- (void)drawMajorClef:(NSString*)majorName;
+
 @end

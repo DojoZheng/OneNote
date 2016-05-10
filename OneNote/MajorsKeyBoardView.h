@@ -15,7 +15,7 @@
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
 #define ToolBarHeight 40
 
-typedef void (^MajorsKeyBoardBlock)(NSString * majorsName,NSInteger majorsTag);
+typedef void (^MajorsKeyBoardBlock)(NSString * majorsName);
 typedef void (^MajorsKeyBoardSendBlock)(void);
 typedef void (^MajorsKeyBoardDeleteBlock)(void);
 
