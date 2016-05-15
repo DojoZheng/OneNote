@@ -8,6 +8,7 @@
 
 #import "ScoreViewController.h"
 #import "EditScoreViewController.h"
+#import "ScoreBL.h"
 
 #define ToolBarHeight 40
 
@@ -20,6 +21,14 @@
 
 @implementation ScoreViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    self.tabBarController.tabBar.hidden = NO;
+    ScoreBL* scoreBL = [[ScoreBL alloc]init];
+    self.scores = [scoreBL findAll];
+    [self.tableView reloadData];
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的乐谱";
@@ -28,7 +37,8 @@
     [self addTableView];
     
     self.scores = [[NSMutableArray alloc]initWithCapacity:10];
-    
+    ScoreBL* scoreBL = [[ScoreBL alloc]init];
+    self.scores = [scoreBL findAll];
     
 }
 
@@ -48,9 +58,33 @@
     if (nil == cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
     }
-    
-    cell.textLabel.text = [self.scores objectAtIndex:indexPath.row];
+    ScoreModel* score = [self.scores objectAtIndex:indexPath.row];
+    cell.textLabel.text = score.scoreTitle;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@  %@   %@",[self getScoreMajor:score.clefInfo],[self getScoreBeat:score.beatInfo],score.createTime];
     return cell;
+}
+
+- (NSString*)getScoreBeat:(NSNumber*)number{
+    NSString* path = [[NSBundle mainBundle]pathForResource:@"BeatNotes" ofType:@"plist"];
+    NSArray* beatArr = [NSArray arrayWithContentsOfFile:path];
+    NSDictionary* dict = [beatArr objectAtIndex:[number integerValue]];
+    return [dict objectForKey:@"name"];
+}
+
+- (NSString*)getScoreMajor:(NSNumber*)number{
+    NSInteger index = [number integerValue];
+    if (index < 8) {
+        NSString* path = [[NSBundle mainBundle]pathForResource:@"SharpMajors" ofType:@"plist"];
+        NSArray* sharpArr = [NSArray arrayWithContentsOfFile:path];
+        NSDictionary* sharpDict = [sharpArr objectAtIndex:index];
+        return [sharpDict objectForKey:@"major"];
+    }else{
+        NSString* path = [[NSBundle mainBundle]pathForResource:@"FlatMajors" ofType:@"plist"];
+        NSArray* sharpArr = [NSArray arrayWithContentsOfFile:path];
+        NSDictionary* flatDict = [sharpArr objectAtIndex:index-8];
+        return [flatDict objectForKey:@"major"];
+    }
+
 }
 /*
 #pragma mark - Navigation
@@ -88,7 +122,18 @@
     [self.navigationController pushViewController:scoreVC animated:YES];
 }
 
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 60;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+}
+
 @end

@@ -26,5 +26,4 @@ typedef void (^MajorsKeyBoardDeleteBlock)(void);
 - (void)setMajorsKeyBoardSendBlock:(MajorsKeyBoardSendBlock)block;
 - (void)setMajorsKeyBoardDeleteBlock:(MajorsKeyBoardDeleteBlock)block;
 
-
 @end

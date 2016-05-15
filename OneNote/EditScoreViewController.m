@@ -10,6 +10,8 @@
 #import "StaveView.h"
 #import "MajorsKeyBoardView.h"
 #import "BeatKeyBoardView.h"
+#import "ScoreModel.h"
+#import "ScoreBL.h"
 
 
 @interface EditScoreViewController () <UITextFieldDelegate>
@@ -20,7 +22,8 @@
 
 @property (nonatomic) int numOfStave;
 @property (nonatomic, strong) NSMutableArray* stavesArr;
-@property (nonatomic, copy) NSString* currentClef;
+@property (nonatomic, copy) NSString* currentMajor;
+@property (nonatomic, copy) NSString* currentBeat;
 
 @end
 
@@ -80,11 +83,18 @@
         NSLog(@"score title nil");
     }else{
         //对当前乐谱进行保存
-        
+        ScoreModel* model = [[ScoreModel alloc]
+                             initWithScoreTitle:self.scoreTitle.text
+                             ClefInfo:[self getMajorTag:self.currentMajor]
+                             BeatInfo:[self getBeatTag:self.currentBeat]
+                             CreateTime:[self getCurrentTime]];
+        ScoreBL* scoreBL = [[ScoreBL alloc]init];
+        [scoreBL createScore:model];
     }
     [self.navigationController popViewControllerAnimated:YES];
     
 }
+
 
 - (void)initKeyBoardToolBar {
     //给键盘设置一个通知
@@ -141,8 +151,8 @@
     self.numOfStave++;
     
     //判断一下当前的Clef，是什么调性
-    if (self.currentClef != nil) {
-        [stave drawMajorClef:self.currentClef];
+    if (self.currentMajor != nil) {
+        [stave drawMajorClef:self.currentMajor];
     }
     
     //添加到数组中
@@ -205,7 +215,7 @@
     __weak __block EditScoreViewController* copy_vc = self;
     [self.majorsKB setMajorsKeyBoardBlock:^(NSString *majorsName) {
         copy_tf.text = majorsName;
-        copy_vc.currentClef = majorsName;
+        copy_vc.currentMajor = majorsName;
         //在五线谱上面绘制相关图形
         for (StaveView* view in copy_vc.stavesArr) {
             [view drawMajorClef:majorsName];
@@ -218,12 +228,13 @@
 }
 
 
+
 //- (void)drawClef:(NSString*)majorName inStave:(StaveView*)view{
 //    if ([majorName isEqualToString:@"F大调"]) {
 //        
 //        [self drawFlatInX:0 inY:perX inStave:view];
 //        [self drawFlatInX:0 inY:23*perX inStave:view];
-//    }else if ([majorName isEqualToString:@"<#string#>"])
+//    }else if ([majorName isEqualToString:@""])
 //}
 //
 //- (void)drawFlatInX:(CGFloat)X inY:(CGFloat)Y inStave:(StaveView*)view{
@@ -260,7 +271,7 @@
     __weak __block EditScoreViewController* copy_vc = self;
 //    [self.beatKB setMajorsKeyBoardBlock:^(NSString *majorsName) {
 //        copy_tf.text = majorsName;
-//        copy_vc.currentClef = majorsName;
+//        copy_vc.currentMajor = majorsName;
 //        //在五线谱上面绘制相关图形
 //        for (StaveView* view in copy_vc.stavesArr) {
 //            [view drawMajorClef:majorsName];
@@ -268,17 +279,68 @@
 //    }];
     [self.beatKB returnBeatType:^(NSString* beatType, NSString* length, NSString* speed) {
         copy_tf.text = beatType;
+        self.currentBeat = beatType;
        //在五线谱上面绘制相关图形
         StaveView* view;
         if (copy_vc.stavesArr.count != 0) {
             view = [copy_vc.stavesArr objectAtIndex:0];
             [view drawBeatNoteWithLength:length andSpeed:speed];
         }
-        
     }];
     [self.majorsKB setMajorsKeyBoardSendBlock:^{
         [copy_tf resignFirstResponder];
     }];
     [self.scrollView addSubview:tf];
 }
+
+/**
+ *  获取系统当前时间
+ */
+- (NSString*)getCurrentTime{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    NSString* currentDate = [formatter stringFromDate:[NSDate date]];
+    return currentDate;
+}
+
+- (NSNumber*)getBeatTag:(NSString*)beatName{
+    NSString* path = [[NSBundle mainBundle]pathForResource:@"BeatNotes" ofType:@"plist"];
+    NSArray* beatArr = [NSArray arrayWithContentsOfFile:path];
+//    NSMutableArray* beatNameArr = [[NSMutableArray alloc]initWithCapacity:16];
+    for (int i = 0; i < beatArr.count; i++) {
+        NSDictionary* dictTemp = [beatArr objectAtIndex:i];
+        NSString* beatTemp = [dictTemp objectForKey:@"name"];
+        if ([beatTemp isEqualToString:beatName]) {
+            return [NSNumber numberWithInteger:i];
+        }
+    }
+    return nil;
+}
+
+//用于获取当前Major调性的对应下标
+- (NSNumber*)getMajorTag:(NSString*)majorName{
+    NSString* sharpPath = [[NSBundle mainBundle] pathForResource:@"SharpMajors" ofType:@"plist"];
+    NSArray* sharpMajors = [NSArray arrayWithContentsOfFile:sharpPath];
+    
+    NSString* flatPath = [[NSBundle mainBundle] pathForResource:@"FlatMajors" ofType:@"plist"];
+    NSArray* flatMajors = [NSArray arrayWithContentsOfFile:flatPath];
+    
+    NSMutableArray* majorsNameArr = [[NSMutableArray alloc]initWithCapacity:16];
+    //先是升调 后是降调：要记住顺序，在将tag转换成对应Major的NSString时候要用
+    for(NSDictionary* dict in sharpMajors){
+        [majorsNameArr addObject:[dict objectForKey:@"major"]];
+    }
+    for (NSDictionary* dict in flatMajors) {
+        [majorsNameArr addObject:[dict objectForKey:@"major"]];
+    }
+    
+    for (int i = 0; i < majorsNameArr.count; i++) {
+        NSString* tempMajor = [majorsNameArr objectAtIndex:i];
+        if ([tempMajor isEqualToString:majorName]) {
+            return [NSNumber numberWithInteger:i];
+        }
+    }
+    return nil;
+}
+
 @end

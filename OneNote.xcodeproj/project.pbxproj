@@ -90,6 +90,11 @@
 		E187FE431C5CF16300B02450 /* BmobSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E187FE421C5CF16300B02450 /* BmobSDK.framework */; };
 		E187FE481C5CF21C00B02450 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E187FE461C5CF21C00B02450 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		E187FE491C5CF21C00B02450 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E187FE471C5CF21C00B02450 /* TencentOpenAPI.framework */; };
+		E193AFA01CE8589E008E3603 /* ScoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E193AF9F1CE8589E008E3603 /* ScoreModel.m */; };
+		E193AFA61CE85CE1008E3603 /* ScoreManagedObject+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E193AFA31CE85CE1008E3603 /* ScoreManagedObject+CoreDataProperties.m */; };
+		E193AFA71CE85CE1008E3603 /* ScoreManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E193AFA51CE85CE1008E3603 /* ScoreManagedObject.m */; };
+		E193AFAD1CE864D4008E3603 /* ScoreBL.m in Sources */ = {isa = PBXBuildFile; fileRef = E193AFAC1CE864D4008E3603 /* ScoreBL.m */; };
+		E193AFB01CE8652A008E3603 /* ScoreDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = E193AFAF1CE8652A008E3603 /* ScoreDAO.m */; };
 		E1B2A1791CE5EA3100E00D50 /* BeatKeyBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B2A1781CE5EA3100E00D50 /* BeatKeyBoardView.m */; };
 		E1B2A17C1CE5FA6A00E00D50 /* BeatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B2A17B1CE5FA6A00E00D50 /* BeatManager.m */; };
 		E1B2A17E1CE5FC1500E00D50 /* BeatNotes.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1B2A17D1CE5FC1500E00D50 /* BeatNotes.plist */; };
@@ -275,6 +280,16 @@
 		E187FE421C5CF16300B02450 /* BmobSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BmobSDK.framework; sourceTree = "<group>"; };
 		E187FE461C5CF21C00B02450 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		E187FE471C5CF21C00B02450 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
+		E193AF9E1CE8589E008E3603 /* ScoreModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreModel.h; sourceTree = "<group>"; };
+		E193AF9F1CE8589E008E3603 /* ScoreModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreModel.m; sourceTree = "<group>"; };
+		E193AFA21CE85CE1008E3603 /* ScoreManagedObject+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ScoreManagedObject+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E193AFA31CE85CE1008E3603 /* ScoreManagedObject+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ScoreManagedObject+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E193AFA41CE85CE1008E3603 /* ScoreManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreManagedObject.h; sourceTree = "<group>"; };
+		E193AFA51CE85CE1008E3603 /* ScoreManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreManagedObject.m; sourceTree = "<group>"; };
+		E193AFAB1CE864D4008E3603 /* ScoreBL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreBL.h; sourceTree = "<group>"; };
+		E193AFAC1CE864D4008E3603 /* ScoreBL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreBL.m; sourceTree = "<group>"; };
+		E193AFAE1CE8652A008E3603 /* ScoreDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreDAO.h; sourceTree = "<group>"; };
+		E193AFAF1CE8652A008E3603 /* ScoreDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreDAO.m; sourceTree = "<group>"; };
 		E1B2A1771CE5EA3100E00D50 /* BeatKeyBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeatKeyBoardView.h; sourceTree = "<group>"; };
 		E1B2A1781CE5EA3100E00D50 /* BeatKeyBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeatKeyBoardView.m; sourceTree = "<group>"; };
 		E1B2A17A1CE5FA6A00E00D50 /* BeatManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeatManager.h; sourceTree = "<group>"; };
@@ -627,6 +642,7 @@
 		E105D9C21CDC2E4500393AFD /* 乐谱编辑 */ = {
 			isa = PBXGroup;
 			children = (
+				E193AF9D1CE85869008E3603 /* 乐谱数据模型 */,
 				E1B2A1761CE5E8BB00E00D50 /* 节拍 */,
 				E105D9C61CDC321900393AFD /* 24大小调 */,
 				E109D4AF1CD2023600F9E67D /* EditScoreViewController.h */,
@@ -747,6 +763,54 @@
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
+		E193AF9D1CE85869008E3603 /* 乐谱数据模型 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "乐谱数据模型";
+			sourceTree = "<group>";
+		};
+		E193AFA11CE85CC5008E3603 /* Score */ = {
+			isa = PBXGroup;
+			children = (
+				E193AFAA1CE864A5008E3603 /* Persistent Layer */,
+				E193AFA91CE86493008E3603 /* BusinessLogic Layer */,
+				E193AFA81CE85CF1008E3603 /* Model */,
+			);
+			name = Score;
+			sourceTree = "<group>";
+		};
+		E193AFA81CE85CF1008E3603 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E193AF9E1CE8589E008E3603 /* ScoreModel.h */,
+				E193AF9F1CE8589E008E3603 /* ScoreModel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		E193AFA91CE86493008E3603 /* BusinessLogic Layer */ = {
+			isa = PBXGroup;
+			children = (
+				E193AFAB1CE864D4008E3603 /* ScoreBL.h */,
+				E193AFAC1CE864D4008E3603 /* ScoreBL.m */,
+			);
+			name = "BusinessLogic Layer";
+			sourceTree = "<group>";
+		};
+		E193AFAA1CE864A5008E3603 /* Persistent Layer */ = {
+			isa = PBXGroup;
+			children = (
+				E193AFA21CE85CE1008E3603 /* ScoreManagedObject+CoreDataProperties.h */,
+				E193AFA31CE85CE1008E3603 /* ScoreManagedObject+CoreDataProperties.m */,
+				E193AFA41CE85CE1008E3603 /* ScoreManagedObject.h */,
+				E193AFA51CE85CE1008E3603 /* ScoreManagedObject.m */,
+				E193AFAE1CE8652A008E3603 /* ScoreDAO.h */,
+				E193AFAF1CE8652A008E3603 /* ScoreDAO.m */,
+			);
+			name = "Persistent Layer";
+			sourceTree = "<group>";
+		};
 		E1B2A1761CE5E8BB00E00D50 /* 节拍 */ = {
 			isa = PBXGroup;
 			children = (
@@ -783,6 +847,7 @@
 		E1C4E0461C60905200A36562 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				E193AFA11CE85CC5008E3603 /* Score */,
 				E1C4E0531C6092E900A36562 /* ONCoreDataDAO.h */,
 				E1C4E0541C6092E900A36562 /* ONCoreDataDAO.m */,
 				E1C4E0491C60907800A36562 /* Memo */,
@@ -1103,10 +1168,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E193AFA61CE85CE1008E3603 /* ScoreManagedObject+CoreDataProperties.m in Sources */,
 				E187FE351C5CF11200B02450 /* SDWebImageDownloader.m in Sources */,
 				E146FCD11C3A57EC00FE2B44 /* ONUser.m in Sources */,
 				E138F5751C46150B0013E451 /* NoteViewController.m in Sources */,
 				E187FE381C5CF11200B02450 /* SDWebImagePrefetcher.m in Sources */,
+				E193AFA71CE85CE1008E3603 /* ScoreManagedObject.m in Sources */,
 				E105D9C11CD9D3C300393AFD /* StaveView.m in Sources */,
 				E187FE3F1C5CF11200B02450 /* UIView+WebCacheOperation.m in Sources */,
 				E1C4E0421C60902400A36562 /* MemoManagedObject+CoreDataProperties.m in Sources */,
@@ -1119,6 +1186,7 @@
 				451980AF1C5E28CD00429DA4 /* NoteListCell.m in Sources */,
 				E1C4E05B1C6094C200A36562 /* NoteDAO.m in Sources */,
 				221060DE1C040D5000B49A89 /* AppDelegate.m in Sources */,
+				E193AFA01CE8589E008E3603 /* ScoreModel.m in Sources */,
 				E11B7C0D1C9AA1E100535108 /* WPImageMetaViewController.m in Sources */,
 				22B2768B1C13D8C10059A167 /* LeftSlideViewController.m in Sources */,
 				E109D4AB1CD1B2D600F9E67D /* ScoreViewController.m in Sources */,
@@ -1129,6 +1197,7 @@
 				E1B3DAD61C5A1A0B00D0B3BE /* MemoTableViewCell.m in Sources */,
 				451980A61C5E28C100429DA4 /* Colours.m in Sources */,
 				E11B7C0A1C9AA16B00535108 /* WPEditorDemoLoggingConfiguration.m in Sources */,
+				E193AFB01CE8652A008E3603 /* ScoreDAO.m in Sources */,
 				E1B2A1811CE607EC00E00D50 /* BeatView.m in Sources */,
 				E109D4B21CD2023600F9E67D /* EditScoreViewController.m in Sources */,
 				E1C4E0431C60902400A36562 /* MemoManagedObject.m in Sources */,
@@ -1157,6 +1226,7 @@
 				E138F56A1C44EAA50013E451 /* ADLivelyTableView.m in Sources */,
 				E187FE301C5CF11200B02450 /* MKAnnotationView+WebCache.m in Sources */,
 				E1C4E0551C6092E900A36562 /* ONCoreDataDAO.m in Sources */,
+				E193AFAD1CE864D4008E3603 /* ScoreBL.m in Sources */,
 				E1C4E0441C60902400A36562 /* UserManagedObject+CoreDataProperties.m in Sources */,
 				E1C86F2A1CB3AC4300914149 /* NoteManagedObject.m in Sources */,
 				E1CD4D011C65EDD800A684E5 /* MemoBL.m in Sources */,
