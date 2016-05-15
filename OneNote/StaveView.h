@@ -13,4 +13,7 @@
 //绘制调性Clef
 - (void)drawMajorClef:(NSString*)majorName;
 
+//绘制节拍Beat
+- (void)drawBeatNoteWithLength:(NSString*)length andSpeed:(NSString*)speed;
+
 @end

@@ -90,6 +90,10 @@
 		E187FE431C5CF16300B02450 /* BmobSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E187FE421C5CF16300B02450 /* BmobSDK.framework */; };
 		E187FE481C5CF21C00B02450 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E187FE461C5CF21C00B02450 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		E187FE491C5CF21C00B02450 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E187FE471C5CF21C00B02450 /* TencentOpenAPI.framework */; };
+		E1B2A1791CE5EA3100E00D50 /* BeatKeyBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B2A1781CE5EA3100E00D50 /* BeatKeyBoardView.m */; };
+		E1B2A17C1CE5FA6A00E00D50 /* BeatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B2A17B1CE5FA6A00E00D50 /* BeatManager.m */; };
+		E1B2A17E1CE5FC1500E00D50 /* BeatNotes.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1B2A17D1CE5FC1500E00D50 /* BeatNotes.plist */; };
+		E1B2A1811CE607EC00E00D50 /* BeatView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B2A1801CE607EC00E00D50 /* BeatView.m */; };
 		E1B3DAD61C5A1A0B00D0B3BE /* MemoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B3DAD41C5A1A0B00D0B3BE /* MemoTableViewCell.m */; };
 		E1B3DAD71C5A1A0B00D0B3BE /* MemoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1B3DAD51C5A1A0B00D0B3BE /* MemoTableViewCell.xib */; };
 		E1C4DFEB1C5F3F8200A36562 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C4DFEA1C5F3F8200A36562 /* CoreData.framework */; };
@@ -271,6 +275,13 @@
 		E187FE421C5CF16300B02450 /* BmobSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BmobSDK.framework; sourceTree = "<group>"; };
 		E187FE461C5CF21C00B02450 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		E187FE471C5CF21C00B02450 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
+		E1B2A1771CE5EA3100E00D50 /* BeatKeyBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeatKeyBoardView.h; sourceTree = "<group>"; };
+		E1B2A1781CE5EA3100E00D50 /* BeatKeyBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeatKeyBoardView.m; sourceTree = "<group>"; };
+		E1B2A17A1CE5FA6A00E00D50 /* BeatManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeatManager.h; sourceTree = "<group>"; };
+		E1B2A17B1CE5FA6A00E00D50 /* BeatManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeatManager.m; sourceTree = "<group>"; };
+		E1B2A17D1CE5FC1500E00D50 /* BeatNotes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BeatNotes.plist; sourceTree = "<group>"; };
+		E1B2A17F1CE607EC00E00D50 /* BeatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeatView.h; sourceTree = "<group>"; };
+		E1B2A1801CE607EC00E00D50 /* BeatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeatView.m; sourceTree = "<group>"; };
 		E1B3DAD31C5A1A0B00D0B3BE /* MemoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoTableViewCell.h; sourceTree = "<group>"; };
 		E1B3DAD41C5A1A0B00D0B3BE /* MemoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoTableViewCell.m; sourceTree = "<group>"; };
 		E1B3DAD51C5A1A0B00D0B3BE /* MemoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MemoTableViewCell.xib; sourceTree = "<group>"; };
@@ -616,6 +627,7 @@
 		E105D9C21CDC2E4500393AFD /* 乐谱编辑 */ = {
 			isa = PBXGroup;
 			children = (
+				E1B2A1761CE5E8BB00E00D50 /* 节拍 */,
 				E105D9C61CDC321900393AFD /* 24大小调 */,
 				E109D4AF1CD2023600F9E67D /* EditScoreViewController.h */,
 				E109D4B01CD2023600F9E67D /* EditScoreViewController.m */,
@@ -658,6 +670,15 @@
 				E109D4AD1CD1F26900F9E67D /* MusicalToolBar.xib */,
 			);
 			name = Score;
+			sourceTree = "<group>";
+		};
+		E1212ECA1CE2EE7F00EB1F5E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E10D9C501C5A00170019613C /* Memo.h */,
+				E10D9C511C5A00170019613C /* Memo.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		E138F5701C4613C10013E451 /* 其他 */ = {
@@ -726,6 +747,20 @@
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
+		E1B2A1761CE5E8BB00E00D50 /* 节拍 */ = {
+			isa = PBXGroup;
+			children = (
+				E1B2A1771CE5EA3100E00D50 /* BeatKeyBoardView.h */,
+				E1B2A1781CE5EA3100E00D50 /* BeatKeyBoardView.m */,
+				E1B2A17A1CE5FA6A00E00D50 /* BeatManager.h */,
+				E1B2A17B1CE5FA6A00E00D50 /* BeatManager.m */,
+				E1B2A17D1CE5FC1500E00D50 /* BeatNotes.plist */,
+				E1B2A17F1CE607EC00E00D50 /* BeatView.h */,
+				E1B2A1801CE607EC00E00D50 /* BeatView.m */,
+			);
+			name = "节拍";
+			sourceTree = "<group>";
+		};
 		E1C4DFE51C5F2CD700A36562 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -778,6 +813,7 @@
 		E1C4E0491C60907800A36562 /* Memo */ = {
 			isa = PBXGroup;
 			children = (
+				E1212ECA1CE2EE7F00EB1F5E /* Model */,
 				E1CD4CF41C65E7E700A684E5 /* BusinessLogic Layer */,
 				E1CD4CF31C65E7DB00A684E5 /* Persistent Layer */,
 			);
@@ -803,8 +839,6 @@
 				E1C4E03B1C60902400A36562 /* MemoManagedObject.m */,
 				E1C4E05C1C6094CD00A36562 /* MemoDAO.h */,
 				E1C4E05D1C6094CD00A36562 /* MemoDAO.m */,
-				E10D9C501C5A00170019613C /* Memo.h */,
-				E10D9C511C5A00170019613C /* Memo.m */,
 			);
 			name = "Persistent Layer";
 			sourceTree = "<group>";
@@ -996,6 +1030,7 @@
 				E187FE481C5CF21C00B02450 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				E105D9D01CDC7F8E00393AFD /* MajorsKeyBoard.xib in Resources */,
 				22B276791C0F19760059A167 /* Localizable.strings in Resources */,
+				E1B2A17E1CE5FC1500E00D50 /* BeatNotes.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1080,6 +1115,7 @@
 				E1CD4CFE1C65E8BD00A684E5 /* NoteBL.m in Sources */,
 				E1DB59891CBAA127002493FE /* Note.m in Sources */,
 				E1C4E0581C6094B400A36562 /* UserDAO.m in Sources */,
+				E1B2A1791CE5EA3100E00D50 /* BeatKeyBoardView.m in Sources */,
 				451980AF1C5E28CD00429DA4 /* NoteListCell.m in Sources */,
 				E1C4E05B1C6094C200A36562 /* NoteDAO.m in Sources */,
 				221060DE1C040D5000B49A89 /* AppDelegate.m in Sources */,
@@ -1093,6 +1129,7 @@
 				E1B3DAD61C5A1A0B00D0B3BE /* MemoTableViewCell.m in Sources */,
 				451980A61C5E28C100429DA4 /* Colours.m in Sources */,
 				E11B7C0A1C9AA16B00535108 /* WPEditorDemoLoggingConfiguration.m in Sources */,
+				E1B2A1811CE607EC00E00D50 /* BeatView.m in Sources */,
 				E109D4B21CD2023600F9E67D /* EditScoreViewController.m in Sources */,
 				E1C4E0431C60902400A36562 /* MemoManagedObject.m in Sources */,
 				221060DB1C040D5000B49A89 /* main.m in Sources */,
@@ -1130,6 +1167,7 @@
 				E187FE3D1C5CF11200B02450 /* UIImageView+HighlightedWebCache.m in Sources */,
 				E1CD4CFB1C65E8A500A684E5 /* UserBL.m in Sources */,
 				E187FE3A1C5CF11200B02450 /* UIImage+GIF.m in Sources */,
+				E1B2A17C1CE5FA6A00E00D50 /* BeatManager.m in Sources */,
 				E187FE321C5CF11200B02450 /* SDImageCache.m in Sources */,
 				451980971C5E28B700429DA4 /* NoteDetailViewController.m in Sources */,
 			);

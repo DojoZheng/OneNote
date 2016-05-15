@@ -128,7 +128,6 @@
 
 
 - (void)ChangeClef:(id)sender {
-    NSLog(@"林娇玲是索嗨");
     UIButton* btn = sender;
     NSDictionary* dict = [self.currentMajor objectAtIndex:btn.tag];
     

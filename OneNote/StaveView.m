@@ -17,10 +17,17 @@
 #define SharpWidth 3*perX
 #define SharpHeight 6*perX
 
+#define GClefRightOriginX (5*perX + 16*2.44/6.87*perX)
+#define GClefRightOriginY (8*perX)
+#define GClefWidth 16*2.44/6.87*perX
+#define GClefHeight 16*perX
+
 
 @interface StaveView()
-
+//音调
 @property (nonatomic,strong) UIView* clefView;
+//节拍
+@property (nonatomic,strong) UIView* beatView;
 
 @end
 
@@ -245,7 +252,7 @@
         
         [self addSubview:self.clefView];
     }else if ([majorName isEqualToString:@"A大调"]){
-        self.clefView = [[UIView alloc]initWithFrame:CGRectMake(ClefViewX, ClefViewY, SharpWidth*2, SharpHeight)];
+        self.clefView = [[UIView alloc]initWithFrame:CGRectMake(ClefViewX, ClefViewY, SharpWidth*3, SharpHeight)];
         //升Fa（F）
         [self drawSharpInX:SharpWidth*0 inY:perX inView:self.clefView];
         [self drawSharpInX:SharpWidth*0 inY:27*perX inView:self.clefView];
@@ -260,7 +267,7 @@
         
         [self addSubview:self.clefView];
     }else if ([majorName isEqualToString:@"E大调"]){
-        self.clefView = [[UIView alloc]initWithFrame:CGRectMake(ClefViewX, ClefViewY, SharpWidth*2, SharpHeight)];
+        self.clefView = [[UIView alloc]initWithFrame:CGRectMake(ClefViewX, ClefViewY, SharpWidth*4, SharpHeight)];
         //升Fa（F）
         [self drawSharpInX:SharpWidth*0 inY:perX inView:self.clefView];
         [self drawSharpInX:SharpWidth*0 inY:27*perX inView:self.clefView];
@@ -279,7 +286,7 @@
         
         [self addSubview:self.clefView];
     }else if ([majorName isEqualToString:@"B大调升号"]){
-        self.clefView = [[UIView alloc]initWithFrame:CGRectMake(ClefViewX, ClefViewY, SharpWidth*2, SharpHeight)];
+        self.clefView = [[UIView alloc]initWithFrame:CGRectMake(ClefViewX, ClefViewY, SharpWidth*5, SharpHeight)];
         //升Fa（F）
         [self drawSharpInX:SharpWidth*0 inY:perX inView:self.clefView];
         [self drawSharpInX:SharpWidth*0 inY:27*perX inView:self.clefView];
@@ -302,7 +309,7 @@
         
         [self addSubview:self.clefView];
     }else if ([majorName isEqualToString:@"升F大调"]){
-        self.clefView = [[UIView alloc]initWithFrame:CGRectMake(ClefViewX, ClefViewY, SharpWidth*2, SharpHeight)];
+        self.clefView = [[UIView alloc]initWithFrame:CGRectMake(ClefViewX, ClefViewY, SharpWidth*6, SharpHeight)];
         //升Fa（F）
         [self drawSharpInX:SharpWidth*0 inY:perX inView:self.clefView];
         [self drawSharpInX:SharpWidth*0 inY:27*perX inView:self.clefView];
@@ -329,7 +336,7 @@
         
         [self addSubview:self.clefView];
     }else if ([majorName isEqualToString:@"降D大调升号"]){
-        self.clefView = [[UIView alloc]initWithFrame:CGRectMake(ClefViewX, ClefViewY, SharpWidth*2, SharpHeight)];
+        self.clefView = [[UIView alloc]initWithFrame:CGRectMake(ClefViewX, ClefViewY, SharpWidth*7, SharpHeight)];
         //升Fa（F）
         [self drawSharpInX:SharpWidth*0 inY:perX inView:self.clefView];
         [self drawSharpInX:SharpWidth*0 inY:27*perX inView:self.clefView];
@@ -387,4 +394,40 @@
     UIGraphicsEndImageContext();
     [view addSubview:sharpImageView];
 }
+
+- (void)drawBeatNoteWithLength:(NSString*)length andSpeed:(NSString*)speed {
+    if (self.beatView != nil) {
+        [self.beatView removeFromSuperview];
+    }
+    CGFloat startX;
+    CGFloat startY;
+    if (self.clefView != nil) {
+        startX = 5*perX + GClefWidth + self.clefView.bounds.size.width + perX;
+        startY = 12*perX;
+    }else{
+        startX = GClefRightOriginX + perX;
+        startY = 12*perX;
+    }
+    self.beatView = [[UIView alloc]initWithFrame:CGRectMake(startX, startY, perX*6, perX*28)];
+    
+    for (int i = 0;i < 2; i++) {
+        UILabel* lengthLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 20*perX*i, perX*6, perX*4)];
+        lengthLabel.text = length;
+        lengthLabel.textAlignment = NSTextAlignmentCenter;
+        lengthLabel.center = CGPointMake(3*perX, 2*perX + 20*perX*i);
+        lengthLabel.font = [UIFont boldSystemFontOfSize:16];
+        
+        UILabel* speedLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 20*perX*i+perX*4, perX*4, perX*4)];
+        speedLabel.textAlignment =NSTextAlignmentCenter;
+        speedLabel.center = CGPointMake(3*perX, 6*perX + 20*perX*i);
+        speedLabel.text = speed;
+        speedLabel.font = [UIFont boldSystemFontOfSize:16];
+        
+        [self.beatView addSubview:lengthLabel];
+        [self.beatView addSubview:speedLabel];
+    }
+    
+    [self addSubview:self.beatView];
+}
+
 @end

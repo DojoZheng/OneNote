@@ -13,6 +13,7 @@
 
 @interface ScoreViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong) UITableView* tableView;
+@property (nonatomic,strong) NSMutableArray* scores;
 
 
 @end
@@ -23,9 +24,10 @@
     [super viewDidLoad];
     self.title = @"我的乐谱";
     
-    
     [self addBarButton];
     [self addTableView];
+    
+    self.scores = [[NSMutableArray alloc]initWithCapacity:10];
     
     
 }
@@ -37,7 +39,7 @@
 
 #pragma mark - UITableViewDataSource
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    return self.scores.count;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -47,7 +49,7 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
     }
     
-    cell.textLabel.text = @"score";
+    cell.textLabel.text = [self.scores objectAtIndex:indexPath.row];
     return cell;
 }
 /*
@@ -79,6 +81,10 @@
 
 - (void)addScore {
     EditScoreViewController* scoreVC = [[EditScoreViewController alloc]initWithNibName:@"EditScoreViewController" bundle:nil];
+    [scoreVC returnScoreInfo:^(NSString *scoreTitle) {
+        [self.scores addObject:scoreTitle];
+        [self.tableView reloadData];
+    }];
     [self.navigationController pushViewController:scoreVC animated:YES];
 }
 

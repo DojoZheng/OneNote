@@ -230,7 +230,7 @@
     _currentMemo = self.memoArray[indexPath.row];
     
     //2.初始化AlertController
-    UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"新建备忘录" message:NULL preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"修改备忘录" message:NULL preferredStyle:UIAlertControllerStyleAlert];
     
     //    UIAlertAction *createTitle = [UIAlertAction actionWithTitle:@"标题" style:UIAlertActionStyleDefault handler:nil];
     //    UIAlertAction *createDir = [UIAlertAction actionWithTitle:@"开始时间" style:UIAlertActionStyleDefault handler:nil];

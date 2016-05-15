@@ -9,12 +9,14 @@
 #import "EditScoreViewController.h"
 #import "StaveView.h"
 #import "MajorsKeyBoardView.h"
+#import "BeatKeyBoardView.h"
 
 
 @interface EditScoreViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *scoreTitle;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) MajorsKeyBoardView* majorsKB;
+@property (strong, nonatomic) BeatKeyBoardView* beatKB;
 
 @property (nonatomic) int numOfStave;
 @property (nonatomic, strong) NSMutableArray* stavesArr;
@@ -42,6 +44,7 @@
 
     [self initKeyBoardToolBar];
     [self chooseClefTextField];
+    [self chooseBeatTextField];
     
     //初始化五线谱的数组
     self.stavesArr = [[NSMutableArray alloc] initWithCapacity:10];
@@ -50,6 +53,16 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    if (self.returnScoreInfoBlock != nil) {
+        self.returnScoreInfoBlock(self.scoreTitle.text);
+    }
+}
+
+- (void)returnScoreInfo:(ReturnScoreInfoBlock)block{
+    self.returnScoreInfoBlock = block;
 }
 
 /*
@@ -65,6 +78,9 @@
 - (void)backToMyScore {
     if ([self.scoreTitle.text isEqualToString:@""]) {
         NSLog(@"score title nil");
+    }else{
+        //对当前乐谱进行保存
+        
     }
     [self.navigationController popViewControllerAnimated:YES];
     
@@ -97,6 +113,7 @@
     UIBarButtonItem* addStaveItem = [[UIBarButtonItem alloc]initWithImage:UIGraphicsGetImageFromCurrentImageContext() style:UIBarButtonItemStyleDone target:self action:@selector(addStaveTouchedUp)];
     UIGraphicsEndImageContext();
     
+    
     UIImage* chooseModeImage = [UIImage imageNamed:@"music"];
     CGSize chooseModeSize = CGSizeMake(30, 30);
     UIGraphicsBeginImageContextWithOptions(chooseModeSize, NO, 0);
@@ -105,7 +122,9 @@
     UIBarButtonItem* chooseModeItem = [[UIBarButtonItem alloc]initWithImage:UIGraphicsGetImageFromCurrentImageContext() style:UIBarButtonItemStyleDone target:self action:@selector(chooseModeTouchedUp)];
     UIGraphicsEndImageContext();
     
-    NSArray* itemsArray = [NSArray arrayWithObjects:addStaveItem,chooseModeItem,nil];
+    UIBarButtonItem * spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    NSArray* itemsArray = [NSArray arrayWithObjects:addStaveItem, spaceItem, chooseModeItem,nil];
     self.toolbarItems = itemsArray;
 }
 
@@ -125,7 +144,6 @@
     if (self.currentClef != nil) {
         [stave drawMajorClef:self.currentClef];
     }
-
     
     //添加到数组中
     [self.stavesArr addObject:stave];
@@ -227,5 +245,40 @@
 
 - (void)drawSharpInX:(CGFloat)X inY:(CGFloat)Y{
     
+}
+
+- (void)chooseBeatTextField {
+    UITextField* tf = [[UITextField alloc]initWithFrame:CGRectMake(150, 5, 120, 30)];
+    tf.placeholder = @"请选择节拍";
+    self.beatKB = [[BeatKeyBoardView alloc]init];
+    //    tf.inputAccessoryView = self.majorsKB;
+    tf.inputView = self.beatKB;
+    tf.textColor = [UIColor blueColor];
+    //    tf.borderStyle = UITextBorderStyleRoundedRect;
+    tf.delegate = self;
+    __weak __block UITextField * copy_tf = tf;
+    __weak __block EditScoreViewController* copy_vc = self;
+//    [self.beatKB setMajorsKeyBoardBlock:^(NSString *majorsName) {
+//        copy_tf.text = majorsName;
+//        copy_vc.currentClef = majorsName;
+//        //在五线谱上面绘制相关图形
+//        for (StaveView* view in copy_vc.stavesArr) {
+//            [view drawMajorClef:majorsName];
+//        }
+//    }];
+    [self.beatKB returnBeatType:^(NSString* beatType, NSString* length, NSString* speed) {
+        copy_tf.text = beatType;
+       //在五线谱上面绘制相关图形
+        StaveView* view;
+        if (copy_vc.stavesArr.count != 0) {
+            view = [copy_vc.stavesArr objectAtIndex:0];
+            [view drawBeatNoteWithLength:length andSpeed:speed];
+        }
+        
+    }];
+    [self.majorsKB setMajorsKeyBoardSendBlock:^{
+        [copy_tf resignFirstResponder];
+    }];
+    [self.scrollView addSubview:tf];
 }
 @end

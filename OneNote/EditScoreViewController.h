@@ -8,7 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^ReturnScoreInfoBlock)(NSString *scoreTitle);
+
 @interface EditScoreViewController : UIViewController
+
+@property (nonatomic, copy) ReturnScoreInfoBlock returnScoreInfoBlock;
+
+- (void)returnScoreInfo:(ReturnScoreInfoBlock)block;
 
 //+(EditScoreViewController*)instanceEditScoreViewController;
 @end
