@@ -95,6 +95,7 @@
 		E193AFA71CE85CE1008E3603 /* ScoreManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E193AFA51CE85CE1008E3603 /* ScoreManagedObject.m */; };
 		E193AFAD1CE864D4008E3603 /* ScoreBL.m in Sources */ = {isa = PBXBuildFile; fileRef = E193AFAC1CE864D4008E3603 /* ScoreBL.m */; };
 		E193AFB01CE8652A008E3603 /* ScoreDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = E193AFAF1CE8652A008E3603 /* ScoreDAO.m */; };
+		E1B0D8BA1CE9B93800C0763D /* MusicalToolKeyBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B0D8B91CE9B93800C0763D /* MusicalToolKeyBoardView.m */; };
 		E1B2A1791CE5EA3100E00D50 /* BeatKeyBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B2A1781CE5EA3100E00D50 /* BeatKeyBoardView.m */; };
 		E1B2A17C1CE5FA6A00E00D50 /* BeatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B2A17B1CE5FA6A00E00D50 /* BeatManager.m */; };
 		E1B2A17E1CE5FC1500E00D50 /* BeatNotes.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1B2A17D1CE5FC1500E00D50 /* BeatNotes.plist */; };
@@ -290,6 +291,8 @@
 		E193AFAC1CE864D4008E3603 /* ScoreBL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreBL.m; sourceTree = "<group>"; };
 		E193AFAE1CE8652A008E3603 /* ScoreDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreDAO.h; sourceTree = "<group>"; };
 		E193AFAF1CE8652A008E3603 /* ScoreDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreDAO.m; sourceTree = "<group>"; };
+		E1B0D8B81CE9B93800C0763D /* MusicalToolKeyBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicalToolKeyBoardView.h; sourceTree = "<group>"; };
+		E1B0D8B91CE9B93800C0763D /* MusicalToolKeyBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicalToolKeyBoardView.m; sourceTree = "<group>"; };
 		E1B2A1771CE5EA3100E00D50 /* BeatKeyBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeatKeyBoardView.h; sourceTree = "<group>"; };
 		E1B2A1781CE5EA3100E00D50 /* BeatKeyBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeatKeyBoardView.m; sourceTree = "<group>"; };
 		E1B2A17A1CE5FA6A00E00D50 /* BeatManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeatManager.h; sourceTree = "<group>"; };
@@ -642,7 +645,7 @@
 		E105D9C21CDC2E4500393AFD /* 乐谱编辑 */ = {
 			isa = PBXGroup;
 			children = (
-				E193AF9D1CE85869008E3603 /* 乐谱数据模型 */,
+				E1B0D8B41CE9B8AD00C0763D /* 音乐编辑工具 */,
 				E1B2A1761CE5E8BB00E00D50 /* 节拍 */,
 				E105D9C61CDC321900393AFD /* 24大小调 */,
 				E109D4AF1CD2023600F9E67D /* EditScoreViewController.h */,
@@ -763,13 +766,6 @@
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
-		E193AF9D1CE85869008E3603 /* 乐谱数据模型 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "乐谱数据模型";
-			sourceTree = "<group>";
-		};
 		E193AFA11CE85CC5008E3603 /* Score */ = {
 			isa = PBXGroup;
 			children = (
@@ -809,6 +805,15 @@
 				E193AFAF1CE8652A008E3603 /* ScoreDAO.m */,
 			);
 			name = "Persistent Layer";
+			sourceTree = "<group>";
+		};
+		E1B0D8B41CE9B8AD00C0763D /* 音乐编辑工具 */ = {
+			isa = PBXGroup;
+			children = (
+				E1B0D8B81CE9B93800C0763D /* MusicalToolKeyBoardView.h */,
+				E1B0D8B91CE9B93800C0763D /* MusicalToolKeyBoardView.m */,
+			);
+			name = "音乐编辑工具";
 			sourceTree = "<group>";
 		};
 		E1B2A1761CE5E8BB00E00D50 /* 节拍 */ = {
@@ -1177,6 +1182,7 @@
 				E105D9C11CD9D3C300393AFD /* StaveView.m in Sources */,
 				E187FE3F1C5CF11200B02450 /* UIView+WebCacheOperation.m in Sources */,
 				E1C4E0421C60902400A36562 /* MemoManagedObject+CoreDataProperties.m in Sources */,
+				E1B0D8BA1CE9B93800C0763D /* MusicalToolKeyBoardView.m in Sources */,
 				E105D9CE1CDC391D00393AFD /* MajorsKeyBoardView.m in Sources */,
 				451980AB1C5E28C100429DA4 /* VNNote.m in Sources */,
 				E1CD4CFE1C65E8BD00A684E5 /* NoteBL.m in Sources */,

@@ -12,6 +12,7 @@
 #import "BeatKeyBoardView.h"
 #import "ScoreModel.h"
 #import "ScoreBL.h"
+#import "MusicalToolKeyBoardView.h"
 
 
 @interface EditScoreViewController () <UITextFieldDelegate>
@@ -24,6 +25,7 @@
 @property (nonatomic, strong) NSMutableArray* stavesArr;
 @property (nonatomic, copy) NSString* currentMajor;
 @property (nonatomic, copy) NSString* currentBeat;
+@property (nonatomic, strong) UITextField* musicalToolTF;
 
 @end
 
@@ -124,17 +126,17 @@
     UIGraphicsEndImageContext();
     
     
-    UIImage* chooseModeImage = [UIImage imageNamed:@"music"];
+    UIImage* chooseModeImage = [UIImage imageNamed:@"tool"];
     CGSize chooseModeSize = CGSizeMake(30, 30);
     UIGraphicsBeginImageContextWithOptions(chooseModeSize, NO, 0);
     CGRect chooseModeRect = CGRectMake(0, 0, chooseModeSize.width, chooseModeSize.height);
     [chooseModeImage drawInRect:chooseModeRect];
-    UIBarButtonItem* chooseModeItem = [[UIBarButtonItem alloc]initWithImage:UIGraphicsGetImageFromCurrentImageContext() style:UIBarButtonItemStyleDone target:self action:@selector(chooseModeTouchedUp)];
+    UIBarButtonItem* chooseModeItem = [[UIBarButtonItem alloc]initWithImage:UIGraphicsGetImageFromCurrentImageContext() style:UIBarButtonItemStyleDone target:self action:@selector(musicToolButtonTouchedUp)];
     UIGraphicsEndImageContext();
     
     UIBarButtonItem * spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
-    NSArray* itemsArray = [NSArray arrayWithObjects:addStaveItem, spaceItem, chooseModeItem,nil];
+    NSArray* itemsArray = [NSArray arrayWithObjects:spaceItem, addStaveItem, spaceItem, chooseModeItem,spaceItem, nil];
     self.toolbarItems = itemsArray;
 }
 
@@ -159,8 +161,14 @@
     [self.stavesArr addObject:stave];
 }
 
-- (void)chooseModeTouchedUp {
-	
+- (void)musicToolButtonTouchedUp {
+    NSLog(@"开始编辑乐谱");
+    self.musicalToolTF = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
+    self.musicalToolTF.inputView = [[MusicalToolKeyBoardView alloc]init];
+    [self.musicalToolTF becomeFirstResponder];
+    [self.view addSubview:self.musicalToolTF];
+    //添加自定义键盘
+
 }
 
 - (void)keyboardWillChangeFrame:(NSNotification *)notification {
@@ -269,14 +277,6 @@
     tf.delegate = self;
     __weak __block UITextField * copy_tf = tf;
     __weak __block EditScoreViewController* copy_vc = self;
-//    [self.beatKB setMajorsKeyBoardBlock:^(NSString *majorsName) {
-//        copy_tf.text = majorsName;
-//        copy_vc.currentMajor = majorsName;
-//        //在五线谱上面绘制相关图形
-//        for (StaveView* view in copy_vc.stavesArr) {
-//            [view drawMajorClef:majorsName];
-//        }
-//    }];
     [self.beatKB returnBeatType:^(NSString* beatType, NSString* length, NSString* speed) {
         copy_tf.text = beatType;
         self.currentBeat = beatType;
@@ -287,7 +287,7 @@
             [view drawBeatNoteWithLength:length andSpeed:speed];
         }
     }];
-    [self.majorsKB setMajorsKeyBoardSendBlock:^{
+    [self.beatKB returnConfirmButton:^{
         [copy_tf resignFirstResponder];
     }];
     [self.scrollView addSubview:tf];

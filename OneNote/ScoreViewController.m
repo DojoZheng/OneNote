@@ -26,7 +26,6 @@
     ScoreBL* scoreBL = [[ScoreBL alloc]init];
     self.scores = [scoreBL findAll];
     [self.tableView reloadData];
-    
 }
 
 - (void)viewDidLoad {
@@ -60,7 +59,9 @@
     }
     ScoreModel* score = [self.scores objectAtIndex:indexPath.row];
     cell.textLabel.text = score.scoreTitle;
+    [cell.textLabel setFont:[UIFont boldSystemFontOfSize:20]];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@  %@   %@",[self getScoreMajor:score.clefInfo],[self getScoreBeat:score.beatInfo],score.createTime];
+    cell.backgroundColor = [UIColor clearColor];
     return cell;
 }
 
@@ -102,6 +103,10 @@
     }
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.backgroundColor= [UIColor clearColor];
+    UIImageView*imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"noteBook"]];
+    self.tableView.backgroundView = imageView;
+    
     [self.view addSubview:self.tableView];
 }
 

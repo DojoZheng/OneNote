@@ -133,7 +133,7 @@
     
     self.block([dict objectForKey:@"major"]);
     [self block];
-    [self sendBlock];
+
 }
 
 - (void)setToolBar
@@ -162,6 +162,7 @@
 
 - (void)tapConfirmBtn {
 	self.sendBlock();
+    [self sendBlock];
 }
 
 

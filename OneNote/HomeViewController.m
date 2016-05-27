@@ -204,7 +204,7 @@ UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlow
 //    self.NoteArray = [noteBL findAll];
     Note* note = [self.NoteArray objectAtIndex:indexPath.row];
     cell.textLabel.text = note.titleText;
-    cell.detailTextLabel.text = note.bodyText;
+//    cell.detailTextLabel.text = note.bodyText;
     
     return cell;
 }
@@ -342,7 +342,13 @@ UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlow
         _tableView = [[ADLivelyTableView alloc]initWithFrame:CGRectMake(0,0, self.view.bounds.size.width, self.view.bounds.size.height-self.tabBarController.tabBar.height) style:UITableViewStylePlain];
         self.tableView.dataSource = self;
         self.tableView.delegate = self;
-        self.tableView.backgroundColor = [UIColor whiteColor];
+        
+        //修改背景图
+//        self.tableView.backgroundColor = [UIColor whiteColor];
+        self.tableView.backgroundColor= [UIColor clearColor];
+        UIImageView*imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"noteBook"]];
+        self.tableView.backgroundView = imageView;
+        
         [self.tableView setInitialCellTransformBlock:ADLivelyTransformFan];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;
         self.tableView.rowHeight = 90;

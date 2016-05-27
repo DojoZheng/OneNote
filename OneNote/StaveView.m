@@ -415,13 +415,13 @@
         lengthLabel.text = length;
         lengthLabel.textAlignment = NSTextAlignmentCenter;
         lengthLabel.center = CGPointMake(3*perX, 2*perX + 20*perX*i);
-        lengthLabel.font = [UIFont boldSystemFontOfSize:16];
+        lengthLabel.font = [UIFont boldSystemFontOfSize:5*perX];
         
         UILabel* speedLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 20*perX*i+perX*4, perX*4, perX*4)];
         speedLabel.textAlignment =NSTextAlignmentCenter;
         speedLabel.center = CGPointMake(3*perX, 6*perX + 20*perX*i);
         speedLabel.text = speed;
-        speedLabel.font = [UIFont boldSystemFontOfSize:16];
+        speedLabel.font = [UIFont boldSystemFontOfSize:5*perX];
         
         [self.beatView addSubview:lengthLabel];
         [self.beatView addSubview:speedLabel];

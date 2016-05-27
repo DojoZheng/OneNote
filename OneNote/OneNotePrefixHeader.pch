@@ -50,7 +50,7 @@
 #import "WPEditorDemoLoggingConfiguration.h"
 
 //画乐谱的时候使用的单位距离
-#define perX 3
+#define perX 2
 
 
 #endif /* OneNotePrefixHeader_pch */

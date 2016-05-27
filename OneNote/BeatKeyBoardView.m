@@ -27,6 +27,7 @@
 
 @property (nonatomic, strong)UIScrollView* scrollView;
 @property (nonatomic, strong)UIPageControl* pageControl;
+@property (nonatomic, strong)UIButton* button;
 
 //@property (nonatomic, strong)UIToolbar* toolBar;
 
@@ -74,6 +75,17 @@
     self.pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake(ScreenWidth/2 - 20,ScreenWidth/2 + 10, 40, 20)];
     self.pageControl.numberOfPages = 2;
     [self addSubview:self.pageControl];
+    
+    //添加ConfirmButton
+    self.button = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth - 50, ScreenWidth/2 + 5, 50, 30)];
+//    self.button.titleLabel.text = @"确定";
+    [self.button setTitle:@"确定" forState:UIControlStateNormal];
+    self.button.titleLabel.font = [UIFont boldSystemFontOfSize:20];
+    [self.button setTitleColor:[UIColor colorWithRed:0 green:0.48 blue:1.0 alpha:1] forState:UIControlStateNormal];
+//    self.button.titleLabel.textAlignment = NSTextAlignmentCenter;
+//    self.button.backgroundColor = [UIColor clearColor];
+    [self.button addTarget:self action:@selector(confirmButtonTouchedUp:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:self.button];
 }
 
 - (void)returnBeatType:(BeatKeyBoardBlock)block {
@@ -84,16 +96,12 @@
     self.confirmBlock = block;
 }
 
-
 - (void)fetchBeatNotes {
-    
     self.beatManager = [[BeatManager alloc]init];
     self.beatNotes = self.beatManager.notes;
     
     CGFloat beatX = 0;
     CGFloat beatY = 0;
-    
-
     
     for (int i = 0; i < 16; i++) {
         NSDictionary* dict = [self.beatNotes objectAtIndex:i];
@@ -124,7 +132,6 @@
 //        [beatBtn sendSubviewToBack:beatView];
 //        [beatView addSubview:beatBtn];
         [self.scrollView addSubview:beatView];
-        
     }
 }
 
@@ -137,18 +144,23 @@
     NSString* speed = [beatDict objectForKey:@"speed"];
     NSLog(@"选择节拍: %@",beatType);
     self.block(beatType,length,speed);
-    [self block];
+//    [self block];
     
 }
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
- // called when scroll view grinds to a halt
+    // called when scroll view grinds to a halt
     // 记录scrollView 的当前位置，因为已经设置了分页效果，所以：位置/屏幕大小 = 第几页
     int current = scrollView.contentOffset.x/ScreenWidth;
     
     //根据scrollView 的位置对page 的当前页赋值
     self.pageControl.currentPage = current;
+}
+
+- (void)confirmButtonTouchedUp:(id)sender {
+    self.confirmBlock();
+    [self confirmBlock];
 }
 
 
