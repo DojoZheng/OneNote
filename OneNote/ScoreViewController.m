@@ -141,4 +141,17 @@
     
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSLog(@"删除乐谱");
+        ScoreBL* scoreBL = [[ScoreBL alloc]init];
+        //先对CoreData进行操作
+        ScoreModel* deletedScore = [self.scores objectAtIndex:indexPath.row];
+        self.scores = [scoreBL remove:deletedScore];
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
+
+
 @end

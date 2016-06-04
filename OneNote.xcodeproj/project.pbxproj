@@ -95,6 +95,8 @@
 		E193AFA71CE85CE1008E3603 /* ScoreManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E193AFA51CE85CE1008E3603 /* ScoreManagedObject.m */; };
 		E193AFAD1CE864D4008E3603 /* ScoreBL.m in Sources */ = {isa = PBXBuildFile; fileRef = E193AFAC1CE864D4008E3603 /* ScoreBL.m */; };
 		E193AFB01CE8652A008E3603 /* ScoreDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = E193AFAF1CE8652A008E3603 /* ScoreDAO.m */; };
+		E197F7611CF88B450018F3CF /* PianoEditorKeyBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = E197F7601CF88B450018F3CF /* PianoEditorKeyBoard.m */; };
+		E197F7641CF942070018F3CF /* PianoKeyLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E197F7631CF942070018F3CF /* PianoKeyLabel.m */; };
 		E1B0D8BA1CE9B93800C0763D /* MusicalToolKeyBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B0D8B91CE9B93800C0763D /* MusicalToolKeyBoardView.m */; };
 		E1B2A1791CE5EA3100E00D50 /* BeatKeyBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B2A1781CE5EA3100E00D50 /* BeatKeyBoardView.m */; };
 		E1B2A17C1CE5FA6A00E00D50 /* BeatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B2A17B1CE5FA6A00E00D50 /* BeatManager.m */; };
@@ -291,6 +293,10 @@
 		E193AFAC1CE864D4008E3603 /* ScoreBL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreBL.m; sourceTree = "<group>"; };
 		E193AFAE1CE8652A008E3603 /* ScoreDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreDAO.h; sourceTree = "<group>"; };
 		E193AFAF1CE8652A008E3603 /* ScoreDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreDAO.m; sourceTree = "<group>"; };
+		E197F75F1CF88B450018F3CF /* PianoEditorKeyBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PianoEditorKeyBoard.h; sourceTree = "<group>"; };
+		E197F7601CF88B450018F3CF /* PianoEditorKeyBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PianoEditorKeyBoard.m; sourceTree = "<group>"; };
+		E197F7621CF942070018F3CF /* PianoKeyLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PianoKeyLabel.h; sourceTree = "<group>"; };
+		E197F7631CF942070018F3CF /* PianoKeyLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PianoKeyLabel.m; sourceTree = "<group>"; };
 		E1B0D8B81CE9B93800C0763D /* MusicalToolKeyBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicalToolKeyBoardView.h; sourceTree = "<group>"; };
 		E1B0D8B91CE9B93800C0763D /* MusicalToolKeyBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicalToolKeyBoardView.m; sourceTree = "<group>"; };
 		E1B2A1771CE5EA3100E00D50 /* BeatKeyBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeatKeyBoardView.h; sourceTree = "<group>"; };
@@ -812,6 +818,10 @@
 			children = (
 				E1B0D8B81CE9B93800C0763D /* MusicalToolKeyBoardView.h */,
 				E1B0D8B91CE9B93800C0763D /* MusicalToolKeyBoardView.m */,
+				E197F75F1CF88B450018F3CF /* PianoEditorKeyBoard.h */,
+				E197F7601CF88B450018F3CF /* PianoEditorKeyBoard.m */,
+				E197F7621CF942070018F3CF /* PianoKeyLabel.h */,
+				E197F7631CF942070018F3CF /* PianoKeyLabel.m */,
 			);
 			name = "音乐编辑工具";
 			sourceTree = "<group>";
@@ -1219,6 +1229,7 @@
 				E138F56E1C45EE620013E451 /* ONCollectionViewCell.m in Sources */,
 				E11B7C101C9AA22400535108 /* WPViewController.m in Sources */,
 				22B2768C1C13D8C10059A167 /* UIView_extra.m in Sources */,
+				E197F7641CF942070018F3CF /* PianoKeyLabel.m in Sources */,
 				E187FE311C5CF11200B02450 /* NSData+ImageContentType.m in Sources */,
 				451980AA1C5E28C100429DA4 /* NoteManager.m in Sources */,
 				451980A91C5E28C100429DA4 /* VNConstants.m in Sources */,
@@ -1244,6 +1255,7 @@
 				E1CD4CFB1C65E8A500A684E5 /* UserBL.m in Sources */,
 				E187FE3A1C5CF11200B02450 /* UIImage+GIF.m in Sources */,
 				E1B2A17C1CE5FA6A00E00D50 /* BeatManager.m in Sources */,
+				E197F7611CF88B450018F3CF /* PianoEditorKeyBoard.m in Sources */,
 				E187FE321C5CF11200B02450 /* SDImageCache.m in Sources */,
 				451980971C5E28B700429DA4 /* NoteDetailViewController.m in Sources */,
 			);

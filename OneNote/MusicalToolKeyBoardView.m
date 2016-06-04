@@ -7,19 +7,25 @@
 //
 
 #import "MusicalToolKeyBoardView.h"
+#import "PianoEditorKeyBoard.h"
+#import "PianoKeyLabel.h"
 
 #define ButtonWidth 30
 #define ButtonHeight 30
 #define ButtonGap 5
 #define MusicalToolKBHeight 240
 
-@interface MusicalToolKeyBoardView()<UIScrollViewDelegate>
+@interface MusicalToolKeyBoardView()<UIScrollViewDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic,strong) UIScrollView* musicalNotesBar;
 @property (nonatomic,strong) UIScrollView* notesDetailList;
-@property (nonatomic,strong) UIScrollView* pianoScrollView;
+@property (nonatomic,strong) PianoEditorKeyBoard* pianoScrollView;
 @property (nonatomic,strong) UIToolbar* editToolBar;
 
+@property (nonatomic,strong) UIBezierPath* path_1;
+
+//标记乐谱编辑tag
+@property (nonatomic,assign) NSInteger editNoteTag;
 
 @end
 
@@ -146,16 +152,22 @@
 
 - (void)loadPianoScrollView {
 //    CGFloat pianoWidth = 160*219.22/23.11;
-    CGFloat pianoWidth = 160*219.22/15;
+    CGFloat pianoWidth = 160*13;  //160*195/15
+    CGFloat whiteKeyWidth = pianoWidth/52; //40
     CGFloat pianoHeight = 160;
-    self.pianoScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(40, 40, ScreenWidth - 40, 160)];
+    self.pianoScrollView = [[PianoEditorKeyBoard alloc]initWithFrame:CGRectMake(40, 40, ScreenWidth - 40, 160)];
     self.pianoScrollView.contentSize = CGSizeMake(pianoWidth, pianoHeight);
     UIImageView* pianoView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, pianoWidth, pianoHeight)];
     pianoView.image = [UIImage imageNamed:@"钢琴键盘"];
     [self.pianoScrollView addSubview:pianoView];
     self.pianoScrollView.showsHorizontalScrollIndicator = YES;
     self.pianoScrollView.showsVerticalScrollIndicator = NO;
+
     [self addSubview:self.pianoScrollView];
+    
+    
+
+
 }
 
 #pragma mark - MusicalNotesBar的选择触发器
@@ -176,10 +188,14 @@
     for (int i = 0; i < 6; i++) {
         if (i == 0) {
             UIButton* btn = [[UIButton alloc]initWithFrame:CGRectMake(10, 5,20 , 10)];
+            btn.tag = 100;
+            [btn addTarget:self action:@selector(chooseNoteTime:) forControlEvents:UIControlEventTouchUpInside];
             [btn setImage:[UIImage imageNamed:@"1:1note"] forState:UIControlStateNormal];
             [self.notesDetailList addSubview:btn];
         }else{
             UIButton* btn = [[UIButton alloc]initWithFrame:CGRectMake(15, 15 + 10 + (i-1)*40, 10, 30)];
+            btn.tag = 100+i;
+            [btn addTarget:self action:@selector(chooseNoteTime:) forControlEvents:UIControlEventTouchUpInside];
             NSInteger n = i;
             NSInteger N = 1;
             while (n--) {
@@ -277,5 +293,74 @@
 - (void)strongButtonTouchedUp:(id)sender {
 	
 }
+
+- (void)chooseNoteTime:(UIButton*)sender {
+    //将上一个editNoteTag标记的Note变成黑色
+    if (self.editNoteTag == 0) {
+        self.editNoteTag = sender.tag;
+    }else{
+        //将之前的editNoteTag对应的editNote颜色换成黑色
+        UIButton* button = [self viewWithTag:self.editNoteTag];
+        int noteTime = 1;
+        NSInteger flag = self.editNoteTag - 100;
+        while (flag--) {
+            noteTime *= 2;
+        }
+        NSString* noteImage = [NSString stringWithFormat:@"1:%dnote",noteTime];
+        [button setImage:[UIImage imageNamed:noteImage] forState:UIControlStateNormal];
+    }
+    
+    int noteTime = 1;
+    NSInteger flag = sender.tag - 100;
+    while (flag--) {
+        noteTime *= 2;
+    }
+    NSString* noteImage = [NSString stringWithFormat:@"1:%dnote",noteTime];
+    NSString* noteBlueImage = [NSString stringWithFormat:@"1-%dnoteBlue",noteTime];
+    [sender setImage:[UIImage imageNamed:noteBlueImage] forState:UIControlStateNormal];
+    self.editNoteTag = sender.tag;
+    //响应代理绘画音符的方法
+    if ([self.musicalKBDelegate respondsToSelector:@selector(chooseNoteTime:)]) {
+        [self.musicalKBDelegate chooseNoteTime:noteImage];
+    }
+
+    
+//    switch (sender.tag) {
+//        case 100:
+//            
+//            if ([self.musicalKBDelegate respondsToSelector:@selector(chooseNoteTime:)]) {
+//                [self.musicalKBDelegate chooseNoteTime:@"1:1note"];
+//            }
+//            break;
+//        case 101:
+//            if ([self.musicalKBDelegate respondsToSelector:@selector(chooseNoteTime:)]) {
+//                [self.musicalKBDelegate chooseNoteTime:@"1:2note"];
+//            }
+//            break;
+//        case 102:
+//            if ([self.musicalKBDelegate respondsToSelector:@selector(chooseNoteTime:)]) {
+//                [self.musicalKBDelegate chooseNoteTime:@"1:4note"];
+//            }
+//            break;
+//        case 103:
+//            if ([self.musicalKBDelegate respondsToSelector:@selector(chooseNoteTime:)]) {
+//                [self.musicalKBDelegate chooseNoteTime:@"1:8note"];
+//            }
+//            break;
+//        case 104:
+//            if ([self.musicalKBDelegate respondsToSelector:@selector(chooseNoteTime:)]) {
+//                [self.musicalKBDelegate chooseNoteTime:@"1:16note"];
+//            }
+//            break;
+//        case 105:
+//            if ([self.musicalKBDelegate respondsToSelector:@selector(chooseNoteTime:)]) {
+//                [self.musicalKBDelegate chooseNoteTime:@"1:32note"];
+//            }
+//            break;
+//        default:
+//            break;
+//    }
+}
+
 
 @end

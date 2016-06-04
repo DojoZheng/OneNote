@@ -8,7 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol MusicalToolKBDelegate <NSObject>
+
+- (void)chooseNoteTime:(NSString*)noteTime;
+
+@end
+
 @interface MusicalToolKeyBoardView : UIView
 
+@property (nonatomic, assign) id <MusicalToolKBDelegate> musicalKBDelegate;
 
 @end
